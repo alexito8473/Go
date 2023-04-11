@@ -1,5 +1,6 @@
 package Tablero;
 
+import Fichas.Casilla;
 import Fichas.Ficha;
 import Jugador.Jugador;
 
@@ -15,6 +16,17 @@ public class Tablero {
 			{ " 7 ", " . ", " . ", " . ", " . ", " . ", " . ", " . ", " . ", " 7" },
 			{ " 8 ", " . ", " . ", " . ", " . ", " . ", " . ", " . ", " . ", " 8" },
 			{ "   ", " A ", " B ", " C ", " D ", " E ", " F ", " G ", " H ", "  " } };
+	
+	private Casilla[][] tableroo = {
+			{new Casilla(),new Casilla(),new Casilla(),new Casilla(),new Casilla(),new Casilla(),new Casilla(), new Casilla()},
+			{new Casilla(),new Casilla(),new Casilla(),new Casilla(),new Casilla(),new Casilla(),new Casilla(), new Casilla()},
+			{new Casilla(),new Casilla(),new Casilla(),new Casilla(),new Casilla(),new Casilla(),new Casilla(), new Casilla()},
+			{new Casilla(),new Casilla(),new Casilla(),new Casilla(),new Casilla(),new Casilla(),new Casilla(), new Casilla()},
+			{new Casilla(),new Casilla(),new Casilla(),new Casilla(),new Casilla(),new Casilla(),new Casilla(), new Casilla()},
+			{new Casilla(),new Casilla(),new Casilla(),new Casilla(),new Casilla(),new Casilla(),new Casilla(), new Casilla()},
+			{new Casilla(),new Casilla(),new Casilla(),new Casilla(),new Casilla(),new Casilla(),new Casilla(), new Casilla()},
+			{new Casilla(),new Casilla(),new Casilla(),new Casilla(),new Casilla(),new Casilla(),new Casilla(), new Casilla()},
+			};
 	
 	// ☻ Negro      ☺ Blanco
 	

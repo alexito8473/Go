@@ -1,7 +1,7 @@
 package Fichas;
 
 public enum Ficha {
-	NEGRO(" ☻ "),BLANCO(" ☺ ");
+	NEGRO(" ☻ "),BLANCO(" ☺ "),VACIA(" . ");
 	
 	private String resultado;
 	
