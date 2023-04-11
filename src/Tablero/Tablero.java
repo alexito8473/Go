@@ -5,54 +5,41 @@ import Fichas.Ficha;
 import Jugador.Jugador;
 
 public class Tablero {
-	private String[][] tablero = { 
-			{ "   ", " A ", " B ", " C ", " D ", " E ", " F ", " G ", " H ", "  " },
-			{ " 1 ", " . ", " . ", " . ", " . ", " . ", " . ", " . ", " . ", " 1" },
-			{ " 2 ", " . ", " . ", " . ", " . ", " . ", " . ", " . ", " . ", " 2" },
-			{ " 3 ", " . ", " . ", " . ", " . ", " . ", " . ", " . ", " . ", " 3" },
-			{ " 4 ", " . ", " . ", " . ", " ☺ ", " ☻ ", " . ", " . ", " . ", " 4" },
-			{ " 5 ", " . ", " . ", " . ", " ☻ ", " ☺ ", " . ", " . ", " . ", " 5" },
-			{ " 6 ", " . ", " . ", " . ", " . ", " . ", " . ", " . ", " . ", " 6" },
-			{ " 7 ", " . ", " . ", " . ", " . ", " . ", " . ", " . ", " . ", " 7" },
-			{ " 8 ", " . ", " . ", " . ", " . ", " . ", " . ", " . ", " . ", " 8" },
-			{ "   ", " A ", " B ", " C ", " D ", " E ", " F ", " G ", " H ", "  " } };
 	
-	private Casilla[][] tableroo = {
-			{new Casilla(),new Casilla(),new Casilla(),new Casilla(),new Casilla(),new Casilla(),new Casilla(), new Casilla()},
-			{new Casilla(),new Casilla(),new Casilla(),new Casilla(),new Casilla(),new Casilla(),new Casilla(), new Casilla()},
-			{new Casilla(),new Casilla(),new Casilla(),new Casilla(),new Casilla(),new Casilla(),new Casilla(), new Casilla()},
-			{new Casilla(),new Casilla(),new Casilla(),new Casilla(),new Casilla(),new Casilla(),new Casilla(), new Casilla()},
-			{new Casilla(),new Casilla(),new Casilla(),new Casilla(),new Casilla(),new Casilla(),new Casilla(), new Casilla()},
-			{new Casilla(),new Casilla(),new Casilla(),new Casilla(),new Casilla(),new Casilla(),new Casilla(), new Casilla()},
-			{new Casilla(),new Casilla(),new Casilla(),new Casilla(),new Casilla(),new Casilla(),new Casilla(), new Casilla()},
-			{new Casilla(),new Casilla(),new Casilla(),new Casilla(),new Casilla(),new Casilla(),new Casilla(), new Casilla()},
-			};
+//	private Casilla[][] tablero = {
+//			{new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false), new Casilla(false)},
+//			{new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false), new Casilla(false)},
+//			{new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false), new Casilla(false)},
+//			{new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.NEGRO) ,new Casilla(false),new Casilla(false), new Casilla(false)},
+//			{new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(true).meterFicha(Ficha.NEGRO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(false),new Casilla(false), new Casilla(false)},
+//			{new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false), new Casilla(false)},
+//			{new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false), new Casilla(false)},
+//			{new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false), new Casilla(false)},
+//			};
 	
 	// ☻ Negro      ☺ Blanco
 	
-	private String[][] tableroRepuesto={ 
-		{ "   ", " A ", " B ", " C ", " D ", " E ", " F ", " G ", " H ", "  " },
-		{ " 1 ", " . ", " . ", " . ", " . ", " . ", " . ", " . ", " . ", " 1" },
-		{ " 2 ", " . ", " . ", " . ", " . ", " . ", " . ", " . ", " . ", " 2" },
-		{ " 3 ", " . ", " . ", " . ", " . ", " . ", " . ", " . ", " . ", " 3" },
-		{ " 4 ", " . ", " . ", " . ", " ☺ ", " ☻ ", " . ", " . ", " . ", " 4" },
-		{ " 5 ", " . ", " . ", " . ", " ☻ ", " ☺ ", " . ", " . ", " . ", " 5" },
-		{ " 6 ", " . ", " . ", " . ", " . ", " . ", " . ", " . ", " . ", " 6" },
-		{ " 7 ", " . ", " . ", " . ", " . ", " . ", " . ", " . ", " . ", " 7" },
-		{ " 8 ", " . ", " . ", " . ", " . ", " . ", " . ", " . ", " . ", " 8" },
-		{ "   ", " A ", " B ", " C ", " D ", " E ", " F ", " G ", " H ", "  " } };
+	private Casilla[][] tableroRepuesto = {
+			{new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false), new Casilla(false)},
+			{new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false), new Casilla(false)},
+			{new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false), new Casilla(false)},
+			{new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.NEGRO) ,new Casilla(false),new Casilla(false), new Casilla(false)},
+			{new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(true).meterFicha(Ficha.NEGRO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(false),new Casilla(false), new Casilla(false)},
+			{new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false), new Casilla(false)},
+			{new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false), new Casilla(false)},
+			{new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false), new Casilla(false)},
+			};
 	
-	private String[][] tableroa={ 
-			{ "   ", " A ", " B ", " C ", " D ", " E ", " F ", " G ", " H ", "  " },
-			{ " 1 ", " ☻ ", " ☻ ", " ☻ ", " ☻ ", " ☻ ", " ☻ ", " ☻ ", " ☻ ", " 1" },
-			{ " 2 ", " ☻ ", " ☻ ", " ☻ ", " ☻ ", " ☻ ", " ☻ ", " ☻ ", " ☻ ", " 2" },
-			{ " 3 ", " ☻ ", " ☻ ", " ☻ ", " ☻ ", " ☻ ", " ☻ ", " ☻ ", " ☻ ", " 3" },
-			{ " 4 ", " ☻ ", " ☻ ", " ☻ ", " ☻ ", " ☻ ", " ☻ ", " ☻ ", " . ", " 4" },
-			{ " 5 ", " ☻ ", " ☻ ", " ☻ ", " ☻ ", " ☻ ", " ☺ ", " ☻ ", " ☻ ", " 5" },
-			{ " 6 ", " ☻ ", " ☻ ", " ☻ ", " ☻ ", " ☻ ", " ☻ ", " ☻ ", " ☻ ", " 6" },
-			{ " 7 ", " ☻ ", " ☻ ", " ☻ ", " ☻ ", " ☻ ", " ☺ ", " ☻ ", " ☻ ", " 7" },
-			{ " 8 ", " ☻ ", " ☻ ", " ☻ ", " ☻ ", " ☻ ", " ☻ ", " ☻ ", " ☻ ", " 8" },
-			{ "   ", " A ", " B ", " C ", " D ", " E ", " F ", " G ", " H ", "  " } };
+	private Casilla[][] tablero = {
+			{new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false), new Casilla(false)},
+			{new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false), new Casilla(false)},
+			{new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.NEGRO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(false), new Casilla(false)},
+			{new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.NEGRO) ,new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO)},
+			{new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.NEGRO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO)},
+			{new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(false), new Casilla(true).meterFicha(Ficha.BLANCO).meterFicha(Ficha.BLANCO)},
+			{new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(false), new Casilla(true).meterFicha(Ficha.BLANCO).meterFicha(Ficha.BLANCO)},
+			{new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO)},
+			};
 
 	public Tablero() {
 //		reinicioTablero();
@@ -60,31 +47,34 @@ public class Tablero {
 	
 	public void mostrarTablero() {
 		int tamaño = tablero.length;
-		System.out.print(" ");
-		for (int i = 0; i < tamaño * 3; i++) {
+		System.out.print("  ");
+		for (int i = 0; i < tamaño*3; i++) {
 			System.out.print("-");
 		}
 		System.out.println();
+		System.out.print("|  A  B  C  D  E  F  G  H   |");
+		System.out.println();
 		for (int i = 0; i < tamaño; i++) {
-			System.out.print("|");
+			System.out.print("|"+(i+1));
 			for (int j = 0; j < tablero[i].length; j++) {
 				System.out.print(tablero[i][j]);
 			}
-			System.out.print(" |");
+			System.out.print(i+1+" |");
 			System.out.println();
 		}
-		System.out.print(" ");
-		for (int i = 0; i < tamaño * 3; i++) {
+		System.out.println("|  A  B  C  D  E  F  G  H   |");
+		System.out.print("  ");
+		for (int i = 0; i < tamaño*3; i++) {
 			System.out.print("-");
 		}
 	}
-	 private void reinicioTablero() {
-		for(int i=0;i<tablero.length;i++) {
-			for(int j=0;j<tablero[i].length;j++) {
-				tablero[i][j]=tableroRepuesto[i][j];
-			}
-		}
-	}
+//	 private void reinicioTablero() {
+//		for(int i=0;i<tablero.length;i++) {
+//			for(int j=0;j<tablero[i].length;j++) {
+//				tablero[i][j]=tableroRepuesto[i][j];
+//			}
+//		}
+//	}
 	 public  void añadirFicha(int a, int b, int algo) {
 		 String forma;
 		 if(algo==1) {
@@ -103,9 +93,9 @@ public class Tablero {
 		 boolean win=true;
 		 int tamaño=tablero.length;
 		 
-		   for(int i=1;i<tamaño;i++) {
-			   for(int j=1;j<tamaño;j++) {			   
-				   if(tablero[i][j].equals(" . ")) {
+		   for(int i=1;i<tamaño&&win;i++) {
+			   for(int j=1;j<tamaño&&win;j++) {			   
+				   if(!tablero[i][j].isLlena()) {
 					   win=false;
 				   }
 			   }
@@ -120,7 +110,7 @@ public class Tablero {
 		 if(finalPartida()) {
 			 return win;
 		 }
-		 if(comprobarFinPartidaHorizontal(Ficha.BLANCO , Ficha.NEGRO)&&comprobarFinPartidaVertical(Ficha.BLANCO , Ficha.NEGRO)) {
+		 if(comprobarFinPartidaHorizontalDerecha(Ficha.BLANCO , Ficha.NEGRO)&&comprobarFinPartidaVerticalAbajo(Ficha.BLANCO , Ficha.NEGRO)) {
 			 win=true;
 		 }else {
 			 win =false;
@@ -130,31 +120,35 @@ public class Tablero {
 	 
 	 public boolean finalPartidaNegro() {
 		 boolean win=finalPartida();
-		 win=comprobarFinPartidaHorizontal(Ficha.NEGRO , Ficha.BLANCO);
+		 if(comprobarFinPartidaHorizontalDerecha(Ficha.NEGRO , Ficha.BLANCO)&&comprobarFinPartidaVerticalAbajo(Ficha.NEGRO , Ficha.BLANCO)) {
+			 win=true;
+		 }else {
+			 win =false;
+		 }
 		 return win;
 	 }
 	 //True termino la partida, false aun sigue
-	 private boolean  comprobarFinPartidaVertical(Ficha ficha , Ficha ficha2) {
+	 private boolean  comprobarFinPartidaVerticalAbajo(Ficha ficha , Ficha ficha2) {
 		 int tamaño=tablero.length;
 		 int numero;
 		 boolean win=true;
 		 boolean salida=false;
 		 boolean corto=false;
-		  for(int i=1;i<tamaño&&!corto;i++) {
-			   for(int j=1;j<tamaño;j++) {	
-				   if(tablero[i][j].equals(ficha.getResultado())) {
-					   if(tablero[i+1][j].equals(ficha2.getResultado())) {
+		  for(int i=0;i<tamaño&&!corto;i++) {
+			   for(int j=0;j<tamaño;j++) {	
+				   if(tablero[i][j].getFicha()==ficha) {
+					   if(i+1<tamaño&&tablero[i+1][j].getFicha()==ficha2) {
 						   numero=i+1;
 						   do {
 							  numero=numero+1;
 							   if(numero<9) {
-								   if(tablero[numero][j].equals(ficha.getResultado())) {
+								   if(tablero[numero][j].getFicha()==ficha) {
 									   salida=true;
 									   win=true;
-								   }else if(tablero[numero][j].equals(ficha2.getResultado())) {
+								   }else if(tablero[numero][j].getFicha()==ficha2) {
 									   salida=false;
 									   win=true;
-								   }else if(tablero[numero][j].equals(" . ")){
+								   }else if(!tablero[numero][j].isLlena()){
 									   salida=true;
 									   win=false;
 									   corto=true;
@@ -172,27 +166,27 @@ public class Tablero {
 		   }
 		  return win;
 	 }
-	 private boolean comprobarFinPartidaHorizontal(Ficha ficha , Ficha ficha2) {
+	 private boolean comprobarFinPartidaHorizontalDerecha(Ficha ficha , Ficha ficha2) {
 		 int tamaño=tablero.length;
 		 int numero;
 		 boolean win=true;
 		 boolean salida=false;
 		 boolean corto=false;
-		  for(int i=1;i<tamaño&&!corto;i++) {
-			   for(int j=1;j<tamaño;j++) {	
-				   if(tablero[i][j].equals(ficha.getResultado())) {
-					   if(tablero[i][j+1].equals(ficha2.getResultado())) {
+		  for(int i=0;i<tamaño&&!corto;i++) {
+			   for(int j=0;j<tamaño;j++) {	
+				   if(tablero[i][j].getFicha()==ficha) {
+					   if(j+1<tamaño&&tablero[i][j+1].getFicha()==ficha2) {
 						   numero=j+1;
 						   do {
 							  numero=numero+1;
 							   if(numero<9) {
-								   if(tablero[i][numero].equals(ficha.getResultado())) {
+								   if(tablero[i][numero].getFicha()==ficha) {
 									   salida=true;
 									   win=true;
-								   }else if(tablero[i][numero].equals(ficha2.getResultado())) {
+								   }else if(tablero[i][numero].getFicha()==ficha2) {
 									   salida=false;
 									   win=true;
-								   }else if(tablero[i][numero].equals(" . ")){
+								   }else if(!tablero[i][numero].isLlena()){
 									   salida=true;
 									   win=false;
 									   corto=true;

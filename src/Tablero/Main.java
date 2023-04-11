@@ -8,8 +8,8 @@ public class Main {
 		
 		System.out.println();
 		
-		System.out.println(tablero.finalPartidaBlanco());
-		
+		System.out.println("Blanco "+tablero.finalPartidaBlanco());
+		System.out.println("Negro "+tablero.finalPartidaNegro());
 	
 	}
 	public static void main(String[] args) {

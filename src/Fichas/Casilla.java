@@ -14,7 +14,12 @@ public class Casilla {
 		return llena;
 	}
 
-	public void setFicha( Ficha ficha) {
+	public Casilla meterFicha( Ficha ficha) {
+		this.ficha=ficha;
+		return this;
+	}
+	
+	public void setFicha(Ficha ficha) {
 		this.ficha=ficha;
 	}
 	
@@ -23,6 +28,11 @@ public class Casilla {
 	}
 	public void setLlena(boolean llena) {
 		this.llena = llena;
+	}
+
+	@Override
+	public String toString() {
+		return llena?ficha.getResultado():" . ";
 	}
 	
 	
