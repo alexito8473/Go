@@ -20,8 +20,8 @@ public class Tablero {
 	// ☻ Negro ☺ Blanco
 
 	private Casilla[][] tablero = {
-			{ new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(false), new Casilla(false),new Casilla(false), new Casilla(false), new Casilla(false) },
-			{ new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(false), new Casilla(false),new Casilla(false) },
+			{ new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(false), new Casilla(false),new Casilla(false), new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO)},
+			{ new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO),  new Casilla(true).meterFicha(Ficha.NEGRO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(false) },
 			{ new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.NEGRO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(false), new Casilla(false) },
 			{ new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.NEGRO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO) },
 			{ new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.NEGRO),new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO) },
@@ -102,8 +102,10 @@ public class Tablero {
 		if (finalPartida()) {
 			return win;
 		}
-		if (comprobarFinPartidaInclinadoAbajoIzquieda(Ficha.BLANCO, Ficha.NEGRO)
+		if (comprobarFinPartidaInclinadoArribaIzquierda(Ficha.BLANCO , Ficha.NEGRO )
 				&& comprobarFinPartidaInclinadoAbajoDerecha(Ficha.BLANCO, Ficha.NEGRO)
+				&& comprobarFinPartidaInclinadoAbajoIzquieda(Ficha.BLANCO, Ficha.NEGRO)
+				&& comprobarFinPartidaInclinadoArribaDerecha(Ficha.BLANCO, Ficha.NEGRO)
 				&& comprobarFinPartidaVerticalArriba(Ficha.BLANCO, Ficha.NEGRO)
 				&& comprobarFinPartidaHorizontalIzquierda(Ficha.BLANCO, Ficha.NEGRO)
 				&& comprobarFinPartidaHorizontalDerecha(Ficha.BLANCO, Ficha.NEGRO)
@@ -112,11 +114,6 @@ public class Tablero {
 		} else {
 			win = false;
 		}
-//		 if() {
-//			 win=true;
-//		 }else {
-//			 win =false;
-//		 }
 		return win;
 	}
 
@@ -125,8 +122,10 @@ public class Tablero {
 		if (finalPartida()) {
 			return win;
 		}
-		if (comprobarFinPartidaInclinadoAbajoIzquieda(Ficha.NEGRO, Ficha.BLANCO)
-				&& comprobarFinPartidaInclinadoAbajoDerecha(Ficha.NEGRO, Ficha.BLANCO)
+		if (comprobarFinPartidaInclinadoAbajoDerecha(Ficha.NEGRO, Ficha.BLANCO) 
+				&& comprobarFinPartidaInclinadoArribaIzquierda(Ficha.NEGRO , Ficha.BLANCO )
+				&& comprobarFinPartidaInclinadoAbajoIzquieda(Ficha.NEGRO, Ficha.BLANCO)
+				&& comprobarFinPartidaInclinadoArribaDerecha(Ficha.NEGRO, Ficha.BLANCO)
 				&& comprobarFinPartidaVerticalArriba(Ficha.NEGRO, Ficha.BLANCO)
 				&& comprobarFinPartidaHorizontalIzquierda(Ficha.NEGRO, Ficha.BLANCO)
 				&& comprobarFinPartidaHorizontalDerecha(Ficha.NEGRO, Ficha.BLANCO)
@@ -135,15 +134,92 @@ public class Tablero {
 		} else {
 			win = false;
 		}
-//		 if() {
-//			 win=true;
-//		 }else {
-//			 win =false;
-//		 }
 		return win;
 	}
 
 	// True termino la partida, false aun sigue
+	private boolean comprobarFinPartidaInclinadoArribaIzquierda(Ficha ficha, Ficha ficha2) {
+		int tamaño = tablero.length;
+		int numeroJ;
+		int numeroI;
+		boolean win = true;
+		boolean salida = false;
+		boolean corto = false;
+		for (int i = 0; i < tamaño && !corto; i++) {
+			for (int j = 0; j < tamaño; j++) {
+				if (tablero[i][j].getFicha() == ficha) {
+					if ((i + 1 < tamaño && j - 1 >= 0) && tablero[i + 1][j - 1].getFicha() == ficha2) {
+						numeroI = i + 1;
+						numeroJ = j - 1;
+						do {
+							numeroI = numeroI + 1;
+							numeroJ = numeroJ - 1;
+							if (numeroI < tamaño && numeroJ >= 0) {
+								if (tablero[numeroI][numeroJ].getFicha() == ficha) {
+									salida = true;
+									win = true;
+								} else if (tablero[numeroI][numeroJ].getFicha() == ficha2) {
+									salida = false;
+									win = true;
+								} else if (!tablero[numeroI][numeroJ].isLlena()) {
+									salida = true;
+									win = false;
+									corto = true;
+								}
+							} else {
+								salida = true;
+								win = true;
+							}
+
+						} while (!salida);
+					}
+				}
+			}
+		}
+		return win;
+	}
+
+	private boolean comprobarFinPartidaInclinadoAbajoDerecha(Ficha ficha, Ficha ficha2) {
+		int tamaño = tablero.length;
+		int numeroJ;
+		int numeroI;
+		boolean win = true;
+		boolean salida = false;
+		boolean corto = false;
+		for (int i = 0; i < tamaño && !corto; i++) {
+			for (int j = 0; j < tamaño; j++) {
+				if (tablero[i][j].getFicha() == ficha) {
+					if ((i - 1 >= 0 && j + 1 < tamaño) && tablero[i - 1][j + 1].getFicha() == ficha2) {
+						numeroI = i - 1;
+						numeroJ = j + 1;
+						do {
+							numeroI = numeroI - 1;
+							numeroJ = numeroJ + 1;
+							if (numeroI >= 0 && numeroJ < tamaño) {
+								if (tablero[numeroI][numeroJ].getFicha() == ficha) {
+									salida = true;
+									win = true;
+								} else if (tablero[numeroI][numeroJ].getFicha() == ficha2) {
+									salida = false;
+									win = true;
+								} else if (!tablero[numeroI][numeroJ].isLlena()) {
+									salida = true;
+									win = false;
+									corto = true;
+								}
+							} else {
+								salida = true;
+								win = true;
+							}
+
+						} while (!salida);
+					}
+				}
+			}
+		}
+		return win;
+	}
+
 	private boolean comprobarFinPartidaInclinadoAbajoIzquieda(Ficha ficha, Ficha ficha2) {
 		int tamaño = tablero.length;
 		int numeroJ;
@@ -185,7 +261,7 @@ public class Tablero {
 		return win;
 	}
 
-	private boolean comprobarFinPartidaInclinadoAbajoDerecha(Ficha ficha, Ficha ficha2) {
+	private boolean comprobarFinPartidaInclinadoArribaDerecha(Ficha ficha, Ficha ficha2) {
 		int tamaño = tablero.length;
 		int numeroJ;
 		int numeroI;
@@ -221,7 +297,6 @@ public class Tablero {
 						} while (!salida);
 					}
 				}
-
 			}
 		}
 		return win;
@@ -260,7 +335,6 @@ public class Tablero {
 						} while (!salida);
 					}
 				}
-
 			}
 		}
 		return win;
@@ -299,7 +373,6 @@ public class Tablero {
 						} while (!salida);
 					}
 				}
-
 			}
 		}
 		return win;
@@ -338,7 +411,6 @@ public class Tablero {
 						} while (!salida);
 					}
 				}
-
 			}
 		}
 		return win;
@@ -377,7 +449,6 @@ public class Tablero {
 						} while (!salida);
 					}
 				}
-
 			}
 		}
 		return win;
