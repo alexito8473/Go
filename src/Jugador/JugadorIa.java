@@ -27,7 +27,6 @@ public class JugadorIa extends Jugador {
 		case 9 -> "¿Tu que miras?";
 		default -> "Error en el nombre";
 		};
-		return nombre;
-		
+		return nombre;	
 	}
 }

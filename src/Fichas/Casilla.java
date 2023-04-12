@@ -3,7 +3,6 @@ package Fichas;
 public class Casilla {
 	
 	private boolean llena;
-	
 	private Ficha ficha;
 	
 	public Casilla(boolean llena) {
@@ -34,6 +33,4 @@ public class Casilla {
 	public String toString() {
 		return llena?ficha.getResultado():" . ";
 	}
-	
-	
 }

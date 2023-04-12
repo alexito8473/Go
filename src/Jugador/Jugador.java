@@ -19,6 +19,7 @@ public class Jugador {
 	public String getNombre() {
 		return nombre;
 	}
+	
 	protected void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
@@ -26,6 +27,4 @@ public class Jugador {
 	protected void setFicha(Ficha ficha) {
 		this.ficha = ficha;
 	}
-	
-	
 }
