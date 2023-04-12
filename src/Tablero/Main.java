@@ -1,5 +1,6 @@
 package Tablero;
 
+import Fichas.Ficha;
 
 public class Main {
 	private void empezarPartida() {
@@ -8,8 +9,8 @@ public class Main {
 		
 		System.out.println();
 		
-		System.out.println("Blanco "+tablero.finalPartidaBlanco());
-		System.out.println("Negro "+tablero.finalPartidaNegro());
+		System.out.println("Blanco "+tablero.finalPartida(Ficha.BLANCO));
+		System.out.println("Negro "+tablero.finalPartida(Ficha.NEGRO));
 	
 	}
 	public static void main(String[] args) {
