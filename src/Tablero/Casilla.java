@@ -1,4 +1,6 @@
-package Fichas;
+package Tablero;
+
+import Ficha.Ficha;
 
 public class Casilla {
 	
@@ -29,8 +31,7 @@ public class Casilla {
 		this.llena = llena;
 	}
 
-	@Override
-	public String toString() {
-		return llena?ficha.getResultado():" . ";
+	public String pintarCasilla() {
+		return llena?ficha.pintarFicha():" . ";
 	}
 }

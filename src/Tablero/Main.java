@@ -1,6 +1,6 @@
 package Tablero;
 
-import Fichas.Ficha;
+import Ficha.Ficha;
 
 public class Main {
 	private void empezarPartida() {

@@ -2,7 +2,7 @@ package Jugador;
 
 import java.util.Random;
 
-import Fichas.Ficha;
+import Ficha.Ficha;
 
 public class JugadorIa extends Jugador {
 
@@ -17,7 +17,7 @@ public class JugadorIa extends Jugador {
 		nombre = switch (numero) {
 		case 0 -> "Dominio";
 		case 1 -> "Jueputa";
-		case 2-> "España";
+		case 2 -> "España";
 		case 3 -> "Gerardo";
 		case 4 -> "No se programar";
 		case 5 -> "Francia caca";

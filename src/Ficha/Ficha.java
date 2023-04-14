@@ -1,4 +1,4 @@
-package Fichas;
+package Ficha;
 
 public enum Ficha {
 	NEGRO(" ☺ "),BLANCO(" ☻ ");
@@ -10,6 +10,9 @@ public enum Ficha {
 	}
 	
 	public String getResultado() {
+		return resultado;
+	}
+	public String pintarFicha() {
 		return resultado;
 	}
 	

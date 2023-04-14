@@ -1,6 +1,6 @@
 package Jugador;
 
-import Fichas.Ficha;
+import Ficha.Ficha;
 
 public class Jugador {
 	
