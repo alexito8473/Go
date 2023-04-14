@@ -9,8 +9,11 @@ public class Main {
 		
 		System.out.println();
 		
-		System.out.println("Blanco "+tablero.finalPartida(Ficha.BLANCO));
+		tablero.añadirFichaTablero(Ficha.BLANCO, 5, 3);
 		System.out.println("Negro "+tablero.finalPartida(Ficha.NEGRO));
+
+		System.out.println();
+		tablero.mostrarTablero();
 	
 	}
 	public static void main(String[] args) {

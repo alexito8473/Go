@@ -5,33 +5,32 @@ import Jugador.Jugador;
 
 public class Tablero {
 
-//	private Casilla[][] tablero = {
-//			{new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false), new Casilla(false)},
-//			{new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false), new Casilla(false)},
-//			{new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false), new Casilla(false)},
-//			{new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.NEGRO) ,new Casilla(false),new Casilla(false), new Casilla(false)},
-//			{new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(true).meterFicha(Ficha.NEGRO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(false),new Casilla(false), new Casilla(false)},
-//			{new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false), new Casilla(false)},
-//			{new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false), new Casilla(false)},
-//			{new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false), new Casilla(false)},
-//			};
+	private Casilla[][] tablero = {
+			{new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false), new Casilla(false)},
+			{new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false), new Casilla(false)},
+			{new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false), new Casilla(false)},
+			{new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.NEGRO) ,new Casilla(false),new Casilla(false), new Casilla(false)},
+			{new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(true).meterFicha(Ficha.NEGRO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(false),new Casilla(false), new Casilla(false)},
+			{new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false), new Casilla(false)},
+			{new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false), new Casilla(false)},
+			{new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false), new Casilla(false)},
+			};
 
 	// ☻ Negro ☺ Blanco
 
-	private Casilla[][] tablero = {
-			{ new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(false), new Casilla(false),new Casilla(false), new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO)},
-			{ new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO),  new Casilla(true).meterFicha(Ficha.NEGRO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(false) },
-			{ new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.NEGRO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(false), new Casilla(false) },
-			{ new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.NEGRO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO) },
-			{ new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.NEGRO),new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO) },
-			{ new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(false), new Casilla(true).meterFicha(Ficha.BLANCO).meterFicha(Ficha.BLANCO) },
-			{ new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(false), new Casilla(true).meterFicha(Ficha.BLANCO).meterFicha(Ficha.BLANCO) },
-			{ new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO) }, };
+//	private Casilla[][] tablero = {
+//			{ new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(false), new Casilla(false),new Casilla(false), new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO)},
+//			{ new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO),  new Casilla(true).meterFicha(Ficha.NEGRO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(false) },
+//			{ new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.NEGRO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(false), new Casilla(false) },
+//			{ new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.NEGRO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO) },
+//			{ new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.NEGRO),new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO) },
+//			{ new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(false), new Casilla(true).meterFicha(Ficha.BLANCO).meterFicha(Ficha.BLANCO) },
+//			{ new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(false), new Casilla(true).meterFicha(Ficha.BLANCO).meterFicha(Ficha.BLANCO) },
+//			{ new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO) }, };
 
 	public Casilla[][] getTablero(){
 		return tablero;
 	}
-	
 	public void mostrarTablero() {
 		int tamaño = tablero.length;
 		System.out.print("  ");
@@ -55,9 +54,13 @@ public class Tablero {
 			System.out.print("-");
 		}
 	}
+	
+	// ------------------------------------------------------------------------------------------
+	// ------------------------------------------------------------------------------------------
+	// ------------------------------------------------------------------------------------------
 
 
-	public boolean comprabaSiHayFichaPuesta(int posicion1, int posicion2) {
+	public boolean comprobarSiHayFichaPuesta(int posicion1, int posicion2) {
 		if (tablero[posicion1][posicion2].isLlena()) {
 			return true;
 		} else {
@@ -68,8 +71,41 @@ public class Tablero {
 	public void añadirFichaTablero(Ficha ficha, int posicion1, int posicion2) {
 		tablero[posicion1][posicion2].setLlena(true);
 		tablero[posicion1][posicion2].setFicha(ficha);
+		rotarFichasVerticalArriba(ficha, posicion1, posicion2);
+		
+		
 	}
-
+	private void rotarFichasVerticalArriba(Ficha ficha, int posicion1, int posicion2) {
+		boolean saber=false;
+		boolean escape=false;
+		boolean escape2=true;
+		int numero=posicion1;
+		Ficha fichaContraria;
+		if(ficha == Ficha.BLANCO) {
+			fichaContraria = Ficha.NEGRO;
+		}else {
+			fichaContraria = Ficha.BLANCO; 
+		}
+		
+		if(movimientoValidarVerticalArriba(ficha, fichaContraria, posicion1, posicion2)) {
+			do {
+				numero--;
+				if(numero==0) {
+					escape2=false;
+					escape=true;
+				}
+				if(escape2&&tablero[numero][posicion2].getFicha()==ficha) {
+					saber=true;
+					escape=true;
+					for(int i=numero;i<=posicion2+1;i++) {
+						tablero[i][posicion2].setLlena(true);
+						tablero[i][posicion2].setFicha(ficha);
+					}
+				}
+				
+			}while(!escape);
+		}
+	}
 	// ------------------------------------------------------------------------------------------
 	// ------------------------------------------------------------------------------------------
 	// ------------------------------------------------------------------------------------------

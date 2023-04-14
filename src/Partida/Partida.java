@@ -1,6 +1,7 @@
 package Partida;
 
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 import Jugador.Jugador;
 import Tablero.Tablero;
@@ -22,7 +23,7 @@ public class Partida {
 	public static final String WHITE = "\u001B[37m";
 	
 	public void JugarPartida() {
-		
+		frasesLentas("Esto es una prueba");
 	}
 	
 	private void mostraTitulo() {
@@ -30,6 +31,8 @@ public class Partida {
 	}
 	private int tipoDePartida() {
 		Scanner sc = new Scanner(System.in);
+		frasesLentas("¿Qué tipo de juego quieres?\n"
+				+ "");
 		System.out.printf("Elige el sistema");
 		
 		return 1;
@@ -37,7 +40,14 @@ public class Partida {
 	
 	private void frasesLentas(String frase) {
 		for(int i=0;i<frase.length();i++) {
-			System.out.println(frase.charAt(i));
+			System.out.print(frase.charAt(i));
+			try {
+				TimeUnit.MILLISECONDS.sleep(15);
+			} catch (InterruptedException e) {
+
+			}
 		}
+		System.out.println();
 	}
+	
 }
