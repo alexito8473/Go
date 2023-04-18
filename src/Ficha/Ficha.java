@@ -12,7 +12,8 @@ public enum Ficha {
 	public String getResultado() {
 		return resultado;
 	}
-	public String pintarFicha() {
+	
+	public String devolverFicha() {
 		return resultado;
 	}
 	

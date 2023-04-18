@@ -7,15 +7,23 @@ public class Casilla {
 	private boolean llena;
 	private Ficha ficha;
 	
-	public Casilla() {
-		llena=false;
+	private Coordenada coordenada;
+	
+	public Casilla(int posicion1,int posicion2) {
+		llena = false;
+		coordenada = new Coordenada(posicion1,posicion2);
 	}
 	
-	public Casilla(Ficha ficha) {
+	public Casilla(int posicion1,int posicion2,Ficha ficha) {
 		this.ficha=ficha;
 		llena=true;
+		coordenada = new Coordenada(posicion1,posicion2);
 	}
 	
+	public Coordenada getCoordenada() {
+		return coordenada;
+	}
+
 	public boolean isLlena() {
 		return llena;
 	}
@@ -33,6 +41,6 @@ public class Casilla {
 	}
 
 	public String pintarCasilla() {
-		return llena?ficha.pintarFicha():" . ";
+		return llena?ficha.devolverFicha():" . ";
 	}
 }

@@ -10,20 +10,16 @@ public class Main {
 		System.out.println();
 	
 		System.out.println("Negro "+tablero.finalPartida(Ficha.NEGRO));
-		tablero.añadirFichaTablero(Ficha.BLANCO, 5, 3);
-		System.out.println();
+		tablero.añadirFichaTablero(Ficha.BLANCO, 7, 1);
+		tablero.añadirFichaTablero(Ficha.BLANCO, 7, 2);
+		tablero.añadirFichaTablero(Ficha.BLANCO, 7, 3);
+		tablero.añadirFichaTablero(Ficha.BLANCO, 7, 4);
+		tablero.añadirFichaTablero(Ficha.BLANCO, 7, 5);
+		tablero.añadirFichaTablero(Ficha.BLANCO, 7, 6);
+		tablero.añadirFichaTablero(Ficha.NEGRO, 7, 0);
 		tablero.mostrarTablero();
-		tablero.añadirFichaTablero(Ficha.NEGRO, 2, 3);
+		tablero.añadirFichaTablero(Ficha.NEGRO, 7, 7);
 		tablero.mostrarTablero();
-		tablero.añadirFichaTablero(Ficha.NEGRO, 6, 3);
-		tablero.mostrarTablero();
-		tablero.añadirFichaTablero(Ficha.BLANCO, 2, 4);
-		tablero.mostrarTablero();
-		tablero.añadirFichaTablero(Ficha.NEGRO, 1, 4);
-		tablero.mostrarTablero();
-		tablero.añadirFichaTablero(Ficha.NEGRO, 5, 4);
-		tablero.mostrarTablero();
-	
 	}
 	public static void main(String[] args) {
 		new Main().empezarPartida();
