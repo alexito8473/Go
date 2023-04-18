@@ -1,33 +1,32 @@
 package Tablero;
 
 import Ficha.Ficha;
-import Jugador.Jugador;
 
 public class Tablero {
 
-	private Casilla[][] tablero = {
-			{new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false), new Casilla(false)},
-			{new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false), new Casilla(false)},
-			{new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false), new Casilla(false)},
-			{new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.NEGRO) ,new Casilla(false),new Casilla(false), new Casilla(false)},
-			{new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(true).meterFicha(Ficha.NEGRO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(false),new Casilla(false), new Casilla(false)},
-			{new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false), new Casilla(false)},
-			{new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false), new Casilla(false)},
-			{new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false),new Casilla(false), new Casilla(false)},
-			};
-
-	// ☻ Negro ☺ Blanco
-
+	
 //	private Casilla[][] tablero = {
-//			{ new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(false), new Casilla(false),new Casilla(false), new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO)},
-//			{ new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO),  new Casilla(true).meterFicha(Ficha.NEGRO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(false) },
-//			{ new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.NEGRO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(false), new Casilla(false) },
-//			{ new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.NEGRO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO) },
-//			{ new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.NEGRO),new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO) },
-//			{ new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(false), new Casilla(true).meterFicha(Ficha.BLANCO).meterFicha(Ficha.BLANCO) },
-//			{ new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(false), new Casilla(true).meterFicha(Ficha.BLANCO).meterFicha(Ficha.BLANCO) },
-//			{ new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO),new Casilla(true).meterFicha(Ficha.BLANCO), new Casilla(true).meterFicha(Ficha.BLANCO) }, };
+//			{new Casilla(),new Casilla(),new Casilla(),new Casilla(),new Casilla(),new Casilla(),new Casilla(), new Casilla()},
+//			{new Casilla(),new Casilla(),new Casilla(),new Casilla(),new Casilla(),new Casilla(),new Casilla(), new Casilla()},
+//			{new Casilla(),new Casilla(),new Casilla(),new Casilla(),new Casilla(),new Casilla(),new Casilla(), new Casilla()},
+//			{new Casilla(),new Casilla(),new Casilla(),new Casilla(Ficha.BLANCO),new Casilla(Ficha.NEGRO),new Casilla(),new Casilla(), new Casilla()},
+//			{new Casilla(),new Casilla(),new Casilla(),new Casilla(Ficha.NEGRO), new Casilla(Ficha.BLANCO),new Casilla(),new Casilla(), new Casilla()},
+//			{new Casilla(),new Casilla(),new Casilla(),new Casilla(),new Casilla(),new Casilla(),new Casilla(), new Casilla()},
+//			{new Casilla(),new Casilla(),new Casilla(),new Casilla(),new Casilla(),new Casilla(),new Casilla(), new Casilla()},
+//			{new Casilla(),new Casilla(),new Casilla(),new Casilla(),new Casilla(),new Casilla(),new Casilla(), new Casilla()},
+//			};
 
+	private Casilla[][] tablero = {
+			{new Casilla(),new Casilla(Ficha.BLANCO),new Casilla(),new Casilla(),new Casilla(),new Casilla(),new Casilla(), new Casilla()},
+			{new Casilla(),new Casilla(Ficha.BLANCO),new Casilla(),new Casilla(),new Casilla(),new Casilla(),new Casilla(), new Casilla()},
+			{new Casilla(),new Casilla(Ficha.BLANCO),new Casilla(Ficha.BLANCO),new Casilla(),new Casilla(),new Casilla(),new Casilla(), new Casilla()},
+			{new Casilla(),new Casilla(Ficha.BLANCO),new Casilla(Ficha.BLANCO),new Casilla(Ficha.BLANCO),new Casilla(Ficha.NEGRO),new Casilla(),new Casilla(), new Casilla()},
+			{new Casilla(),new Casilla(Ficha.BLANCO),new Casilla(Ficha.BLANCO),new Casilla(Ficha.NEGRO), new Casilla(Ficha.BLANCO),new Casilla(),new Casilla(), new Casilla()},
+			{new Casilla(),new Casilla(Ficha.BLANCO),new Casilla(Ficha.BLANCO),new Casilla(),new Casilla(),new Casilla(),new Casilla(), new Casilla()},
+			{new Casilla(),new Casilla(Ficha.BLANCO),new Casilla(Ficha.BLANCO),new Casilla(),new Casilla(),new Casilla(),new Casilla(), new Casilla()},
+			{new Casilla(),new Casilla(Ficha.BLANCO),new Casilla(Ficha.BLANCO),new Casilla(),new Casilla(),new Casilla(),new Casilla(), new Casilla()},
+	};
+	
 	public Casilla[][] getTablero(){
 		return tablero;
 	}
@@ -69,42 +68,85 @@ public class Tablero {
 	}
 
 	public void añadirFichaTablero(Ficha ficha, int posicion1, int posicion2) {
-		tablero[posicion1][posicion2].setLlena(true);
 		tablero[posicion1][posicion2].setFicha(ficha);
-		rotarFichasVerticalArriba(ficha, posicion1, posicion2);
-		
-		
+		rotarFichas(ficha,posicion1,posicion2);
 	}
-	private void rotarFichasVerticalArriba(Ficha ficha, int posicion1, int posicion2) {
-		boolean saber=false;
-		boolean escape=false;
-		boolean escape2=true;
-		int numero=posicion1;
+	private void rotarFichas(Ficha ficha, int posicion1, int posicion2) {
 		Ficha fichaContraria;
 		if(ficha == Ficha.BLANCO) {
 			fichaContraria = Ficha.NEGRO;
 		}else {
 			fichaContraria = Ficha.BLANCO; 
 		}
-		
-		if(movimientoValidarVerticalArriba(ficha, fichaContraria, posicion1, posicion2)) {
-			do {
-				numero--;
-				if(numero==0) {
-					escape2=false;
-					escape=true;
-				}
-				if(escape2&&tablero[numero][posicion2].getFicha()==ficha) {
-					saber=true;
-					escape=true;
-					for(int i=numero;i<=posicion2+1;i++) {
-						tablero[i][posicion2].setLlena(true);
-						tablero[i][posicion2].setFicha(ficha);
-					}
-				}
-				
-			}while(!escape);
+		if(movimientoValidarHorizontalIzquierda(ficha, fichaContraria, posicion1, posicion2)) {
+			rotarFichasHorizontalIzquierda(ficha, posicion1, posicion2);
 		}
+		if(movimientoValidarVerticalArriba(ficha, fichaContraria, posicion1, posicion2)) {
+			rotarFichasVerticalArriba(ficha, posicion1, posicion2);
+		}
+		if(movimientoValidarVerticalAbajo(ficha, fichaContraria, posicion1, posicion2)) {
+			rotarFichasVerticalAbajo(ficha, posicion1, posicion2);
+		}
+	}
+	private void rotarFichasHorizontalIzquierda(Ficha ficha, int posicion1, int posicion2) {
+		boolean escape=false;
+		int numero=posicion1;
+			do {
+				numero = numero - 1;
+				if (numero >= 0) {
+					if (tablero[posicion1][numero].getFicha() == ficha) {
+						escape = true;
+						for(int i=numero;i<posicion2;i++) {
+							tablero[posicion1][i].setFicha(ficha);
+						}
+					}else if (!tablero[posicion1][numero].isLlena()) {
+						escape = true;
+					}
+				} else {
+					escape = true;
+				}
+
+			} while (!escape);
+		}
+	
+	private void rotarFichasVerticalAbajo(Ficha ficha, int posicion1, int posicion2) {
+		boolean escape=false;
+		int tamaño=tablero.length;
+		int numero=posicion1;
+			do {
+				numero = numero + 1;
+				if (numero < tamaño) {
+					if (!tablero[numero][posicion2].isLlena() ) {
+						escape = true;
+					} else if (tablero[numero][posicion2].getFicha() == ficha) {
+						escape = true;
+						for(int i=posicion1;i<numero;i++) {
+							tablero[i][posicion2].setFicha(ficha);
+						}	
+					}
+				} else {
+					escape = true;
+				}
+			} while (!escape);
+	}
+	private void rotarFichasVerticalArriba(Ficha ficha, int posicion1, int posicion2) {
+		boolean escape=false;
+		int numero=posicion1;
+		do {
+				numero = numero - 1;
+				if (numero >= 0) {
+					if (!tablero[numero][posicion2].isLlena() ) {
+						escape = true;
+					} else if (tablero[numero][posicion2].getFicha() == ficha) {
+						escape = true;
+						for(int i=numero;i<posicion1;i++) {
+							tablero[i][posicion2].setFicha(ficha);
+						}
+					}
+				} else {
+					escape = true;
+				}
+			} while (!escape);
 	}
 	// ------------------------------------------------------------------------------------------
 	// ------------------------------------------------------------------------------------------
@@ -276,7 +318,7 @@ public class Tablero {
 		if (posicion1 - 1 >= 0 && tablero[posicion1 + 1][posicion2].getFicha() == ficha2) {
 			numero = posicion1 + 1;
 			do {
-				numero = numero + 1;
+				numero = numero - 1;
 				if (numero >= 0) {
 					if (tablero[numero][posicion2].getFicha() == ficha) {
 						salida = true;
@@ -340,9 +382,6 @@ public class Tablero {
 					if (tablero[posicion1][numero].getFicha() == ficha) {
 						salida = true;
 						resultado = true;
-					} else if (tablero[posicion1][numero].getFicha() == ficha2) {
-						salida = false;
-						resultado = false;
 					} else if (!tablero[posicion1][numero].isLlena()) {
 						salida = true;
 						resultado = false;

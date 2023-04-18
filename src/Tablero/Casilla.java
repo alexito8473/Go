@@ -7,21 +7,22 @@ public class Casilla {
 	private boolean llena;
 	private Ficha ficha;
 	
-	public Casilla(boolean llena) {
-		setLlena(llena);
+	public Casilla() {
+		llena=false;
 	}
-
+	
+	public Casilla(Ficha ficha) {
+		this.ficha=ficha;
+		llena=true;
+	}
+	
 	public boolean isLlena() {
 		return llena;
-	}
-
-	public Casilla meterFicha( Ficha ficha) {
-		this.ficha=ficha;
-		return this;
 	}
 	
 	public void setFicha(Ficha ficha) {
 		this.ficha=ficha;
+		llena=true;
 	}
 	
 	public Ficha getFicha() {
