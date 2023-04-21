@@ -9,11 +9,11 @@ public class JugadorIa extends Jugador {
 	public JugadorIa(Ficha ficha) {
 		super(ponerNombre(), ficha);
 	}
-	
+
 	private static String ponerNombre() {
 		String nombre;
 		Random numeroRandom = new Random();
-		int numero= numeroRandom.nextInt(10);
+		int numero = numeroRandom.nextInt(10);
 		nombre = switch (numero) {
 		case 0 -> "Dominio";
 		case 1 -> "Jueputa";
@@ -27,6 +27,6 @@ public class JugadorIa extends Jugador {
 		case 9 -> "¿Tu que miras?";
 		default -> "Error en el nombre";
 		};
-		return nombre;	
+		return nombre;
 	}
 }

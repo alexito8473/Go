@@ -3,15 +3,15 @@ package Jugador;
 import Ficha.Ficha;
 
 public class Jugador {
-	
+
 	private String nombre;
 	private Ficha ficha;
-	
-	public Jugador(String nombre,Ficha ficha) {
+
+	public Jugador(String nombre, Ficha ficha) {
 		setNombre(nombre);
 		setFicha(ficha);
 	}
-	
+
 	public Ficha getFicha() {
 		return ficha;
 	}
@@ -19,7 +19,7 @@ public class Jugador {
 	public String getNombre() {
 		return nombre;
 	}
-	
+
 	protected void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
