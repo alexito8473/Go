@@ -45,23 +45,35 @@ public class Tablero {
 	public Casilla devolverCasilla(Coordenada coordenada) {
 		return tablero[coordenada.getPosicion1()][coordenada.getPosicion2()];
 	}
-
-	public void mostrarTablero() {
-		int tamaño = tablero.length;
-		System.out.print("\n");
+	private void pintarRaya() {
 		espacioTablero(38);
-		for (int i = 0; i < tamaño * 3; i++) {
+		for (int i = 0; i < tablero.length * 3; i++) {
 			System.out.print("-");
 		}
 		System.out.println();
+	}
+	private void pintarLetras() {
 		espacioTablero(32);
-		System.out.print("   |  A  B  C  D  E  F  G  H   |");
-		System.out.println();
+		System.out.println("   |  A  B  C  D  E  F  G  H   |");
+	}
+	public void mostrarTablero(Ficha ficha) {
+		int tamaño = tablero.length;
+		System.out.println("\n");
+		pintarRaya();
+		pintarLetras();
+		
 		for (int i = 0; i < tamaño; i++) {
 			espacioTablero(35);
 			System.out.print("|" + (i + 1));
 			for (int j = 0; j < tablero[i].length; j++) {
-				System.out.print(tablero[i][j].pintarCasilla());
+				if(!tablero[i][j].isLlena()&& movimientoValido(ficha,tablero[i][j].getCoordenada())) {
+					tablero[i][j].setJugada(true);
+					System.out.print(tablero[i][j].pintarCasilla());
+					tablero[i][j].setJugada(false);
+				}else {
+					System.out.print(tablero[i][j].pintarCasilla());
+				}
+	
 				try {
 					TimeUnit.MILLISECONDS.sleep(10);
 				} catch (InterruptedException e) {
@@ -71,13 +83,8 @@ public class Tablero {
 			System.out.print(i + 1 + " |");
 			System.out.println();
 		}
-		espacioTablero(32);
-		System.out.println("   |  A  B  C  D  E  F  G  H   |");
-		espacioTablero(38);
-		for (int i = 0; i < tamaño * 3; i++) {
-			System.out.print("-");
-		}
-		System.out.println();
+		pintarLetras();
+		pintarRaya();
 	}
 
 	private void espacioTablero(int espacio) {
@@ -89,8 +96,8 @@ public class Tablero {
 	// ------------------------------------------------------------------------------------------
 	// ------------------------------------------------------------------------------------------
 
-	public boolean comprobarSiHayFichaPuesta(int posicion1, int posicion2) {
-		return tablero[posicion1][posicion2].isLlena();
+	public boolean comprobarSiHayFichaPuesta(Coordenada coordenada) {
+		return tablero[coordenada.getPosicion1()][coordenada.getPosicion2()].isLlena();
 	}
 
 	public void añadirFichaTablero(Ficha ficha, int posicion1, int posicion2) {
@@ -347,8 +354,7 @@ public class Tablero {
 		boolean salida = false;
 		if ((numeroI >= 0 && numeroJ < tamaño) && tablero[numeroI][numeroJ].getFicha() == ficha2) {
 			do {
-				numeroI = numeroI - 1;
-				numeroJ = numeroJ + 1;
+
 				if (numeroI >= 0 && numeroJ < tamaño) {
 					if (tablero[numeroI][numeroJ].getFicha() == ficha) {
 						salida = true;
@@ -366,6 +372,8 @@ public class Tablero {
 					}
 
 				}
+				numeroI = numeroI - 1;
+				numeroJ = numeroJ + 1;
 
 			} while (!salida);
 		}

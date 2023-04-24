@@ -3,7 +3,8 @@ package Tablero;
 import Ficha.Ficha;
 
 public class Casilla {
-
+	
+	private boolean jugada;
 	private boolean llena;
 	private Ficha ficha;
 
@@ -27,7 +28,11 @@ public class Casilla {
 	public boolean isLlena() {
 		return llena;
 	}
-
+	
+	public void setJugada(boolean jugada) {
+		this.jugada=jugada;
+	}
+	
 	public void setFicha(Ficha ficha) {
 		this.ficha = ficha;
 		llena = true;
@@ -42,6 +47,8 @@ public class Casilla {
 	}
 
 	public String pintarCasilla() {
-		return llena ? ficha.devolverFicha() : " . ";
+		String GREEN = "\u001B[32m";
+		String RESET = "\u001B[0m";
+		return  jugada ? GREEN+" . "+RESET: llena ? ficha.devolverFicha() : " . ";
 	}
 }

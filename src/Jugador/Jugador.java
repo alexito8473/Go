@@ -1,6 +1,11 @@
 package Jugador;
 
+import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
+
 import Ficha.Ficha;
+import Partida.ConsoleImput;
+import Tablero.Coordenada;
 
 public class Jugador {
 
@@ -11,7 +16,7 @@ public class Jugador {
 		setNombre(nombre);
 		setFicha(ficha);
 	}
-
+	
 	public Ficha getFicha() {
 		return ficha;
 	}

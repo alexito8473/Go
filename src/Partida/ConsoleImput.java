@@ -1,6 +1,7 @@
 package Partida;
 
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 public class ConsoleImput {
 
@@ -12,6 +13,41 @@ public class ConsoleImput {
 
 	private void cleanInput() {
 		sc.nextLine();
+	}
+	
+	@SuppressWarnings("resource")
+	public String escribirNombre() {
+		Scanner sc = new Scanner(System.in);
+		String palabra;
+		do {
+			palabra = sc.nextLine();
+			if (palabra.length() == 0) {
+				System.out.println("Escribe un buen nombre");
+			}
+		} while (!(palabra.length() > 0));
+		return palabra;
+	}
+
+	public void frasesLentas(String frase, int numero) {
+		for (int i = 0; i < frase.length(); i++) {
+			System.out.print(frase.charAt(i));
+			try {
+				TimeUnit.MILLISECONDS.sleep(numero);
+			} catch (InterruptedException e) {
+
+			}
+		}
+		System.out.println();
+	}
+	
+	public void frasesLentasSinSalto(String frase, int numero) {
+		for (int i = 0; i < frase.length(); i++) {
+			System.out.print(frase.charAt(i));
+			try {
+				TimeUnit.MILLISECONDS.sleep(numero);
+			} catch (InterruptedException e) {
+			}
+		}
 	}
 
 	// Hecho con los byte
