@@ -36,13 +36,7 @@ public class Partida {
 		do {
 			tipoPartida = tipoDePartida();
 			seleccionJugadores(tipoPartida);
-			if (tipoPartida == 1) {
-				finPartida = partidaJugadorVSJugador(devolverJugadoresOrdenados());
-			} else if (tipoPartida == 2) {
-
-			} else {
-				finPartida = partidaJugadorVSJugador(devolverJugadoresOrdenados());
-			}
+			finPartida = partidaJugadorVSJugador(devolverJugadoresOrdenados());
 		} while (finPartida);
 
 	}
@@ -74,12 +68,15 @@ public class Partida {
 		ConsoleImput con = new ConsoleImput(new Scanner(System.in));
 		for (int i = 0; i < jugadores.length; i++) {
 			con.frasesLentasSinSalto("El jugador ", 45);
-			System.out.print(YELLOW + jugadores[i].getNombre() + RESET);
+			System.out.print(YELLOW);
+			con.frasesLentasSinSalto(jugadores[i].getNombre(),45);
+			System.out.print(RESET);
 			con.frasesLentasSinSalto(" tiene las ficha ", 45);
 			System.out.println(jugadores[i].getFicha().devolverFicha());
 		}
 		con.frasesLentasSinSalto("Empieza el jugador con la ficha ", 45);
 		System.out.println(jugadores[0].getFicha().devolverFicha());
+		con.stop(200);
 	}
 
 	private boolean partidaJugadorVSJugador(Jugador[] jugadores) {
@@ -145,7 +142,30 @@ public class Partida {
 				break;
 			}
 		} else if (numero == 2) {
-
+			switch (random.nextInt(2)) {
+			case 0:
+				jugador2 = new JugadorIa(Ficha.BLANCO);
+				con.frasesLentas("Escribe el nombre del jugador1", 15);
+				System.out.print("  -> ");
+				jugador1 = new JugadorReal(con.escribirNombre(), Ficha.NEGRO);
+				con.frasesLentas("Escribe el nombre del jugador2", 15);
+				System.out.print("  -> ");
+				con.stop(500);
+				con.frasesLentas(jugador2.getNombre(),40);
+				tablero = new Tablero();
+				break;
+			case 1:
+				jugador1 = new JugadorIa(Ficha.NEGRO);
+				con.frasesLentas("Escribe el nombre del jugador1", 15);
+				System.out.print("  -> ");
+				con.stop(500);
+				con.frasesLentas(jugador1.getNombre(),40);
+				con.frasesLentas("Escribe el nombre del jugador2", 15);
+				System.out.print("  -> ");		
+				jugador1 = new JugadorReal(con.escribirNombre(), Ficha.BLANCO);
+				tablero = new Tablero();
+				break;
+			}
 		} else {
 			switch (random.nextInt(2)) {
 			case 0:
@@ -153,13 +173,26 @@ public class Partida {
 				jugador2 = new JugadorIa(Ficha.BLANCO);
 				con.frasesLentas("Escribe el nombre del jugador1", 15);
 				System.out.print("  -> ");
-				con.frasesLentas(jugador1.getNombre(),15);
+				con.stop(500);
+				con.frasesLentas(jugador1.getNombre(),40);
 				con.frasesLentas("Escribe el nombre del jugador2", 15);
 				System.out.print("  -> ");
-				con.frasesLentas(jugador2.getNombre(),15);
+				con.stop(500);
+				con.frasesLentas(jugador2.getNombre(),40);
 				tablero = new Tablero();
 				break;
 			case 1:
+				jugador1 = new JugadorIa(Ficha.BLANCO);	
+				jugador2 = new JugadorIa(Ficha.NEGRO);
+				con.frasesLentas("Escribe el nombre del jugador1", 15);
+				System.out.print("  -> ");
+				con.stop(500);
+				con.frasesLentas(jugador1.getNombre(),15);
+				con.frasesLentas("Escribe el nombre del jugador2", 15);
+				System.out.print("  -> ");
+				con.stop(500);
+				con.frasesLentas(jugador2.getNombre(),15);
+				tablero = new Tablero();
 				break;
 			}
 		}

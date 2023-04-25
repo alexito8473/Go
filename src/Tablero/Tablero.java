@@ -114,7 +114,37 @@ public class Tablero {
 		pintarLetras();
 		pintarRaya();
 	}
+	
+	public void mostrarTablero(Coordenada coordenada) {
+		String RED = "\u001B[31m";
+		String RESET = "\u001B[0m";
+		int tamaño = tablero.length;
+		System.out.println("\n");
+		pintarRaya();
+		pintarLetras();
 
+		for (int i = 0; i < tamaño; i++) {
+			espacioTablero(35);
+			System.out.print("|" + (i + 1));
+			for (int j = 0; j < tablero[i].length; j++) {
+				if (coordenada.getPosicion1()==i&& coordenada.getPosicion2()==j) {
+					System.out.print(RED+" ☆ "+RESET);
+				} else {
+					System.out.print(tablero[i][j].pintarCasilla());
+				}
+
+				try {
+					TimeUnit.MILLISECONDS.sleep(10);
+				} catch (InterruptedException e) {
+
+				}
+			}
+			System.out.print(i + 1 + " |");
+			System.out.println();
+		}
+		pintarLetras();
+		pintarRaya();
+	}
 	private void espacioTablero(int espacio) {
 		for (int i = 0; i < espacio; i++) {
 			System.out.print(" ");
@@ -151,8 +181,8 @@ public class Tablero {
 	}
 
 	private void rotarFichasInclinadoAbajoIzquierda(Ficha ficha, Ficha ficha2, Casilla casilla) {
-		int numeroJ = casilla.getCoordenada().getPosicion1() + 1;
-		int numeroI = casilla.getCoordenada().getPosicion2() - 1;
+		int numeroI = casilla.getCoordenada().getPosicion1() + 1;
+		int numeroJ = casilla.getCoordenada().getPosicion2() - 1;
 		boolean salida = false;
 		if (movimientoInclinadoAbajoIzquierda(ficha, ficha2, casilla, Comprobacion.VALIDAR)) {
 			do {
@@ -209,8 +239,8 @@ public class Tablero {
 	}
 
 	private void rotarFichasInclinadoArribaDerecha(Ficha ficha, Ficha ficha2, Casilla casilla) {
-		int numeroJ = casilla.getCoordenada().getPosicion1() - 1;
-		int numeroI = casilla.getCoordenada().getPosicion2() + 1;
+		int numeroI = casilla.getCoordenada().getPosicion2() - 1;
+		int numeroJ = casilla.getCoordenada().getPosicion1() + 1;
 		boolean salida = false;
 		if (movimientoInclinadoArribaDerecha(ficha, ficha2, casilla, Comprobacion.VALIDAR)) {
 			do {
@@ -340,12 +370,11 @@ public class Tablero {
 	public boolean movimientoInclinadoAbajoIzquierda(Ficha ficha, Ficha ficha2, Casilla casilla,
 			Comprobacion comprobacion) {
 		int tamaño = tablero.length;
-		int numeroJ = casilla.getCoordenada().getPosicion1() + 1;
-		int numeroI = casilla.getCoordenada().getPosicion2() - 1;
-		;
+		int numeroI = casilla.getCoordenada().getPosicion1() + 1;
+		int numeroJ = casilla.getCoordenada().getPosicion2() - 1;
 		boolean win = false;
 		boolean salida = false;
-		if ((numeroJ < tamaño && numeroI >= 0) && tablero[numeroJ][numeroI].getFicha() == ficha2) {
+		if ((numeroJ >=0 && numeroI < tamaño) && tablero[numeroI][numeroJ].getFicha() == ficha2) {
 			do {
 				numeroI = numeroI + 1;
 				numeroJ = numeroJ - 1;
@@ -398,8 +427,8 @@ public class Tablero {
 					}
 
 				}
-				numeroI = numeroI - 1;
-				numeroJ = numeroJ + 1;
+				numeroI --;
+				numeroJ ++;
 
 			} while (!salida);
 		}
@@ -446,11 +475,10 @@ public class Tablero {
 		int numeroI = casilla.getCoordenada().getPosicion2() + 1;
 		boolean win = false;
 		boolean salida = false;
-		if ((numeroI < tamaño && numeroJ < tamaño) && tablero[numeroJ][numeroI].getFicha() == ficha2) {
+		if ((numeroI < tamaño && numeroJ < tamaño) && tablero[numeroI][numeroJ].getFicha() == ficha2) {
 			do {
-				numeroI = numeroI + 1;
-				numeroJ = numeroJ + 1;
-				if (numeroI < 8 && numeroJ < 8) {
+
+				if (numeroI < tamaño && numeroJ < tamaño) {
 					if (tablero[numeroI][numeroJ].getFicha() == ficha) {
 						salida = true;
 						win = true;
@@ -467,7 +495,8 @@ public class Tablero {
 					}
 
 				}
-
+				numeroI = numeroI + 1;
+				numeroJ = numeroJ + 1;
 			} while (!salida);
 		}
 		return win;

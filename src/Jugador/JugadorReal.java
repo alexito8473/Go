@@ -16,7 +16,7 @@ public class JugadorReal extends Jugador {
 		super(nombre, ficha);
 	}
 
-	public Coordenada devolverCoordenada(Tablero tablero, int turno) {
+	public void devolverCoordenada(Tablero tablero, int turno) {
 		Coordenada coordenada;
 		boolean seleccionFicha;
 		ConsoleImput con = new ConsoleImput(new Scanner(System.in));
@@ -38,13 +38,11 @@ public class JugadorReal extends Jugador {
 				tablero.mostrarTablero(ficha);
 			}
 		} while (!seleccionFicha);
-		return coordenada;
 	}
 
 	private Coordenada pedirDatos() {
 		int posicion1, posicion2;
-		Scanner sc = new Scanner(System.in);
-		ConsoleImput con = new ConsoleImput(sc);
+		ConsoleImput con = new ConsoleImput(new Scanner(System.in));
 		System.out.println();
 		con.frasesLentas("Posicion de vertical de la ficha(1,2,3,4,5,6,7,8)", 30);
 		System.out.print("  -> ");

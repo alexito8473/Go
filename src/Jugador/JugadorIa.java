@@ -1,8 +1,10 @@
 package Jugador;
 
 import java.util.Random;
+import java.util.Scanner;
 
 import Ficha.Ficha;
+import Partida.ConsoleImput;
 import Tablero.Casilla;
 import Tablero.Comprobacion;
 import Tablero.Coordenada;
@@ -34,8 +36,9 @@ public class JugadorIa extends Jugador {
 		return nombre;
 	}
 
-	public Coordenada devolverCoordenada(Tablero tablero, int turno) {
+	public void devolverCoordenada(Tablero tablero, int turno) {
 		int cantidad = 0, cantidadPrueba;
+		ConsoleImput con = new ConsoleImput(new Scanner(System.in));
 		Random ran = new Random();
 		Coordenada coordenadaJugada = new Coordenada(0, 0);
 		for (int i = 0; i < tablero.getTablero().length; i++) {
@@ -53,12 +56,23 @@ public class JugadorIa extends Jugador {
 							coordenadaJugada = new Coordenada(i, j);
 						}
 					}
-					System.out.println(" " + coordenadaJugada + " " + cantidad);
 				}
 			}
 		}
-
-		return coordenadaJugada;
+		tablero.mostrarTablero(ficha);
+		tablero.contandoFichasMostrando(this, turno);
+		con.frasesLentas("Posicion de vertical de la ficha(1,2,3,4,5,6,7,8)", 30);
+		System.out.print("  -> ");
+		con.stop(500);
+		con.frasesLentas(String.valueOf(coordenadaJugada.getPosicion1()+1),15);
+		con.frasesLentas("Posicion de horizontal de la ficha(A,B,C,D,E,F,G,H)", 30);
+		System.out.print("  -> ");
+		con.stop(500);
+		con.frasesLentas(String.valueOf((char)(coordenadaJugada.getPosicion2()+65)),15);
+		tablero.mostrarTablero(coordenadaJugada);
+		con.stop(1200);
+		tablero.añadirFichaTablero(ficha, coordenadaJugada.getPosicion1(), coordenadaJugada.getPosicion2());	
+		System.out.println();
 	}
 
 	public int sumarJugada(Casilla casilla, Tablero tablero) {
@@ -76,22 +90,21 @@ public class JugadorIa extends Jugador {
 	
 	private int conteoInclinadoArribaDerecha(Casilla casilla, Tablero tablero) {
 		int devolver=0;
-		int numeroJ = casilla.getCoordenada().getPosicion1() - 1;
-		int numeroI = casilla.getCoordenada().getPosicion2() + 1;
+		int numeroI = casilla.getCoordenada().getPosicion1() - 1;
+		int numeroJ = casilla.getCoordenada().getPosicion2() + 1;
+
 		boolean salida = false;
 		if (tablero.movimientoInclinadoArribaDerecha(ficha, tablero.fichaContraria(ficha), casilla, Comprobacion.VALIDAR)) {
 			do {
-
 				if (tablero.getTablero()[numeroI][numeroJ].getFicha() == ficha) {
 					salida = true;
 				}else {
 					devolver++;
 				}
-				numeroI = numeroI - 1;
-				numeroJ = numeroJ + 1;
+				numeroI --;
+				numeroJ ++;
 			} while (!salida);
 		}
-
 		return devolver;
 		
 	}
@@ -108,8 +121,8 @@ public class JugadorIa extends Jugador {
 				}else {
 					devolver++;
 				}
-				numeroI = numeroI - 1;
-				numeroJ = numeroJ - 1;
+				numeroI --;
+				numeroJ --;
 			} while (!salida);
 		}
 		return devolver;
@@ -117,8 +130,8 @@ public class JugadorIa extends Jugador {
 	
 	private int conteoInclinadoAbajoIzquierda(Casilla casilla, Tablero tablero) {
 		int devolver=0;
-		int numeroJ = casilla.getCoordenada().getPosicion1() + 1;
-		int numeroI = casilla.getCoordenada().getPosicion2() - 1;
+		int numeroI = casilla.getCoordenada().getPosicion1() + 1;
+		int numeroJ = casilla.getCoordenada().getPosicion2() - 1;
 		boolean salida = false;
 		if (tablero.movimientoInclinadoAbajoIzquierda(ficha, tablero.fichaContraria(ficha), casilla, Comprobacion.VALIDAR)) {
 			do {
@@ -127,8 +140,8 @@ public class JugadorIa extends Jugador {
 				}else {
 					devolver++;
 				}
-				numeroI++;
-				numeroJ--;
+				numeroI ++;
+				numeroJ --;
 			} while (!salida);
 		}
 		return devolver;

@@ -30,5 +30,5 @@ public abstract class Jugador {
 		this.ficha = ficha;
 	}
 
-	public abstract Coordenada devolverCoordenada(Tablero tablero, int turno);
+	public abstract void devolverCoordenada(Tablero tablero, int turno);
 }
