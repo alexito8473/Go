@@ -1,5 +1,5 @@
 package Tablero;
 
 public enum Comprobacion {
-	Fin, Validar;
+	FIN, VALIDAR;
 }

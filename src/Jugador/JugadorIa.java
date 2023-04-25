@@ -3,6 +3,10 @@ package Jugador;
 import java.util.Random;
 
 import Ficha.Ficha;
+import Tablero.Casilla;
+import Tablero.Comprobacion;
+import Tablero.Coordenada;
+import Tablero.Tablero;
 
 public class JugadorIa extends Jugador {
 
@@ -29,4 +33,198 @@ public class JugadorIa extends Jugador {
 		};
 		return nombre;
 	}
+
+	public Coordenada devolverCoordenada(Tablero tablero, int turno) {
+		int cantidad = 0, cantidadPrueba;
+		Random ran = new Random();
+		Coordenada coordenadaJugada = new Coordenada(0, 0);
+		for (int i = 0; i < tablero.getTablero().length; i++) {
+			for (int j = 0; j < tablero.getTablero()[i].length; j++) {
+				if ((!tablero.getTablero()[i][j].isLlena())&&tablero.movimientoValido(ficha, new Coordenada(i, j))) {
+					cantidadPrueba = sumarJugada(tablero.getTablero()[i][j], tablero);
+					if (cantidad <= cantidadPrueba) {
+						if (cantidad == cantidadPrueba) {
+							if (ran.nextInt(2) == 0) {
+								cantidad = cantidadPrueba;
+								coordenadaJugada = new Coordenada(i, j);
+							}
+						} else {
+							cantidad = cantidadPrueba;
+							coordenadaJugada = new Coordenada(i, j);
+						}
+					}
+					System.out.println(" " + coordenadaJugada + " " + cantidad);
+				}
+			}
+		}
+
+		return coordenadaJugada;
+	}
+
+	public int sumarJugada(Casilla casilla, Tablero tablero) {
+		int resultado = 0;
+		resultado = resultado + conteoHorizontalIzquierda(casilla, tablero);
+		resultado = resultado + conteoHorizontalDerecha(casilla, tablero);
+		resultado = resultado + conteoVerticalAbajo(casilla, tablero);
+		resultado = resultado + conteoVerticalArriba(casilla, tablero);
+		resultado = resultado + conteoInclinadoAbajoDerecha(casilla, tablero);
+		resultado = resultado + conteoInclinadoAbajoIzquierda(casilla, tablero);
+		resultado = resultado + conteoInclinadoArribaIzquierda(casilla, tablero);
+		resultado = resultado + conteoInclinadoArribaDerecha(casilla, tablero);
+		return resultado;
+	}
+	
+	private int conteoInclinadoArribaDerecha(Casilla casilla, Tablero tablero) {
+		int devolver=0;
+		int numeroJ = casilla.getCoordenada().getPosicion1() - 1;
+		int numeroI = casilla.getCoordenada().getPosicion2() + 1;
+		boolean salida = false;
+		if (tablero.movimientoInclinadoArribaDerecha(ficha, tablero.fichaContraria(ficha), casilla, Comprobacion.VALIDAR)) {
+			do {
+
+				if (tablero.getTablero()[numeroI][numeroJ].getFicha() == ficha) {
+					salida = true;
+				}else {
+					devolver++;
+				}
+				numeroI = numeroI - 1;
+				numeroJ = numeroJ + 1;
+			} while (!salida);
+		}
+
+		return devolver;
+		
+	}
+	
+	private int conteoInclinadoArribaIzquierda(Casilla casilla, Tablero tablero) {
+		int devolver=0;
+		int numeroJ = casilla.getCoordenada().getPosicion1() - 1;
+		int numeroI = casilla.getCoordenada().getPosicion2() - 1;
+		boolean salida = false;
+		if (tablero.movimientoInclinadoArribaIzquierda(ficha, tablero.fichaContraria(ficha), casilla, Comprobacion.VALIDAR)) {
+			do {
+				if (tablero.getTablero()[numeroI][numeroJ].getFicha() == ficha) {
+					salida = true;
+				}else {
+					devolver++;
+				}
+				numeroI = numeroI - 1;
+				numeroJ = numeroJ - 1;
+			} while (!salida);
+		}
+		return devolver;
+	}
+	
+	private int conteoInclinadoAbajoIzquierda(Casilla casilla, Tablero tablero) {
+		int devolver=0;
+		int numeroJ = casilla.getCoordenada().getPosicion1() + 1;
+		int numeroI = casilla.getCoordenada().getPosicion2() - 1;
+		boolean salida = false;
+		if (tablero.movimientoInclinadoAbajoIzquierda(ficha, tablero.fichaContraria(ficha), casilla, Comprobacion.VALIDAR)) {
+			do {
+				if (tablero.getTablero()[numeroI][numeroJ].getFicha() == ficha) {
+					salida = true;
+				}else {
+					devolver++;
+				}
+				numeroI++;
+				numeroJ--;
+			} while (!salida);
+		}
+		return devolver;
+	}
+	
+	private int conteoInclinadoAbajoDerecha(Casilla casilla, Tablero tablero) {
+		int devolver=0;
+		int numeroJ = casilla.getCoordenada().getPosicion1() + 1;
+		int numeroI = casilla.getCoordenada().getPosicion2() + 1;
+		boolean salida = false;
+		if (tablero.movimientoInclinadoAbajoDerecha(ficha, tablero.fichaContraria(ficha), casilla, Comprobacion.VALIDAR)) {
+			do {
+				if (tablero.getTablero()[numeroI][numeroJ].getFicha() == ficha) {
+					salida = true;
+				}else {
+					devolver++;
+				}
+				numeroI++;
+				numeroJ++;
+			} while (!salida);
+		}
+		return devolver;
+	}
+	
+	private int conteoVerticalArriba(Casilla casilla, Tablero tablero) {
+		int devolver = 0;
+		boolean escape = false;
+		int numero = casilla.getCoordenada().getPosicion1() - 1;
+		int numero2 = casilla.getCoordenada().getPosicion2();
+		if (tablero.movimientoVerticalArriba(ficha, tablero.fichaContraria(ficha), casilla, Comprobacion.VALIDAR)) {
+			do {
+				if (tablero.getTablero()[numero][numero2].getFicha() == ficha) {
+					escape = true;
+				} else {
+					devolver++;
+				}
+				numero = numero - 1;
+			} while (!escape);
+		}
+
+		return devolver;
+	}
+
+	private int conteoVerticalAbajo(Casilla casilla, Tablero tablero) {
+		int devolver = 0;
+		boolean escape = false;
+		int numero = casilla.getCoordenada().getPosicion1() + 1;
+		int numero2 = casilla.getCoordenada().getPosicion2();
+		if (tablero.movimientoVerticalAbajo(ficha, tablero.fichaContraria(ficha), casilla, Comprobacion.VALIDAR)) {
+			do {
+				if (tablero.getTablero()[numero][numero2].getFicha() == ficha) {
+					escape = true;
+				} else {
+					devolver++;
+				}
+				numero = numero + 1;
+			} while (!escape);
+		}
+		return devolver;
+	}
+
+	private int conteoHorizontalIzquierda(Casilla casilla, Tablero tablero) {
+		int devolver = 0;
+		int numero = casilla.getCoordenada().getPosicion1();
+		int numero2 = casilla.getCoordenada().getPosicion2() - 1;
+		boolean salida = false;
+		if (tablero.movimientoHorizontalIzquierda(ficha, tablero.fichaContraria(ficha), casilla,
+				Comprobacion.VALIDAR)) {
+			do {
+				if (tablero.getTablero()[numero][numero2].getFicha() == ficha) {
+					salida = true;
+				} else {
+					devolver++;
+				}
+				numero2--;
+			} while (!salida);
+		}
+		return devolver;
+	}
+
+	private int conteoHorizontalDerecha(Casilla casilla, Tablero tablero) {
+		int devolver = 0;
+		boolean escape = false;
+		int numero = casilla.getCoordenada().getPosicion1();
+		int numero2 = casilla.getCoordenada().getPosicion2() + 1;
+		if (tablero.movimientoHorizontalDerecha(ficha, tablero.fichaContraria(ficha), casilla, Comprobacion.VALIDAR)) {
+			do {
+				if (tablero.getTablero()[numero][numero2].getFicha() == ficha) {
+					escape = true;
+				} else {
+					devolver++;
+				}
+				numero2++;
+			} while (!escape);
+		}
+		return devolver;
+	}
+
 }

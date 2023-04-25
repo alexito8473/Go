@@ -14,7 +14,7 @@ public class ConsoleImput {
 	private void cleanInput() {
 		sc.nextLine();
 	}
-	
+
 	@SuppressWarnings("resource")
 	public String escribirNombre() {
 		Scanner sc = new Scanner(System.in);
@@ -39,7 +39,7 @@ public class ConsoleImput {
 		}
 		System.out.println();
 	}
-	
+
 	public void frasesLentasSinSalto(String frase, int numero) {
 		for (int i = 0; i < frase.length(); i++) {
 			System.out.print(frase.charAt(i));

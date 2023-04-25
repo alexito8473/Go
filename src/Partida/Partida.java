@@ -7,6 +7,7 @@ import java.util.logging.ConsoleHandler;
 
 import Ficha.Ficha;
 import Jugador.Jugador;
+import Jugador.JugadorIa;
 import Jugador.JugadorReal;
 import Tablero.Coordenada;
 import Tablero.Tablero;
@@ -40,7 +41,7 @@ public class Partida {
 			} else if (tipoPartida == 2) {
 
 			} else {
-
+				finPartida = partidaJugadorVSJugador(devolverJugadoresOrdenados());
 			}
 		} while (finPartida);
 
@@ -78,70 +79,32 @@ public class Partida {
 			System.out.println(jugadores[i].getFicha().devolverFicha());
 		}
 		con.frasesLentasSinSalto("Empieza el jugador con la ficha ", 45);
-		System.out.print(jugadores[0].getFicha().devolverFicha());
-	}
-
-	private void contandoFichasMostrando(Jugador jugador, int turno) {
-		System.out.printf("\n %s --------------------------------------%s\n", PURPLE, RESET);
-		System.out.printf(" %s|%s Le toca al jugador %s%-18s%s%s|%s\n", PURPLE, RESET, YELLOW, jugador.getNombre(),
-				RESET, PURPLE, RESET);
-		System.out.printf(" %s|%s Tiene la ficha%s, turno %-3d         %s|%s\n", PURPLE, RESET,
-				jugador.getFicha().devolverFicha(), turno, PURPLE, RESET);
-		System.out.printf(" %s --------------------------------------%s\n", PURPLE, RESET);
-		System.out.printf(" %s --------------------------------------%s\n", YELLOW, RESET);
-		System.out.printf(" %s|%s Fichas negras: %-3dFichas Blancas: %-3d%s|%s\n", YELLOW, RESET,
-				tablero.contador(Ficha.NEGRO), tablero.contador(Ficha.BLANCO), YELLOW, RESET);
-		System.out.printf(" %s --------------------------------------%s\n", YELLOW, RESET);
+		System.out.println(jugadores[0].getFicha().devolverFicha());
 	}
 
 	private boolean partidaJugadorVSJugador(Jugador[] jugadores) {
 		boolean partida = false;
-		ConsoleImput con= new ConsoleImput(new Scanner(System.in));
-		mostrarJugadores(jugadores);
 		int turno = 1;
-		System.out.println();
+		ConsoleImput con = new ConsoleImput(new Scanner(System.in));
+		mostrarJugadores(jugadores);
+		
 		do {
 			++turno;
 			if (!tablero.finalPartida(jugadores[turno % 2].getFicha())) {
-				partidaJugadorReal(jugadores[turno % 2], turno - 1);
+				jugadores[turno % 2].devolverCoordenada(tablero, turno - 1);
 			} else {
 				con.frasesLentas("El jugador", 15);
 				System.out.println(YELLOW + jugadores[turno % 2].getNombre() + RESET);
 				con.frasesLentas("No tiene más jugada", 15);
 			}
 		} while (!tablero.finalPartida(jugadores[0].getFicha()) && !tablero.finalPartida(jugadores[1].getFicha()));
+
 		con.frasesLentasSinSalto("Se han jugado un total de turnos : ", 15);
 		System.out.print(turno - 1);
 		con.frasesLentasSinSalto("Ha ganado el jugador ", 15);
 		System.out.print(jugadores[turno % 2].getNombre());
 		System.out.println("Fin de partida");
 		return partida;
-	}
-
-	private void partidaJugadorReal(Jugador jugadorReal, int turno) {
-		boolean seleccionFicha;
-		Coordenada coordenada;
-		ConsoleImput con= new ConsoleImput(new Scanner(System.in));
-		tablero.mostrarTablero(jugadorReal.getFicha());
-		do {
-			contandoFichasMostrando(jugadorReal, turno);
-			seleccionFicha = false;
-			coordenada = ((JugadorReal) jugadorReal).devolverCoordenada();
-			if (!tablero.comprobarSiHayFichaPuesta(coordenada)) {
-				if (tablero.movimientoValido(jugadorReal.getFicha(), coordenada)) {
-					seleccionFicha = true;
-					tablero.añadirFichaTablero(jugadorReal.getFicha(), coordenada.getPosicion1(),
-							coordenada.getPosicion2());
-				} else {
-					con.frasesLentas("El movimiento es invalido", 15);
-					tablero.mostrarTablero(jugadorReal.getFicha());
-				}
-			} else {
-				con.frasesLentas("Ya hay una ficha puesta", 15);
-				tablero.mostrarTablero(jugadorReal.getFicha());
-			}
-		} while (!seleccionFicha);
-
 	}
 
 	private Jugador[] devolverJugadoresOrdenados() {
@@ -157,8 +120,9 @@ public class Partida {
 	}
 
 	private void seleccionJugadores(int numero) {
-		ConsoleImput con= new ConsoleImput(new Scanner(System.in));
+		ConsoleImput con = new ConsoleImput(new Scanner(System.in));
 		Random random = new Random();
+
 		if (numero == 1) {
 			switch (random.nextInt(2)) {
 			case 0:
@@ -183,10 +147,22 @@ public class Partida {
 		} else if (numero == 2) {
 
 		} else {
-
+			switch (random.nextInt(2)) {
+			case 0:
+				jugador1 = new JugadorIa(Ficha.NEGRO);	
+				jugador2 = new JugadorIa(Ficha.BLANCO);
+				con.frasesLentas("Escribe el nombre del jugador1", 15);
+				System.out.print("  -> ");
+				con.frasesLentas(jugador1.getNombre(),15);
+				con.frasesLentas("Escribe el nombre del jugador2", 15);
+				System.out.print("  -> ");
+				con.frasesLentas(jugador2.getNombre(),15);
+				tablero = new Tablero();
+				break;
+			case 1:
+				break;
+			}
 		}
 	}
 
-
-	
 }

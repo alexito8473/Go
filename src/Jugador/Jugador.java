@@ -1,22 +1,19 @@
 package Jugador;
 
-import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
-
 import Ficha.Ficha;
-import Partida.ConsoleImput;
 import Tablero.Coordenada;
+import Tablero.Tablero;
 
-public class Jugador {
+public abstract class Jugador {
 
-	private String nombre;
-	private Ficha ficha;
+	protected String nombre;
+	protected Ficha ficha;
 
 	public Jugador(String nombre, Ficha ficha) {
 		setNombre(nombre);
 		setFicha(ficha);
 	}
-	
+
 	public Ficha getFicha() {
 		return ficha;
 	}
@@ -32,4 +29,6 @@ public class Jugador {
 	protected void setFicha(Ficha ficha) {
 		this.ficha = ficha;
 	}
+
+	public abstract Coordenada devolverCoordenada(Tablero tablero, int turno);
 }

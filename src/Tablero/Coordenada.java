@@ -17,4 +17,9 @@ public class Coordenada {
 		return posicion2;
 	}
 
+	@Override
+	public String toString() {
+		return "Coor posi1=" + posicion1 + ", posi2=" + posicion2;
+	}
+
 }
