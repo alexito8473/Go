@@ -33,17 +33,18 @@ public class JugadorIa extends Jugador {
 		case 9 -> "¿Tu que miras?";
 		default -> "Error en el nombre";
 		};
+
 		return nombre;
 	}
 
-	public void devolverCoordenada(Tablero tablero, int turno) {
+	public void jugada(Tablero tablero, int turno) {
 		int cantidad = 0, cantidadPrueba;
 		ConsoleImput con = new ConsoleImput(new Scanner(System.in));
 		Random ran = new Random();
 		Coordenada coordenadaJugada = new Coordenada(0, 0);
 		for (int i = 0; i < tablero.getTablero().length; i++) {
 			for (int j = 0; j < tablero.getTablero()[i].length; j++) {
-				if ((!tablero.getTablero()[i][j].isLlena())&&tablero.movimientoValido(ficha, new Coordenada(i, j))) {
+				if ((!tablero.getTablero()[i][j].isLlena()) && tablero.movimientoValido(ficha, new Coordenada(i, j))) {
 					cantidadPrueba = sumarJugada(tablero.getTablero()[i][j], tablero);
 					if (cantidad <= cantidadPrueba) {
 						if (cantidad == cantidadPrueba) {
@@ -64,14 +65,14 @@ public class JugadorIa extends Jugador {
 		con.frasesLentas("Posicion vertical de la ficha(1,2,3,4,5,6,7,8)", 40);
 		System.out.print("  -> ");
 		con.stop(500);
-		con.frasesLentas(String.valueOf(coordenadaJugada.getPosicion1()+1),15);
+		con.frasesLentas(String.valueOf(coordenadaJugada.getPosicion1() + 1), 15);
 		con.frasesLentas("Posicion horizontal de la ficha(A,B,C,D,E,F,G,H)", 40);
 		System.out.print("  -> ");
 		con.stop(500);
-		con.frasesLentas(String.valueOf((char)(coordenadaJugada.getPosicion2()+65)),15);
+		con.frasesLentas(String.valueOf((char) (coordenadaJugada.getPosicion2() + 65)), 15);
 		tablero.mostrarTablero(coordenadaJugada);
 		con.stop(1200);
-		tablero.añadirFichaTablero(ficha, coordenadaJugada.getPosicion1(), coordenadaJugada.getPosicion2());	
+		tablero.añadirFichaTablero(ficha, coordenadaJugada);
 		System.out.println();
 	}
 
@@ -87,77 +88,81 @@ public class JugadorIa extends Jugador {
 		resultado = resultado + conteoInclinadoArribaDerecha(casilla, tablero);
 		return resultado;
 	}
-	
+
 	private int conteoInclinadoArribaDerecha(Casilla casilla, Tablero tablero) {
-		int devolver=0;
+		int devolver = 0;
 		int numeroI = casilla.getCoordenada().getPosicion1() - 1;
 		int numeroJ = casilla.getCoordenada().getPosicion2() + 1;
 
 		boolean salida = false;
-		if (tablero.movimientoInclinadoArribaDerecha(ficha, tablero.fichaContraria(ficha), casilla, Comprobacion.VALIDAR)) {
+		if (tablero.movimientoInclinadoArribaDerecha(ficha, tablero.fichaContraria(ficha), casilla,
+				Comprobacion.VALIDAR)) {
 			do {
 				if (tablero.getTablero()[numeroI][numeroJ].getFicha() == ficha) {
 					salida = true;
-				}else {
+				} else {
 					devolver++;
 				}
-				numeroI --;
-				numeroJ ++;
+				numeroI--;
+				numeroJ++;
 			} while (!salida);
 		}
 		return devolver;
-		
+
 	}
-	
+
 	private int conteoInclinadoArribaIzquierda(Casilla casilla, Tablero tablero) {
-		int devolver=0;
+		int devolver = 0;
 		int numeroI = casilla.getCoordenada().getPosicion1() - 1;
 		int numeroJ = casilla.getCoordenada().getPosicion2() - 1;
 
 		boolean salida = false;
-		if (tablero.movimientoInclinadoArribaIzquierda(ficha, tablero.fichaContraria(ficha), casilla, Comprobacion.VALIDAR)) {
+		if (tablero.movimientoInclinadoArribaIzquierda(ficha, tablero.fichaContraria(ficha), casilla,
+				Comprobacion.VALIDAR)) {
 			do {
 				if (tablero.getTablero()[numeroI][numeroJ].getFicha() == ficha) {
 					salida = true;
-				}else {
+				} else {
 					devolver++;
 				}
-				numeroI --;
-				numeroJ --;
+				numeroI--;
+				numeroJ--;
 			} while (!salida);
 		}
 		return devolver;
 	}
-	
+
 	private int conteoInclinadoAbajoIzquierda(Casilla casilla, Tablero tablero) {
-		int devolver=0;
+		int devolver = 0;
 		int numeroI = casilla.getCoordenada().getPosicion1() + 1;
 		int numeroJ = casilla.getCoordenada().getPosicion2() - 1;
 		boolean salida = false;
-		if (tablero.movimientoInclinadoAbajoIzquierda(ficha, tablero.fichaContraria(ficha), casilla, Comprobacion.VALIDAR)) {
+		if (tablero.movimientoInclinadoAbajoIzquierda(ficha, tablero.fichaContraria(ficha), casilla,
+				Comprobacion.VALIDAR)) {
 			do {
 				if (tablero.getTablero()[numeroI][numeroJ].getFicha() == ficha) {
 					salida = true;
-				}else {
+				} else {
 					devolver++;
 				}
-				numeroI ++;
-				numeroJ --;
+				numeroI++;
+				numeroJ--;
 			} while (!salida);
 		}
 		return devolver;
 	}
-	
+
 	private int conteoInclinadoAbajoDerecha(Casilla casilla, Tablero tablero) {
-		int devolver=0;
+		int devolver = 0;
 		int numeroI = casilla.getCoordenada().getPosicion1() + 1;
 		int numeroJ = casilla.getCoordenada().getPosicion2() + 1;
 		boolean salida = false;
-		if (tablero.movimientoInclinadoAbajoDerecha(ficha, tablero.fichaContraria(ficha), casilla, Comprobacion.VALIDAR)) {
+		if (tablero.movimientoInclinadoAbajoDerecha(ficha, tablero.fichaContraria(ficha), casilla,
+				Comprobacion.VALIDAR)) {
 			do {
 				if (tablero.getTablero()[numeroI][numeroJ].getFicha() == ficha) {
 					salida = true;
-				}else {
+				} else {
 					devolver++;
 				}
 				numeroI++;
@@ -166,7 +171,7 @@ public class JugadorIa extends Jugador {
 		}
 		return devolver;
 	}
-	
+
 	private int conteoVerticalArriba(Casilla casilla, Tablero tablero) {
 		int devolver = 0;
 		boolean escape = false;
@@ -198,7 +203,7 @@ public class JugadorIa extends Jugador {
 				} else {
 					devolver++;
 				}
-				numero ++;
+				numero++;
 			} while (!escape);
 		}
 		return devolver;

@@ -28,13 +28,14 @@ public class ConsoleImput {
 		return palabra;
 	}
 
-	public void stop( int numero) {	
-			try {
-				TimeUnit.MILLISECONDS.sleep(numero);
-			} catch (InterruptedException e) {
+	public void stop(int numero) {
+		try {
+			TimeUnit.MILLISECONDS.sleep(numero);
+		} catch (InterruptedException e) {
 
-			}
+		}
 	}
+
 	public void frasesLentas(String frase, int numero) {
 		for (int i = 0; i < frase.length(); i++) {
 			System.out.print(frase.charAt(i));

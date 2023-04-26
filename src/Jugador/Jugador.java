@@ -1,7 +1,6 @@
 package Jugador;
 
 import Ficha.Ficha;
-import Tablero.Coordenada;
 import Tablero.Tablero;
 
 public abstract class Jugador {
@@ -10,8 +9,8 @@ public abstract class Jugador {
 	protected Ficha ficha;
 
 	public Jugador(String nombre, Ficha ficha) {
-		setNombre(nombre);
-		setFicha(ficha);
+		this.nombre = nombre;
+		this.ficha = ficha;
 	}
 
 	public Ficha getFicha() {
@@ -26,9 +25,5 @@ public abstract class Jugador {
 		this.nombre = nombre;
 	}
 
-	protected void setFicha(Ficha ficha) {
-		this.ficha = ficha;
-	}
-
-	public abstract void devolverCoordenada(Tablero tablero, int turno);
+	public abstract void jugada(Tablero tablero, int turno);
 }

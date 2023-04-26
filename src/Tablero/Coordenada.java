@@ -1,6 +1,7 @@
 package Tablero;
 
 public class Coordenada {
+
 	private int posicion1;
 	private int posicion2;
 
@@ -15,11 +16,6 @@ public class Coordenada {
 
 	public int getPosicion2() {
 		return posicion2;
-	}
-
-	@Override
-	public String toString() {
-		return "Coor posi1=" + posicion1 + ", posi2=" + posicion2;
 	}
 
 }

@@ -4,7 +4,6 @@ import Ficha.Ficha;
 
 public class Casilla {
 
-	private boolean jugada;
 	private boolean llena;
 	private Ficha ficha;
 
@@ -29,10 +28,6 @@ public class Casilla {
 		return llena;
 	}
 
-	public void setJugada(boolean jugada) {
-		this.jugada = jugada;
-	}
-
 	public void setFicha(Ficha ficha) {
 		this.ficha = ficha;
 		llena = true;
@@ -46,9 +41,7 @@ public class Casilla {
 		this.llena = llena;
 	}
 
-	public String pintarCasilla() {
-		String GREEN = "\u001B[32m";
-		String RESET = "\u001B[0m";
-		return jugada ? GREEN + " ☆ " + RESET : llena ? ficha.devolverFicha() : " . ";
+	public String devolverCasilla() {
+		return llena ? ficha.devolverFicha() : " . ";
 	}
 }

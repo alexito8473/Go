@@ -4,12 +4,9 @@ import java.util.concurrent.TimeUnit;
 
 import Ficha.Ficha;
 import Jugador.Jugador;
+import Partida.Colors;
 
 public class Tablero {
-	private static final String RESET = "\u001B[0m";
-	private static final String YELLOW = "\u001B[33m";
-
-	private static final String PURPLE = "\u001B[35m";
 
 	private Casilla[][] tablero = new Casilla[8][8];
 
@@ -51,16 +48,16 @@ public class Tablero {
 	}
 
 	public void contandoFichasMostrando(Jugador jugador, int turno) {
-		System.out.printf("\n %s --------------------------------------%s\n", PURPLE, RESET);
-		System.out.printf(" %s|%s Le toca al jugador %s%-18s%s%s|%s\n", PURPLE, RESET, YELLOW, jugador.getNombre(),
-				RESET, PURPLE, RESET);
-		System.out.printf(" %s|%s Tiene la ficha%s, turno %-3d         %s|%s\n", PURPLE, RESET,
-				jugador.getFicha().devolverFicha(), turno, PURPLE, RESET);
-		System.out.printf(" %s --------------------------------------%s\n", PURPLE, RESET);
-		System.out.printf(" %s --------------------------------------%s\n", YELLOW, RESET);
-		System.out.printf(" %s|%s Fichas negras: %-3dFichas Blancas: %-3d%s|%s\n", YELLOW, RESET, contador(Ficha.NEGRO),
-				contador(Ficha.BLANCO), YELLOW, RESET);
-		System.out.printf(" %s --------------------------------------%s\n", YELLOW, RESET);
+		System.out.printf("\n %s --------------------------------------%s\n", Colors.PURPLE, Colors.RESET);
+		System.out.printf(" %s|%s Le toca al jugador %s%-18s%s%s|%s\n", Colors.PURPLE, Colors.RESET, Colors.YELLOW,
+				jugador.getNombre(), Colors.RESET, Colors.PURPLE, Colors.RESET);
+		System.out.printf(" %s|%s Tiene la ficha%s, turno %-3d         %s|%s\n", Colors.PURPLE, Colors.RESET,
+				jugador.getFicha().devolverFicha(), turno, Colors.PURPLE, Colors.RESET);
+		System.out.printf(" %s --------------------------------------%s\n", Colors.PURPLE, Colors.RESET);
+		System.out.printf(" %s --------------------------------------%s\n", Colors.YELLOW, Colors.RESET);
+		System.out.printf(" %s|%s Fichas negras: %-3dFichas Blancas: %-3d%s|%s\n", Colors.YELLOW, Colors.RESET,
+				contador(Ficha.NEGRO), contador(Ficha.BLANCO), Colors.YELLOW, Colors.RESET);
+		System.out.printf(" %s --------------------------------------%s\n", Colors.YELLOW, Colors.RESET);
 	}
 
 	public Casilla[][] getTablero() {
@@ -83,6 +80,7 @@ public class Tablero {
 		espacioTablero(32);
 		System.out.println("   |  A  B  C  D  E  F  G  H   |");
 	}
+
 	public void mostrarTablero() {
 		int tamaño = tablero.length;
 		System.out.println("\n");
@@ -92,7 +90,7 @@ public class Tablero {
 			espacioTablero(35);
 			System.out.print("|" + (i + 1));
 			for (int j = 0; j < tablero[i].length; j++) {
-					System.out.print(tablero[i][j].pintarCasilla());
+				System.out.print(tablero[i][j].devolverCasilla());
 				try {
 					TimeUnit.MILLISECONDS.sleep(10);
 				} catch (InterruptedException e) {
@@ -105,6 +103,7 @@ public class Tablero {
 		pintarLetras();
 		pintarRaya();
 	}
+
 	public void mostrarTablero(Ficha ficha) {
 		int tamaño = tablero.length;
 		System.out.println("\n");
@@ -116,11 +115,9 @@ public class Tablero {
 			System.out.print("|" + (i + 1));
 			for (int j = 0; j < tablero[i].length; j++) {
 				if (!tablero[i][j].isLlena() && movimientoValido(ficha, tablero[i][j].getCoordenada())) {
-					tablero[i][j].setJugada(true);
-					System.out.print(tablero[i][j].pintarCasilla());
-					tablero[i][j].setJugada(false);
+					System.out.print(Colors.GREEN + " ☆ " + Colors.RESET);
 				} else {
-					System.out.print(tablero[i][j].pintarCasilla());
+					System.out.print(tablero[i][j].devolverCasilla());
 				}
 
 				try {
@@ -135,23 +132,20 @@ public class Tablero {
 		pintarLetras();
 		pintarRaya();
 	}
-	
+
 	public void mostrarTablero(Coordenada coordenada) {
-		String RED = "\u001B[31m";
-		String RESET = "\u001B[0m";
 		int tamaño = tablero.length;
 		System.out.println("\n");
 		pintarRaya();
 		pintarLetras();
-
 		for (int i = 0; i < tamaño; i++) {
 			espacioTablero(35);
 			System.out.print("|" + (i + 1));
 			for (int j = 0; j < tablero[i].length; j++) {
-				if (coordenada.getPosicion1()==i&& coordenada.getPosicion2()==j) {
-					System.out.print(RED+" ☆ "+RESET);
+				if (coordenada.getPosicion1() == i && coordenada.getPosicion2() == j) {
+					System.out.print(Colors.RED + " ☆ " + Colors.RESET);
 				} else {
-					System.out.print(tablero[i][j].pintarCasilla());
+					System.out.print(tablero[i][j].devolverCasilla());
 				}
 
 				try {
@@ -166,6 +160,7 @@ public class Tablero {
 		pintarLetras();
 		pintarRaya();
 	}
+
 	private void espacioTablero(int espacio) {
 		for (int i = 0; i < espacio; i++) {
 			System.out.print(" ");
@@ -183,12 +178,14 @@ public class Tablero {
 		tablero[posicion1][posicion2].setFicha(ficha);
 		rotarFichas(ficha, tablero[posicion1][posicion2]);
 	}
-	public void añadirFichaTablero(Ficha ficha,Coordenada coordenada) {
+
+	public void añadirFichaTablero(Ficha ficha, Coordenada coordenada) {
 		tablero[coordenada.getPosicion1()][coordenada.getPosicion2()].setFicha(ficha);
 		rotarFichas(ficha, devolverCasilla(coordenada));
 	}
+
 	private void rotarFichas(Ficha ficha, Casilla casilla) {
-		Ficha fichaContraria=fichaContraria(ficha);
+		Ficha fichaContraria = fichaContraria(ficha);
 		rotarFichasVerticalAbajo(ficha, fichaContraria, casilla);
 		rotarFichasVerticalArriba(ficha, fichaContraria, casilla);
 		rotarFichasHorizontalDerecha(ficha, fichaContraria, casilla);
@@ -243,11 +240,12 @@ public class Tablero {
 		boolean salida = false;
 		if (movimientoInclinadoArribaIzquierda(ficha, ficha2, casilla, Comprobacion.VALIDAR)) {
 			do {
-				numeroI --;
-				numeroJ --;
+				numeroI--;
+				numeroJ--;
 				if (tablero[numeroI][numeroJ].getFicha() == ficha) {
 					salida = true;
-					for (int i = numeroI,j = numeroJ; i < casilla.getCoordenada().getPosicion1() && j < casilla.getCoordenada().getPosicion2(); i++, j++) {
+					for (int i = numeroI, j = numeroJ; i < casilla.getCoordenada().getPosicion1()
+							&& j < casilla.getCoordenada().getPosicion2(); i++, j++) {
 						tablero[i][j].setFicha(ficha);
 					}
 				}
@@ -266,7 +264,8 @@ public class Tablero {
 
 				if (tablero[numeroI][numeroJ].getFicha() == ficha) {
 					salida = true;
-					for (int i = casilla.getCoordenada().getPosicion1(),j = casilla.getCoordenada().getPosicion2(); i > numeroI && j < numeroJ; i--, j++) {
+					for (int i = casilla.getCoordenada().getPosicion1(),
+							j = casilla.getCoordenada().getPosicion2(); i > numeroI && j < numeroJ; i--, j++) {
 						tablero[i][j].setFicha(ficha);
 					}
 				}
@@ -392,10 +391,10 @@ public class Tablero {
 		int numeroJ = casilla.getCoordenada().getPosicion2() - 1;
 		boolean win = false;
 		boolean salida = false;
-		if ((numeroJ >=0 && numeroI < tamaño) && tablero[numeroI][numeroJ].getFicha() == ficha2) {
+		if ((numeroJ >= 0 && numeroI < tamaño) && tablero[numeroI][numeroJ].getFicha() == ficha2) {
 			do {
-				numeroI ++;
-				numeroJ --;
+				numeroI++;
+				numeroJ--;
 				if (numeroI < tamaño && numeroJ >= 0) {
 					if (tablero[numeroI][numeroJ].getFicha() == ficha) {
 						salida = true;
@@ -427,8 +426,8 @@ public class Tablero {
 		boolean salida = false;
 		if ((numeroI >= 0 && numeroJ < tamaño) && tablero[numeroI][numeroJ].getFicha() == ficha2) {
 			do {
-				numeroI --;
-				numeroJ ++;
+				numeroI--;
+				numeroJ++;
 				if (numeroI >= 0 && numeroJ < tamaño) {
 					if (tablero[numeroI][numeroJ].getFicha() == ficha) {
 						salida = true;
@@ -446,7 +445,6 @@ public class Tablero {
 					}
 
 				}
-
 
 			} while (!salida);
 		}
@@ -495,8 +493,8 @@ public class Tablero {
 		boolean salida = false;
 		if ((numeroI < tamaño && numeroJ < tamaño) && tablero[numeroI][numeroJ].getFicha() == ficha2) {
 			do {
-				numeroI ++;
-				numeroJ ++;
+				numeroI++;
+				numeroJ++;
 				if (numeroI < tamaño && numeroJ < tamaño) {
 					if (tablero[numeroI][numeroJ].getFicha() == ficha) {
 						salida = true;
@@ -558,7 +556,7 @@ public class Tablero {
 		boolean salida = false;
 		if (numero < tamaño && tablero[numero][numero2].getFicha() == ficha2) {
 			do {
-				
+
 				if (numero < 8) {
 					if (tablero[numero][numero2].getFicha() == ficha) {
 						salida = true;
@@ -577,7 +575,7 @@ public class Tablero {
 					}
 
 				}
-				numero ++;
+				numero++;
 			} while (!salida);
 		}
 		return win;
@@ -590,7 +588,7 @@ public class Tablero {
 		boolean salida = false;
 		if (numero2 >= 0 && tablero[numero][numero2].getFicha() == ficha2) {
 			do {
-				numero2 --;
+				numero2--;
 				if (numero2 >= 0) {
 					if (tablero[numero][numero2].getFicha() == ficha) {
 						salida = true;
@@ -790,29 +788,11 @@ public class Tablero {
 	// ------------------------------------------------------------------------------------------
 	// ------------------------------------------------------------------------------------------
 
-	private boolean finalPartidaLLeno() {
-		boolean win = true;
-		int tamaño = tablero.length;
-
-		for (int i = 1; i < tamaño && win; i++) {
-			for (int j = 1; j < tamaño && win; j++) {
-				if (!tablero[i][j].isLlena()) {
-					win = false;
-				}
-			}
-		}
-
-		return win;
-	}
-
 	public boolean finalPartida(Ficha ficha) {
+
 		boolean win = true;
-		
-		Ficha fichaContraria= fichaContraria(ficha);
-		if (finalPartidaLLeno()) {
-			return win;
-		}
-		
+		Ficha fichaContraria = fichaContraria(ficha);
+
 		if (comprobarFinPartidaInclinadoArribaIzquierda(ficha, fichaContraria)
 				&& comprobarFinPartidaInclinadoAbajoDerecha(ficha, fichaContraria)
 				&& comprobarFinPartidaInclinadoAbajoIzquierda(ficha, fichaContraria)

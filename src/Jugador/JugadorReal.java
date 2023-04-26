@@ -16,7 +16,7 @@ public class JugadorReal extends Jugador {
 		super(nombre, ficha);
 	}
 
-	public void devolverCoordenada(Tablero tablero, int turno) {
+	public void jugada(Tablero tablero, int turno) {
 		Coordenada coordenada;
 		boolean seleccionFicha;
 		ConsoleImput con = new ConsoleImput(new Scanner(System.in));
@@ -24,7 +24,7 @@ public class JugadorReal extends Jugador {
 		do {
 			tablero.contandoFichasMostrando(this, turno);
 			seleccionFicha = false;
-			coordenada = pedirDatos();
+			coordenada = pedirDatos(con);
 			if (!tablero.comprobarSiHayFichaPuesta(coordenada)) {
 				if (tablero.movimientoValido(ficha, coordenada)) {
 					seleccionFicha = true;
@@ -40,9 +40,8 @@ public class JugadorReal extends Jugador {
 		} while (!seleccionFicha);
 	}
 
-	private Coordenada pedirDatos() {
+	private Coordenada pedirDatos(ConsoleImput con) {
 		int posicion1, posicion2;
-		ConsoleImput con = new ConsoleImput(new Scanner(System.in));
 		System.out.println();
 		con.frasesLentas("Posicion de vertical de la ficha(1,2,3,4,5,6,7,8)", 30);
 		System.out.print("  -> ");
