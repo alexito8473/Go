@@ -61,11 +61,11 @@ public class JugadorIa extends Jugador {
 		}
 		tablero.mostrarTablero(ficha);
 		tablero.contandoFichasMostrando(this, turno);
-		con.frasesLentas("Posicion de vertical de la ficha(1,2,3,4,5,6,7,8)", 30);
+		con.frasesLentas("Posicion vertical de la ficha(1,2,3,4,5,6,7,8)", 40);
 		System.out.print("  -> ");
 		con.stop(500);
 		con.frasesLentas(String.valueOf(coordenadaJugada.getPosicion1()+1),15);
-		con.frasesLentas("Posicion de horizontal de la ficha(A,B,C,D,E,F,G,H)", 30);
+		con.frasesLentas("Posicion horizontal de la ficha(A,B,C,D,E,F,G,H)", 40);
 		System.out.print("  -> ");
 		con.stop(500);
 		con.frasesLentas(String.valueOf((char)(coordenadaJugada.getPosicion2()+65)),15);
@@ -111,8 +111,9 @@ public class JugadorIa extends Jugador {
 	
 	private int conteoInclinadoArribaIzquierda(Casilla casilla, Tablero tablero) {
 		int devolver=0;
-		int numeroJ = casilla.getCoordenada().getPosicion1() - 1;
-		int numeroI = casilla.getCoordenada().getPosicion2() - 1;
+		int numeroI = casilla.getCoordenada().getPosicion1() - 1;
+		int numeroJ = casilla.getCoordenada().getPosicion2() - 1;
+
 		boolean salida = false;
 		if (tablero.movimientoInclinadoArribaIzquierda(ficha, tablero.fichaContraria(ficha), casilla, Comprobacion.VALIDAR)) {
 			do {
@@ -149,8 +150,8 @@ public class JugadorIa extends Jugador {
 	
 	private int conteoInclinadoAbajoDerecha(Casilla casilla, Tablero tablero) {
 		int devolver=0;
-		int numeroJ = casilla.getCoordenada().getPosicion1() + 1;
-		int numeroI = casilla.getCoordenada().getPosicion2() + 1;
+		int numeroI = casilla.getCoordenada().getPosicion1() + 1;
+		int numeroJ = casilla.getCoordenada().getPosicion2() + 1;
 		boolean salida = false;
 		if (tablero.movimientoInclinadoAbajoDerecha(ficha, tablero.fichaContraria(ficha), casilla, Comprobacion.VALIDAR)) {
 			do {
@@ -197,7 +198,7 @@ public class JugadorIa extends Jugador {
 				} else {
 					devolver++;
 				}
-				numero = numero + 1;
+				numero ++;
 			} while (!escape);
 		}
 		return devolver;

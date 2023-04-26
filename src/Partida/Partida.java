@@ -27,12 +27,22 @@ public class Partida {
 	private static final String PURPLE = "\u001B[35m";
 	private static final String CYAN = "\u001B[36m";
 	private static final String WHITE = "\u001B[37m";
+	
+
+	public static final String BLACK_BACKGROUND = "\u001B[40m";
+	public static final String RED_BACKGROUND = "\u001B[41m";
+	public static final String GREEN_BACKGROUND = "\u001B[42m";
+	public static final String YELLOW_BACKGROUND = "\u001B[43m";
+	public static final String BLUE_BACKGROUND = "\u001B[44m";
+	public static final String PURPLE_BACKGROUND = "\u001B[45m";
+	public static final String CYAN_BACKGROUND = "\u001B[46m";
+	public static final String WHITE_BACKGROUND = "\u001B[47m";
+
 
 	public void JugarPartida() {
 		boolean finPartida = false;
 		int tipoPartida;
 		mostraTitulo();
-
 		do {
 			tipoPartida = tipoDePartida();
 			seleccionJugadores(tipoPartida);
@@ -79,12 +89,25 @@ public class Partida {
 		con.stop(200);
 	}
 
+	private void enseñarFinal(Jugador[] jugadores,int turno) {
+		System.out.println("\n\n\n");
+		ConsoleImput con = new ConsoleImput(new Scanner(System.in));
+		tablero.mostrarTablero();
+		con.frasesLentas("Se han jugado un total de turnos : "+String.valueOf(turno - 1), 40);
+		if(tablero.contador(Ficha.NEGRO)==tablero.contador(Ficha.BLANCO)) {
+			con.frasesLentas("Empate entre: "+jugadores[0].getNombre()+" y "+jugadores[1].getNombre(), 15);
+		}else {
+			con.frasesLentas("Ha ganado el jugador: "+jugadores[turno % 2].getNombre(), 45);
+		}
+		con.stop(100);
+		pintarBandera();
+	}
+	
 	private boolean partidaJugadorVSJugador(Jugador[] jugadores) {
 		boolean partida = false;
 		int turno = 1;
 		ConsoleImput con = new ConsoleImput(new Scanner(System.in));
 		mostrarJugadores(jugadores);
-		
 		do {
 			++turno;
 			if (!tablero.finalPartida(jugadores[turno % 2].getFicha())) {
@@ -95,15 +118,72 @@ public class Partida {
 				con.frasesLentas("No tiene más jugada", 15);
 			}
 		} while (!tablero.finalPartida(jugadores[0].getFicha()) && !tablero.finalPartida(jugadores[1].getFicha()));
-
-		con.frasesLentasSinSalto("Se han jugado un total de turnos : ", 15);
-		System.out.print(turno - 1);
-		con.frasesLentasSinSalto("Ha ganado el jugador ", 15);
-		System.out.print(jugadores[turno % 2].getNombre());
-		System.out.println("Fin de partida");
+		enseñarFinal(jugadores, turno-1);
 		return partida;
 	}
-
+	
+	private void espacio(int espacio) {
+		for (int i = 0; i < espacio; i++) {
+			System.out.print(" ");
+		}
+	}
+	public void pintarBandera() {
+		int velicidad=8;
+		int espacio=35;
+		Random ran= new Random();
+		ConsoleImput con= new ConsoleImput(new Scanner(System.in));
+		System.out.println();
+		if(ran.nextInt(2)==0) {		
+			espacio(espacio);
+			System.out.print(RED_BACKGROUND+BLACK);
+			con.frasesLentasSinSalto("  _____   _________   ___   __  \n", velicidad);
+			System.out.print(RESET);
+			espacio(espacio);
+			System.out.print(RED_BACKGROUND+BLACK);
+			con.frasesLentasSinSalto(" |   __| |___   ___| |   \\ |  | \n",velicidad);
+			System.out.print(RESET);
+			espacio(espacio);
+			System.out.print(YELLOW_BACKGROUND+BLACK);
+			con.frasesLentasSinSalto(" |  |__      | |     |    \\|  | \n",velicidad);
+			System.out.print(RESET);
+			espacio(espacio);
+			System.out.print(YELLOW_BACKGROUND+BLACK);
+			con.frasesLentasSinSalto(" |   __|  ___| |___  |  |\\    | \n",velicidad);
+			System.out.print(RESET);
+			espacio(espacio);
+			System.out.print(RED_BACKGROUND+BLACK);
+			con.frasesLentasSinSalto(" |__|    |_________| |__| \\___| \n",velicidad);
+			System.out.print(RESET);
+			espacio(espacio);
+			System.out.print(RED_BACKGROUND+BLACK);
+			con.frasesLentas("                                ",velicidad);
+		}else {
+			espacio(espacio);
+			System.out.print(GREEN_BACKGROUND+BLACK);
+			con.frasesLentasSinSalto("  _____   _________   ___   __  \n", velicidad);
+			System.out.print(RESET);
+			espacio(espacio);
+			System.out.print(GREEN_BACKGROUND+BLACK);
+			con.frasesLentasSinSalto(" |   __| |___   ___| |   \\ |  | \n",velicidad);
+			System.out.print(RESET);
+			espacio(espacio);
+			System.out.print(WHITE_BACKGROUND+BLACK);
+			con.frasesLentasSinSalto(" |  |__      | |     |    \\|  | \n",velicidad);
+			System.out.print(RESET);
+			espacio(espacio);
+			System.out.print(WHITE_BACKGROUND+BLACK);
+			con.frasesLentasSinSalto(" |   __|  ___| |___  |  |\\    | \n",velicidad);
+			System.out.print(RESET);
+			espacio(espacio);
+			System.out.print(GREEN_BACKGROUND+BLACK);
+			con.frasesLentasSinSalto(" |__|    |_________| |__| \\___| \n",velicidad);
+			System.out.print(RESET);
+			espacio(espacio);
+			System.out.print(GREEN_BACKGROUND+BLACK);
+			con.frasesLentas("                                ",velicidad);
+		}
+		System.out.println(RESET);
+	}
 	private Jugador[] devolverJugadoresOrdenados() {
 		Jugador[] jugadores = new Jugador[2];
 		if (jugador1.getFicha() == Ficha.NEGRO) {

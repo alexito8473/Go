@@ -3,6 +3,7 @@ package Partida;
 public class Main {
 	private void empezarPartida() {
 		Partida partida = new Partida();
+
 		partida.JugarPartida();
 	}
 
