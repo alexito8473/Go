@@ -37,24 +37,14 @@ public class ConsoleImput {
 	}
 
 	public void frasesLentas(String frase, int numero) {
-		for (int i = 0; i < frase.length(); i++) {
-			System.out.print(frase.charAt(i));
-			try {
-				TimeUnit.MILLISECONDS.sleep(numero);
-			} catch (InterruptedException e) {
-
-			}
-		}
+		frasesLentasSinSalto(frase, numero);
 		System.out.println();
 	}
 
 	public void frasesLentasSinSalto(String frase, int numero) {
 		for (int i = 0; i < frase.length(); i++) {
 			System.out.print(frase.charAt(i));
-			try {
-				TimeUnit.MILLISECONDS.sleep(numero);
-			} catch (InterruptedException e) {
-			}
+			stop(numero);
 		}
 	}
 
@@ -76,7 +66,7 @@ public class ConsoleImput {
 	}
 
 	public byte readByteLessThan(byte upperBound) {
-		byte i = 0;
+		byte i;
 		if (upperBound == Byte.MIN_VALUE) {
 			throw new NumberFormatException("El byte no puede ser mas pequeño que -128");
 		}
@@ -91,7 +81,7 @@ public class ConsoleImput {
 	}
 
 	public byte readByteLessOrEqualThan(byte upperBound) {
-		byte i = 0;
+		byte i;
 		do {
 			i = readByte();
 			if (i > upperBound) {
@@ -116,7 +106,7 @@ public class ConsoleImput {
 	}
 
 	public byte readByteGreaterOrEqualThan(byte cantidad) {
-		byte i = 0;
+		byte i;
 		do {
 			i = readByte();
 			if (i < cantidad) {
@@ -180,7 +170,7 @@ public class ConsoleImput {
 	}
 
 	public short readShortLessOrEqualThan(short upperBound) {
-		short i = 0;
+		short i;
 		boolean salir = false;
 		do {
 			i = readShort();
@@ -725,7 +715,7 @@ public class ConsoleImput {
 	public boolean readBooleanUsingChar() {
 		Character resultado;
 		resultado = readChar();
-		if (resultado.equals('s') || resultado.equals('S')) {
+		if (resultado==('s') || resultado==('S')) {
 			return true;
 		} else {
 			return false;

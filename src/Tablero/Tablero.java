@@ -48,12 +48,12 @@ public class Tablero {
 	}
 
 	public void contandoFichasMostrando(Jugador jugador, int turno) {
-		System.out.printf("\n %s --------------------------------------%s\n", Colors.PURPLE, Colors.RESET);
-		System.out.printf(" %s|%s Le toca al jugador %s%-18s%s%s|%s\n", Colors.PURPLE, Colors.RESET, Colors.YELLOW,
+		System.out.printf("\n %s ---------------------------------------------%s\n", Colors.PURPLE, Colors.RESET);
+		System.out.printf(" %s|%s Le toca al jugador %s%-25s%s%s|%s\n", Colors.PURPLE, Colors.RESET, Colors.YELLOW,
 				jugador.getNombre(), Colors.RESET, Colors.PURPLE, Colors.RESET);
-		System.out.printf(" %s|%s Tiene la ficha%s, turno %-3d         %s|%s\n", Colors.PURPLE, Colors.RESET,
+		System.out.printf(" %s|%s Tiene la ficha%s, turno %-5d              %s|%s\n", Colors.PURPLE, Colors.RESET,
 				jugador.getFicha().devolverFicha(), turno, Colors.PURPLE, Colors.RESET);
-		System.out.printf(" %s --------------------------------------%s\n", Colors.PURPLE, Colors.RESET);
+		System.out.printf(" %s ---------------------------------------------%s\n", Colors.PURPLE, Colors.RESET);
 		System.out.printf(" %s --------------------------------------%s\n", Colors.YELLOW, Colors.RESET);
 		System.out.printf(" %s|%s Fichas negras: %-3dFichas Blancas: %-3d%s|%s\n", Colors.YELLOW, Colors.RESET,
 				contador(Ficha.NEGRO), contador(Ficha.BLANCO), Colors.YELLOW, Colors.RESET);
@@ -653,7 +653,7 @@ public class Tablero {
 		boolean win = true;
 		boolean corto = false;
 		for (int i = 0; i < tamaño && !corto; i++) {
-			for (int j = 0; j < tamaño; j++) {
+			for (int j = 0; j < tamaño&&!corto; j++) {
 				if (tablero[i][j].getFicha() == ficha) {
 					if (!movimientoInclinadoArribaIzquierda(ficha, ficha2, tablero[i][j], Comprobacion.FIN)) {
 						win = false;
@@ -670,7 +670,7 @@ public class Tablero {
 		boolean win = true;
 		boolean corto = false;
 		for (int i = 0; i < tamaño && !corto; i++) {
-			for (int j = 0; j < tamaño; j++) {
+			for (int j = 0; j < tamaño&&!corto; j++) {
 				if (tablero[i][j].getFicha() == ficha) {
 					if (!movimientoInclinadoAbajoDerecha(ficha, ficha2, tablero[i][j], Comprobacion.FIN)) {
 						win = false;
@@ -788,10 +788,29 @@ public class Tablero {
 	// ------------------------------------------------------------------------------------------
 	// ------------------------------------------------------------------------------------------
 
+	private boolean finalPartidaLLeno() {
+		boolean win = true;
+		int tamaño = tablero.length;
+
+		for (int i = 1; i < tamaño; i++) {
+			for (int j = 1; j < tamaño; j++) {
+				if (!tablero[i][j].isLlena()) {
+					return false;
+				}
+			}
+		}
+
+		return win;
+	}
+
 	public boolean finalPartida(Ficha ficha) {
 
 		boolean win = true;
 		Ficha fichaContraria = fichaContraria(ficha);
+		
+		if(finalPartidaLLeno()) {
+			return true;
+		}
 
 		if (comprobarFinPartidaInclinadoArribaIzquierda(ficha, fichaContraria)
 				&& comprobarFinPartidaInclinadoAbajoDerecha(ficha, fichaContraria)

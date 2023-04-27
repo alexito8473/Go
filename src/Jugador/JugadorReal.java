@@ -1,12 +1,9 @@
 package Jugador;
 
 import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
 
 import Ficha.Ficha;
 import Partida.ConsoleImput;
-import Tablero.Casilla;
-import Tablero.Comprobacion;
 import Tablero.Coordenada;
 import Tablero.Tablero;
 
@@ -43,10 +40,10 @@ public class JugadorReal extends Jugador {
 	private Coordenada pedirDatos(ConsoleImput con) {
 		int posicion1, posicion2;
 		System.out.println();
-		con.frasesLentas("Posicion de vertical de la ficha(1,2,3,4,5,6,7,8)", 30);
+		con.frasesLentas("Posicion vertical(1,2,3,4,5,6,7,8)", 30);
 		System.out.print("  -> ");
 		posicion1 = con.readIntInRange(1, 8) - 1;
-		con.frasesLentas("Posicion de horizontal de la ficha(A,B,C,D,E,F,G,H)", 30);
+		con.frasesLentas("Posicion horizontal(A,B,C,D,E,F,G,H)", 30);
 		System.out.print("  -> ");
 		posicion2 = Character.toUpperCase(con.readChar("ABCDEFGHabcdefgh")) - 65;
 		return new Coordenada(posicion1, posicion2);

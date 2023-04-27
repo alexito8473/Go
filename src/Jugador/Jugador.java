@@ -21,9 +21,6 @@ public abstract class Jugador {
 		return nombre;
 	}
 
-	protected void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
 
 	public abstract void jugada(Tablero tablero, int turno);
 }

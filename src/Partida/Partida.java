@@ -22,18 +22,7 @@ public class Partida {
 		} while (partidaJugadorVSJugador(devolverJugadoresOrdenados()));
 	}
 
-	private void mostraTitulo() {
-		System.out.print(Colors.CYAN);
-		con.frasesLentas(
-				"  ____     ______      _____     ____    __        __    ____    _____       __________     _________\n"
-						+ " |  __|   |  __  |    |  _  \\   |   _|  \\  \\      /  /  |   _|  |  _   \\    /   ____   \\   |___   ___|\n"
-						+ " | |  _   | |  | |    | |_|  |  |  |_    \\  \\    /  /   |  |_   | |_|  |    \\  \\___  \\__|      | |\n"
-						+ " | | | |  | |  | |    |  _  /   |   _|    \\  \\  /  /    |   _|  |  _  /   __ \\____  \\          | |\n"
-						+ " | |_| |  | |__| |    | | \\ \\   |  |_      \\  \\/  /     |  |_   | | \\ \\  \\  \\_____/  /      ___| |___\n"
-						+ " |_____|  |______|    |_|  \\_\\  |____|      \\____/      |____|  |_|  \\_\\  \\_________/      |_________|\n",
-				1);
-		System.out.println(Colors.RESET);
-	}
+
 
 	private int tipoDePartida() {
 		con.frasesLentas("¿Qué tipo de juego quieres?", 15);
@@ -72,21 +61,23 @@ public class Partida {
 
 	private boolean partidaJugadorVSJugador(Jugador[] jugadores) {
 		boolean partida = false;
-		int turno = 1;
+		int turno = 0;
+		int numero = 1;
 		mostrarJugadores(jugadores);
 		do {
-			++turno;
-			if (!tablero.finalPartida(jugadores[turno % 2].getFicha())) {
-				jugadores[turno % 2].jugada(tablero, turno - 1);
+			numero = Math.abs(numero - 1);
+			if (!tablero.finalPartida(jugadores[numero].getFicha())) {
+				jugadores[numero].jugada(tablero, turno);
 			} else {
 				con.frasesLentas("El jugador", 15);
-				System.out.println(Colors.YELLOW + jugadores[turno % 2].getNombre() + Colors.RESET);
+				System.out.println(Colors.YELLOW + jugadores[numero].getNombre() + Colors.RESET);
 				con.frasesLentas("No tiene más jugada", 15);
 			}
-		} while (!tablero.finalPartida(jugadores[0].getFicha()) && !tablero.finalPartida(jugadores[1].getFicha()));
-		enseñarFinal(jugadores, turno - 1);
+			turno++;
+		} while (!(tablero.finalPartida(jugadores[0].getFicha()) && tablero.finalPartida(jugadores[1].getFicha())));
+		enseñarFinal(jugadores, turno);
 		con.frasesLentas("¿Quieres jugar otra partida?(Si,No)", 20);
-		System.out.println(" -> ");
+		con.frasesLentas(" -> ",15);
 		partida = con.readBooleanUsingString("Si", "no");
 		return partida;
 	}
@@ -95,63 +86,6 @@ public class Partida {
 		for (int i = 0; i < espacio; i++) {
 			System.out.print(" ");
 		}
-	}
-
-	public void pintarBandera() {
-		int velicidad = 8;
-		int espacio = 35;
-		Random ran = new Random();
-		System.out.println();
-		if (ran.nextInt(2) == 0) {
-			espacio(espacio);
-			System.out.print(Colors.RED_BACKGROUND + Colors.BLACK);
-			con.frasesLentasSinSalto("  _____   _________   ___   __  \n", velicidad);
-			System.out.print(Colors.RESET);
-			espacio(espacio);
-			System.out.print(Colors.RED_BACKGROUND + Colors.BLACK);
-			con.frasesLentasSinSalto(" |   __| |___   ___| |   \\ |  | \n", velicidad);
-			System.out.print(Colors.RESET);
-			espacio(espacio);
-			System.out.print(Colors.YELLOW_BACKGROUND + Colors.BLACK);
-			con.frasesLentasSinSalto(" |  |__      | |     |    \\|  | \n", velicidad);
-			System.out.print(Colors.RESET);
-			espacio(espacio);
-			System.out.print(Colors.YELLOW_BACKGROUND + Colors.BLACK);
-			con.frasesLentasSinSalto(" |   __|  ___| |___  |  |\\    | \n", velicidad);
-			System.out.print(Colors.RESET);
-			espacio(espacio);
-			System.out.print(Colors.RED_BACKGROUND + Colors.BLACK);
-			con.frasesLentasSinSalto(" |__|    |_________| |__| \\___| \n", velicidad);
-			System.out.print(Colors.RESET);
-			espacio(espacio);
-			System.out.print(Colors.RED_BACKGROUND + Colors.BLACK);
-			con.frasesLentas("                                ", velicidad);
-		} else {
-			espacio(espacio);
-			System.out.print(Colors.GREEN_BACKGROUND + Colors.BLACK);
-			con.frasesLentasSinSalto("  _____   _________   ___   __  \n", velicidad);
-			System.out.print(Colors.RESET);
-			espacio(espacio);
-			System.out.print(Colors.GREEN_BACKGROUND + Colors.BLACK);
-			con.frasesLentasSinSalto(" |   __| |___   ___| |   \\ |  | \n", velicidad);
-			System.out.print(Colors.RESET);
-			espacio(espacio);
-			System.out.print(Colors.WHITE_BACKGROUND + Colors.BLACK);
-			con.frasesLentasSinSalto(" |  |__      | |     |    \\|  | \n", velicidad);
-			System.out.print(Colors.RESET);
-			espacio(espacio);
-			System.out.print(Colors.WHITE_BACKGROUND + Colors.BLACK);
-			con.frasesLentasSinSalto(" |   __|  ___| |___  |  |\\    | \n", velicidad);
-			System.out.print(Colors.RESET);
-			espacio(espacio);
-			System.out.print(Colors.GREEN_BACKGROUND + Colors.BLACK);
-			con.frasesLentasSinSalto(" |__|    |_________| |__| \\___| \n", velicidad);
-			System.out.print(Colors.RESET);
-			espacio(espacio);
-			System.out.print(Colors.GREEN_BACKGROUND + Colors.BLACK);
-			con.frasesLentas("                                ", velicidad);
-		}
-		System.out.println(Colors.RESET);
 	}
 
 	private Jugador[] devolverJugadoresOrdenados() {
@@ -167,15 +101,12 @@ public class Partida {
 	}
 
 	private void seleccionJugadores(int numero) {
-		Random random = new Random();
 		if (numero == 1) {
-			switch (random.nextInt(2)) {
+			switch (new Random().nextInt(2)) {
 			case 0:
-				con.frasesLentas("Escribe el nombre del jugador1", 15);
-				System.out.print("  -> ");
+				con.frasesLentasSinSalto("Escribe el nombre del jugador1\n  -> ", 15);
 				jugador1 = new JugadorReal(con.escribirNombre(), Ficha.NEGRO);
-				con.frasesLentas("Escribe el nombre del jugador2", 15);
-				System.out.print("  -> ");
+				con.frasesLentasSinSalto("Escribe el nombre del jugador2\n  -> ", 15);
 				jugador2 = new JugadorReal(con.escribirNombre(), Ficha.BLANCO);
 				tablero = new Tablero();
 				break;
@@ -190,7 +121,7 @@ public class Partida {
 				break;
 			}
 		} else if (numero == 2) {
-			switch (random.nextInt(2)) {
+			switch (new Random().nextInt(2)) {
 			case 0:
 				jugador2 = new JugadorIa(Ficha.BLANCO);
 				con.frasesLentas("Escribe el nombre del jugador1", 15);
@@ -215,16 +146,17 @@ public class Partida {
 				break;
 			}
 		} else {
-			switch (random.nextInt(2)) {
+			switch (new Random().nextInt(2)) {
 			case 0:
 				jugador1 = new JugadorIa(Ficha.NEGRO);
-				jugador2 = new JugadorIa(Ficha.BLANCO);
-				con.frasesLentas("Escribe el nombre del jugador1", 15);
-				System.out.print("  -> ");
+				do {
+					jugador2 = new JugadorIa(Ficha.BLANCO);
+				}while(!(jugador2.getNombre()==jugador1.getNombre()));
+				
+				con.frasesLentasSinSalto("Escribe el nombre del jugador1\n  -> ", 15);
 				con.stop(500);
 				con.frasesLentas(jugador1.getNombre(), 40);
-				con.frasesLentas("Escribe el nombre del jugador2", 15);
-				System.out.print("  -> ");
+				con.frasesLentasSinSalto("Escribe el nombre del jugador2\n  -> ", 15);
 				con.stop(500);
 				con.frasesLentas(jugador2.getNombre(), 40);
 				tablero = new Tablero();
@@ -244,6 +176,45 @@ public class Partida {
 				break;
 			}
 		}
+	} 
+	private void mostraTitulo() {
+		System.out.print(Colors.CYAN);
+		con.frasesLentas(
+				"  ____     ______      _____     ____    __        __    ____    _____       __________     _________\n"
+						+ " |  __|   |  __  |    |  _  \\   |   _|  \\  \\      /  /  |   _|  |  _   \\    /   ____   \\   |___   ___|\n"
+						+ " | |  _   | |  | |    | |_|  |  |  |_    \\  \\    /  /   |  |_   | |_|  |    \\  \\___  \\__|      | |\n"
+						+ " | | | |  | |  | |    |  _  /   |   _|    \\  \\  /  /    |   _|  |  _  /   __ \\____  \\          | |\n"
+						+ " | |_| |  | |__| |    | | \\ \\   |  |_      \\  \\/  /     |  |_   | | \\ \\  \\  \\_____/  /      ___| |___\n"
+						+ " |_____|  |______|    |_|  \\_\\  |____|      \\____/      |____|  |_|  \\_\\  \\_________/      |_________|\n",
+				1);
+		System.out.println(Colors.RESET);
 	}
-
+	public void pintarBandera() {
+		int velicidad = 8,espacio = 35,numero = new Random().nextInt(2);
+		System.out.println();
+		espacio(espacio);
+		System.out.print((numero == 0 ? Colors.RED_BACKGROUND : Colors.GREEN_BACKGROUND) + Colors.BLACK);
+		con.frasesLentas("  _____   _________   ___   __  ", velicidad);
+		System.out.print(Colors.RESET);
+		espacio(espacio);
+		System.out.print((numero == 0 ? Colors.RED_BACKGROUND : Colors.GREEN_BACKGROUND) + Colors.BLACK);
+		con.frasesLentas(" |   __| |___   ___| |   \\ |  | ", velicidad);
+		System.out.print(Colors.RESET);
+		espacio(espacio);
+		System.out.print((numero == 0 ? Colors.YELLOW_BACKGROUND : Colors.WHITE_BACKGROUND) + Colors.BLACK);
+		con.frasesLentas(" |  |__      | |     |    \\|  | ", velicidad);
+		System.out.print(Colors.RESET);
+		espacio(espacio);
+		System.out.print((numero == 0 ? Colors.YELLOW_BACKGROUND : Colors.WHITE_BACKGROUND) + Colors.BLACK);
+		con.frasesLentas(" |   __|  ___| |___  |  |\\    | ", velicidad);
+		System.out.print(Colors.RESET);
+		espacio(espacio);
+		System.out.print((numero == 0 ? Colors.RED_BACKGROUND : Colors.GREEN_BACKGROUND) + Colors.BLACK);
+		con.frasesLentas(" |__|    |_________| |__| \\___| ", velicidad);
+		System.out.print(Colors.RESET);
+		espacio(espacio);
+		System.out.print((numero == 0 ? Colors.RED_BACKGROUND : Colors.GREEN_BACKGROUND) + Colors.BLACK);
+		con.frasesLentas("                                ", velicidad);
+		System.out.println(Colors.RESET);
+	}
 }
