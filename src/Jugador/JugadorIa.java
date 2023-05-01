@@ -32,7 +32,7 @@ public class JugadorIa extends Jugador {
 		case 12 -> "Dinámico";
 		case 13 -> "Ahora super estático";
 		case 14 -> "Ahora mega dinámico";
-		case 15 -> "Rosa melano";	
+		case 15 -> "Rosa melano";
 		case 16 -> "Es una simulacion";
 		case 17 -> "Joe Luis";
 		case 18 -> "PPk cagon";
@@ -43,13 +43,13 @@ public class JugadorIa extends Jugador {
 		case 23 -> "ppk copion";
 		case 24 -> "Gafota promedio 🤓";
 		case 25 -> "Mamamamamamamagüevaso";
-		case 26 -> "Teoria de cuerdas";	
+		case 26 -> "Teoria de cuerdas";
 		case 27 -> "SuperGamer";
 		case 28 -> "Estoy detras de ti";
 		case 29 -> "Despierta!!!!!";
 		case 30 -> "Sé quien eres";
 		default -> "Error en el nombre";
-		};	 
+		};
 	}
 
 	public void jugada(Tablero tablero, int turno) {
@@ -75,7 +75,7 @@ public class JugadorIa extends Jugador {
 				}
 			}
 		}
-		
+
 		tablero.mostrarTablero(ficha);
 		tablero.contandoFichasMostrando(this, turno);
 		con.frasesLentas("Posicion vertical (1,2,3,4,5,6,7,8)", 30);
@@ -111,7 +111,8 @@ public class JugadorIa extends Jugador {
 		int numeroJ = casilla.getCoordenada().getPosicion2() + 1;
 
 		boolean salida = false;
-		if (tablero.movimientoInclinadoArribaDerecha(ficha, tablero.fichaContraria(ficha), casilla, Comprobacion.VALIDAR)) {
+		if (tablero.movimientoInclinadoArribaDerecha(ficha, tablero.fichaContraria(ficha), casilla,
+				Comprobacion.VALIDAR)) {
 			do {
 				if (tablero.getTablero()[numeroI][numeroJ].getFicha() == ficha) {
 					salida = true;
@@ -132,7 +133,8 @@ public class JugadorIa extends Jugador {
 		int numeroJ = casilla.getCoordenada().getPosicion2() - 1;
 
 		boolean salida = false;
-		if (tablero.movimientoInclinadoArribaIzquierda(ficha, tablero.fichaContraria(ficha), casilla, Comprobacion.VALIDAR)) {
+		if (tablero.movimientoInclinadoArribaIzquierda(ficha, tablero.fichaContraria(ficha), casilla,
+				Comprobacion.VALIDAR)) {
 			do {
 				if (tablero.getTablero()[numeroI][numeroJ].getFicha() == ficha) {
 					salida = true;
@@ -151,7 +153,8 @@ public class JugadorIa extends Jugador {
 		int numeroI = casilla.getCoordenada().getPosicion1() + 1;
 		int numeroJ = casilla.getCoordenada().getPosicion2() - 1;
 		boolean salida = false;
-		if (tablero.movimientoInclinadoAbajoIzquierda(ficha, tablero.fichaContraria(ficha), casilla, Comprobacion.VALIDAR)) {
+		if (tablero.movimientoInclinadoAbajoIzquierda(ficha, tablero.fichaContraria(ficha), casilla,
+				Comprobacion.VALIDAR)) {
 			do {
 				if (tablero.getTablero()[numeroI][numeroJ].getFicha() == ficha) {
 					salida = true;
@@ -170,7 +173,8 @@ public class JugadorIa extends Jugador {
 		int numeroI = casilla.getCoordenada().getPosicion1() + 1;
 		int numeroJ = casilla.getCoordenada().getPosicion2() + 1;
 		boolean salida = false;
-		if (tablero.movimientoInclinadoAbajoDerecha(ficha, tablero.fichaContraria(ficha), casilla, Comprobacion.VALIDAR)) {
+		if (tablero.movimientoInclinadoAbajoDerecha(ficha, tablero.fichaContraria(ficha), casilla,
+				Comprobacion.VALIDAR)) {
 			do {
 				if (tablero.getTablero()[numeroI][numeroJ].getFicha() == ficha) {
 					salida = true;
@@ -226,7 +230,8 @@ public class JugadorIa extends Jugador {
 		int numero = casilla.getCoordenada().getPosicion1();
 		int numero2 = casilla.getCoordenada().getPosicion2() - 1;
 		boolean salida = false;
-		if (tablero.movimientoHorizontalIzquierda(ficha, tablero.fichaContraria(ficha), casilla, Comprobacion.VALIDAR)) {
+		if (tablero.movimientoHorizontalIzquierda(ficha, tablero.fichaContraria(ficha), casilla,
+				Comprobacion.VALIDAR)) {
 			do {
 				if (tablero.getTablero()[numero][numero2].getFicha() == ficha) {
 					salida = true;

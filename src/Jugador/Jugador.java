@@ -21,6 +21,5 @@ public abstract class Jugador {
 		return nombre;
 	}
 
-
 	public abstract void jugada(Tablero tablero, int turno);
 }

@@ -92,7 +92,7 @@ public class ConsoleImput {
 	}
 
 	public byte readByteGreaterThan(byte cantidad) {
-		byte i = 0;
+		byte i;
 		if (cantidad == Byte.MAX_VALUE) {
 			throw new NumberFormatException("El byte introducido por parametro no puede ser mas grande que 127");
 		}
@@ -213,7 +213,7 @@ public class ConsoleImput {
 	}
 
 	public short readShortInRange(short a, short b) {
-		short c = 0;
+		short c;
 		boolean salir = false;
 		do {
 			c = readShort();
@@ -715,7 +715,7 @@ public class ConsoleImput {
 	public boolean readBooleanUsingChar() {
 		Character resultado;
 		resultado = readChar();
-		if (resultado==('s') || resultado==('S')) {
+		if (resultado == ('s') || resultado == ('S')) {
 			return true;
 		} else {
 			return false;

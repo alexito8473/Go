@@ -22,8 +22,6 @@ public class Partida {
 		} while (partidaJugadorVSJugador(devolverJugadoresOrdenados()));
 	}
 
-
-
 	private int tipoDePartida() {
 		con.frasesLentas("¿Qué tipo de juego quieres?", 15);
 		System.out.print(Colors.GREEN);
@@ -77,7 +75,7 @@ public class Partida {
 		} while (!(tablero.finalPartida(jugadores[0].getFicha()) && tablero.finalPartida(jugadores[1].getFicha())));
 		enseñarFinal(jugadores, turno);
 		con.frasesLentas("¿Quieres jugar otra partida?(Si,No)", 20);
-		con.frasesLentas(" -> ",15);
+		con.frasesLentas(" -> ", 15);
 		partida = con.readBooleanUsingString("Si", "no");
 		return partida;
 	}
@@ -122,7 +120,7 @@ public class Partida {
 			}
 		} else if (numero == 2) {
 			switch (new Random().nextInt(2)) {
-			case 0:
+			case 0 -> {
 				jugador2 = new JugadorIa(Ficha.BLANCO);
 				con.frasesLentas("Escribe el nombre del jugador1", 15);
 				System.out.print("  -> ");
@@ -132,8 +130,8 @@ public class Partida {
 				con.stop(500);
 				con.frasesLentas(jugador2.getNombre(), 40);
 				tablero = new Tablero();
-				break;
-			case 1:
+			}
+			case 1 -> {
 				jugador1 = new JugadorIa(Ficha.NEGRO);
 				con.frasesLentas("Escribe el nombre del jugador1", 15);
 				System.out.print("  -> ");
@@ -143,7 +141,7 @@ public class Partida {
 				System.out.print("  -> ");
 				jugador1 = new JugadorReal(con.escribirNombre(), Ficha.BLANCO);
 				tablero = new Tablero();
-				break;
+			}
 			}
 		} else {
 			switch (new Random().nextInt(2)) {
@@ -151,8 +149,8 @@ public class Partida {
 				jugador1 = new JugadorIa(Ficha.NEGRO);
 				do {
 					jugador2 = new JugadorIa(Ficha.BLANCO);
-				}while(!(jugador2.getNombre()==jugador1.getNombre()));
-				
+				} while (!(jugador2.getNombre() == jugador1.getNombre()));
+
 				con.frasesLentasSinSalto("Escribe el nombre del jugador1\n  -> ", 15);
 				con.stop(500);
 				con.frasesLentas(jugador1.getNombre(), 40);
@@ -176,7 +174,8 @@ public class Partida {
 				break;
 			}
 		}
-	} 
+	}
+
 	private void mostraTitulo() {
 		System.out.print(Colors.CYAN);
 		con.frasesLentas(
@@ -189,8 +188,9 @@ public class Partida {
 				1);
 		System.out.println(Colors.RESET);
 	}
+
 	public void pintarBandera() {
-		int velicidad = 8,espacio = 35,numero = new Random().nextInt(2);
+		int velicidad = 8, espacio = 35, numero = new Random().nextInt(2);
 		System.out.println();
 		espacio(espacio);
 		System.out.print((numero == 0 ? Colors.RED_BACKGROUND : Colors.GREEN_BACKGROUND) + Colors.BLACK);

@@ -653,7 +653,7 @@ public class Tablero {
 		boolean win = true;
 		boolean corto = false;
 		for (int i = 0; i < tamaño && !corto; i++) {
-			for (int j = 0; j < tamaño&&!corto; j++) {
+			for (int j = 0; j < tamaño && !corto; j++) {
 				if (tablero[i][j].getFicha() == ficha) {
 					if (!movimientoInclinadoArribaIzquierda(ficha, ficha2, tablero[i][j], Comprobacion.FIN)) {
 						win = false;
@@ -670,7 +670,7 @@ public class Tablero {
 		boolean win = true;
 		boolean corto = false;
 		for (int i = 0; i < tamaño && !corto; i++) {
-			for (int j = 0; j < tamaño&&!corto; j++) {
+			for (int j = 0; j < tamaño && !corto; j++) {
 				if (tablero[i][j].getFicha() == ficha) {
 					if (!movimientoInclinadoAbajoDerecha(ficha, ficha2, tablero[i][j], Comprobacion.FIN)) {
 						win = false;
@@ -687,7 +687,7 @@ public class Tablero {
 		boolean win = true;
 		boolean corto = false;
 		for (int i = 0; i < tamaño && !corto; i++) {
-			for (int j = 0; j < tamaño; j++) {
+			for (int j = 0; j < tamaño && !corto; j++) {
 				if (tablero[i][j].getFicha() == ficha) {
 					if (!movimientoInclinadoAbajoIzquierda(ficha, ficha2, tablero[i][j], Comprobacion.FIN)) {
 						win = false;
@@ -704,7 +704,7 @@ public class Tablero {
 		boolean win = true;
 		boolean corto = false;
 		for (int i = 0; i < tamaño && !corto; i++) {
-			for (int j = 0; j < tamaño; j++) {
+			for (int j = 0; j < tamaño && !corto; j++) {
 				if (tablero[i][j].getFicha() == ficha) {
 					if (!movimientoInclinadoArribaDerecha(ficha, ficha2, tablero[i][j], Comprobacion.FIN)) {
 						win = false;
@@ -721,7 +721,7 @@ public class Tablero {
 		boolean win = true;
 		boolean corto = false;
 		for (int i = 0; i < tamaño && !corto; i++) {
-			for (int j = 0; j < tamaño; j++) {
+			for (int j = 0; j < tamaño && !corto; j++) {
 				if (tablero[i][j].getFicha() == ficha) {
 					if (!movimientoVerticalArriba(ficha, ficha2, tablero[i][j], Comprobacion.FIN)) {
 						win = false;
@@ -738,7 +738,7 @@ public class Tablero {
 		boolean win = true;
 		boolean corto = false;
 		for (int i = 0; i < tamaño && !corto; i++) {
-			for (int j = 0; j < tamaño; j++) {
+			for (int j = 0; j < tamaño && !corto; j++) {
 				if (tablero[i][j].getFicha() == ficha) {
 					if (!movimientoVerticalAbajo(ficha, ficha2, tablero[i][j], Comprobacion.FIN)) {
 						win = false;
@@ -755,7 +755,7 @@ public class Tablero {
 		boolean win = true;
 		boolean corto = false;
 		for (int i = 0; i < tamaño && !corto; i++) {
-			for (int j = 0; j < tamaño; j++) {
+			for (int j = 0; j < tamaño && !corto; j++) {
 				if (tablero[i][j].getFicha() == ficha) {
 					if (!movimientoHorizontalIzquierda(ficha, ficha2, tablero[i][j], Comprobacion.FIN)) {
 						win = false;
@@ -772,7 +772,7 @@ public class Tablero {
 		boolean win = true;
 		boolean corto = false;
 		for (int i = 0; i < tamaño && !corto; i++) {
-			for (int j = 0; j < tamaño; j++) {
+			for (int j = 0; j < tamaño && !corto; j++) {
 				if (tablero[i][j].getFicha() == ficha) {
 					if (!movimientoHorizontalDerecha(ficha, ficha2, tablero[i][j], Comprobacion.FIN)) {
 						win = false;
@@ -807,8 +807,8 @@ public class Tablero {
 
 		boolean win = true;
 		Ficha fichaContraria = fichaContraria(ficha);
-		
-		if(finalPartidaLLeno()) {
+
+		if (finalPartidaLLeno()) {
 			return true;
 		}
 
