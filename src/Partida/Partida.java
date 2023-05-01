@@ -44,14 +44,14 @@ public class Partida {
 		con.stop(200);
 	}
 
-	private void enseñarFinal(Jugador[] jugadores, int turno) {
+	private void enseñarFinal(Jugador[] jugadores, int turno, int numero) {
 		System.out.println("\n\n\n");
 		tablero.mostrarTablero();
-		con.frasesLentas("Se han jugado un total de turnos : " + String.valueOf(turno - 1), 40);
+		con.frasesLentas("Se han jugado un total de turnos : " + String.valueOf(turno ), 40);
 		if (tablero.contador(Ficha.NEGRO) == tablero.contador(Ficha.BLANCO)) {
 			con.frasesLentas("Empate entre: " + jugadores[0].getNombre() + " y " + jugadores[1].getNombre(), 15);
 		} else {
-			con.frasesLentas("Ha ganado el jugador: " + jugadores[turno % 2].getNombre(), 45);
+			con.frasesLentas("Ha ganado el jugador: " + jugadores[numero].getNombre(), 45);
 		}
 		con.stop(100);
 		pintarBandera();
@@ -65,16 +65,16 @@ public class Partida {
 		do {
 			turno++;
 			numero = Math.abs(numero - 1);
-			if (!tablero.fin(jugadores[numero].getFicha())) {
-				jugadores[numero].jugada(tablero, turno);
-			} else {
+			if (tablero.fin(jugadores[numero].getFicha())) {
 				con.frasesLentas("El jugador", 15);
 				System.out.println(Colors.YELLOW + jugadores[numero].getNombre() + Colors.RESET);
 				con.frasesLentas("No tiene más jugada", 15);
+			} else {
+				jugadores[numero].jugada(tablero, turno);
 			}
-	
-		} while (!tablero.fin(jugadores[0].getFicha()) && !tablero.fin(jugadores[1].getFicha()));
-		enseñarFinal(jugadores, turno);
+
+		} while (!tablero.fin(jugadores[1].getFicha()) && !tablero.fin(jugadores[0].getFicha()));
+		enseñarFinal(jugadores, turno, numero);
 		con.frasesLentas("¿Quieres jugar otra partida?(Si,No)", 20);
 		con.frasesLentas(" -> ", 15);
 		partida = con.readBooleanUsingString("Si", "no");

@@ -6,7 +6,6 @@ public class Casilla {
 
 	private boolean llena;
 	private Ficha ficha;
-
 	private Coordenada coordenada;
 
 	public Casilla(int posicion1, int posicion2) {
