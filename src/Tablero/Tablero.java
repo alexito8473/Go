@@ -9,7 +9,9 @@ import Partida.Colors;
 public class Tablero {
 
 	private Casilla[][] tablero = new Casilla[8][8];
-
+	private boolean finBlanco=false;
+	private boolean finNegro=false;
+	
 	public Tablero() {
 		inicarTablero();
 	}
@@ -109,13 +111,18 @@ public class Tablero {
 		System.out.println("\n");
 		pintarRaya();
 		pintarLetras();
-
 		for (int i = 0; i < tamaño; i++) {
 			espacioTablero(35);
 			System.out.print("|" + (i + 1));
 			for (int j = 0; j < tablero[i].length; j++) {
 				if (!tablero[i][j].isLlena() && movimientoValido(ficha, tablero[i][j].getCoordenada())) {
 					System.out.print(Colors.GREEN + " ☆ " + Colors.RESET);
+					if(ficha==Ficha.NEGRO) {
+						finNegro=false;
+						
+					}else {
+						finBlanco=false;
+					}
 				} else {
 					System.out.print(tablero[i][j].devolverCasilla());
 				}
@@ -132,7 +139,7 @@ public class Tablero {
 		pintarLetras();
 		pintarRaya();
 	}
-
+	
 	public void mostrarTablero(Coordenada coordenada) {
 		int tamaño = tablero.length;
 		System.out.println("\n");
@@ -200,7 +207,7 @@ public class Tablero {
 		int numeroI = casilla.getCoordenada().getPosicion1() + 1;
 		int numeroJ = casilla.getCoordenada().getPosicion2() - 1;
 		boolean salida = false;
-		if (movimientoInclinadoAbajoIzquierda(ficha, ficha2, casilla, Comprobacion.VALIDAR)) {
+		if (movimientoInclinadoAbajoIzquierda(ficha, ficha2, casilla)) {
 			do {
 				if (tablero[numeroI][numeroJ].getFicha() == ficha) {
 					for (int i = casilla.getCoordenada().getPosicion1(),
@@ -219,7 +226,7 @@ public class Tablero {
 		int numeroI = casilla.getCoordenada().getPosicion1() + 1;
 		int numeroJ = casilla.getCoordenada().getPosicion2() + 1;
 		boolean salida = false;
-		if (movimientoInclinadoAbajoDerecha(ficha, ficha2, casilla, Comprobacion.VALIDAR)) {
+		if (movimientoInclinadoAbajoDerecha(ficha, ficha2, casilla)) {
 			do {
 				if (tablero[numeroI][numeroJ].getFicha() == ficha) {
 					for (int i = casilla.getCoordenada().getPosicion1(),
@@ -238,7 +245,7 @@ public class Tablero {
 		int numeroI = casilla.getCoordenada().getPosicion1() - 1;
 		int numeroJ = casilla.getCoordenada().getPosicion2() - 1;
 		boolean salida = false;
-		if (movimientoInclinadoArribaIzquierda(ficha, ficha2, casilla, Comprobacion.VALIDAR)) {
+		if (movimientoInclinadoArribaIzquierda(ficha, ficha2, casilla)) {
 			do {
 				numeroI--;
 				numeroJ--;
@@ -259,7 +266,7 @@ public class Tablero {
 		int numeroI = casilla.getCoordenada().getPosicion1() - 1;
 		int numeroJ = casilla.getCoordenada().getPosicion2() + 1;
 		boolean salida = false;
-		if (movimientoInclinadoArribaDerecha(ficha, ficha2, casilla, Comprobacion.VALIDAR)) {
+		if (movimientoInclinadoArribaDerecha(ficha, ficha2, casilla)) {
 			do {
 
 				if (tablero[numeroI][numeroJ].getFicha() == ficha) {
@@ -280,7 +287,7 @@ public class Tablero {
 		boolean escape = false;
 		int numeroI = casilla.getCoordenada().getPosicion1();
 		int numeroJ = casilla.getCoordenada().getPosicion2() + 1;
-		if (movimientoHorizontalDerecha(ficha, ficha2, casilla, Comprobacion.VALIDAR)) {
+		if (movimientoHorizontalDerecha(ficha, ficha2, casilla)) {
 			do {
 
 				if (tablero[numeroI][numeroJ].getFicha() == ficha) {
@@ -298,7 +305,7 @@ public class Tablero {
 		boolean escape = false;
 		int numeroI = casilla.getCoordenada().getPosicion1();
 		int numeroJ = casilla.getCoordenada().getPosicion2() - 1;
-		if (movimientoHorizontalIzquierda(ficha, ficha2, casilla, Comprobacion.VALIDAR)) {
+		if (movimientoHorizontalIzquierda(ficha, ficha2, casilla)) {
 			do {
 				if (tablero[numeroI][numeroJ].getFicha() == ficha) {
 					for (int i = numeroJ; i < casilla.getCoordenada().getPosicion2(); i++) {
@@ -316,7 +323,7 @@ public class Tablero {
 		boolean escape = false;
 		int numeroI = casilla.getCoordenada().getPosicion1() + 1;
 		int numeroJ = casilla.getCoordenada().getPosicion2();
-		if (movimientoVerticalAbajo(ficha, ficha2, casilla, Comprobacion.VALIDAR)) {
+		if (movimientoVerticalAbajo(ficha, ficha2, casilla)) {
 			do {
 
 				if (tablero[numeroI][numeroJ].getFicha() == ficha) {
@@ -335,7 +342,7 @@ public class Tablero {
 		boolean escape = false;
 		int numeroI = casilla.getCoordenada().getPosicion1() - 1;
 		int numeroJ = casilla.getCoordenada().getPosicion2();
-		if (movimientoVerticalArriba(ficha, ficha2, casilla, Comprobacion.VALIDAR)) {
+		if (movimientoVerticalArriba(ficha, ficha2, casilla)) {
 			do {
 				if (tablero[numeroI][numeroJ].getFicha() == ficha) {
 					escape = true;
@@ -353,26 +360,16 @@ public class Tablero {
 	// ------------------------------------------------------------------------------------------
 
 	public boolean movimientoValido(Ficha ficha, Coordenada coordenda) {
-		Ficha fichaContrario;
+		Ficha fichaContrario=fichaContraria(ficha);
 		boolean valido = false;
-		if (ficha == Ficha.NEGRO) {
-			fichaContrario = Ficha.BLANCO;
-		} else {
-			fichaContrario = Ficha.NEGRO;
-		}
-		if (movimientoHorizontalDerecha(ficha, fichaContrario, devolverCasilla(coordenda), Comprobacion.VALIDAR)
-				|| movimientoHorizontalIzquierda(ficha, fichaContrario, devolverCasilla(coordenda),
-						Comprobacion.VALIDAR)
-				|| movimientoVerticalAbajo(ficha, fichaContrario, devolverCasilla(coordenda), Comprobacion.VALIDAR)
-				|| movimientoVerticalArriba(ficha, fichaContrario, devolverCasilla(coordenda), Comprobacion.VALIDAR)
-				|| movimientoInclinadoAbajoDerecha(ficha, fichaContrario, devolverCasilla(coordenda),
-						Comprobacion.VALIDAR)
-				|| movimientoInclinadoAbajoIzquierda(ficha, fichaContrario, devolverCasilla(coordenda),
-						Comprobacion.VALIDAR)
-				|| movimientoInclinadoArribaIzquierda(ficha, fichaContrario, devolverCasilla(coordenda),
-						Comprobacion.VALIDAR)
-				|| movimientoInclinadoArribaDerecha(ficha, fichaContrario, devolverCasilla(coordenda),
-						Comprobacion.VALIDAR)) {
+		if (movimientoHorizontalDerecha(ficha, fichaContrario, devolverCasilla(coordenda))
+				|| movimientoHorizontalIzquierda(ficha, fichaContrario, devolverCasilla(coordenda))
+				|| movimientoVerticalAbajo(ficha, fichaContrario, devolverCasilla(coordenda))
+				|| movimientoVerticalArriba(ficha, fichaContrario, devolverCasilla(coordenda))
+				|| movimientoInclinadoAbajoDerecha(ficha, fichaContrario, devolverCasilla(coordenda))
+				|| movimientoInclinadoAbajoIzquierda(ficha, fichaContrario, devolverCasilla(coordenda))
+				|| movimientoInclinadoArribaIzquierda(ficha, fichaContrario, devolverCasilla(coordenda))
+				|| movimientoInclinadoArribaDerecha(ficha, fichaContrario, devolverCasilla(coordenda))) {
 			valido = true;
 		} else {
 			valido = false;
@@ -384,32 +381,26 @@ public class Tablero {
 	// ------------------------------------------------------------------------------------------
 	// ------------------------------------------------------------------------------------------
 
-	public boolean movimientoInclinadoAbajoIzquierda(Ficha ficha, Ficha ficha2, Casilla casilla,
-			Comprobacion comprobacion) {
+	public boolean movimientoInclinadoAbajoIzquierda(Ficha ficha, Ficha ficha2, Casilla casilla) {
 		int tamaño = tablero.length;
 		int numeroI = casilla.getCoordenada().getPosicion1() + 1;
 		int numeroJ = casilla.getCoordenada().getPosicion2() - 1;
 		boolean win = false;
 		boolean salida = false;
-		if ((numeroJ >= 0 && numeroI < tamaño) && tablero[numeroI][numeroJ].getFicha() == ficha2) {
+		if(numeroJ < 0 || numeroI >= tamaño) {
+			return false;
+		}else if (tablero[numeroI][numeroJ].getFicha() == ficha2) {
 			do {
 				numeroI++;
 				numeroJ--;
-				if (numeroI < tamaño && numeroJ >= 0) {
-					if (tablero[numeroI][numeroJ].getFicha() == ficha) {
-						salida = true;
-						win = true;
-					} else if (!tablero[numeroI][numeroJ].isLlena()) {
-						salida = true;
-						win = false;
-					}
-				} else {
+				if(numeroJ < 0 || numeroI >= tamaño) {
 					salida = true;
-					if (comprobacion == Comprobacion.FIN) {
-						win = true;
-					} else {
-						win = false;
-					}
+				}else if (tablero[numeroI][numeroJ].getFicha() == ficha) {
+					salida = true;
+					win = true;
+				} else if (!tablero[numeroI][numeroJ].isLlena()) {
+					salida = true;
+					win = false;
 				}
 
 			} while (!salida);
@@ -417,130 +408,98 @@ public class Tablero {
 		return win;
 	}
 
-	public boolean movimientoInclinadoArribaDerecha(Ficha ficha, Ficha ficha2, Casilla casilla,
-			Comprobacion comprobacion) {
+	public boolean movimientoInclinadoArribaDerecha(Ficha ficha, Ficha ficha2, Casilla casilla) {
 		int tamaño = tablero.length;
 		int numeroI = casilla.getCoordenada().getPosicion1() - 1;
 		int numeroJ = casilla.getCoordenada().getPosicion2() + 1;
 		boolean win = false;
 		boolean salida = false;
-		if ((numeroI >= 0 && numeroJ < tamaño) && tablero[numeroI][numeroJ].getFicha() == ficha2) {
+		if (numeroI < 0 || numeroJ >= tamaño) {
+			return false;
+		} else if (tablero[numeroI][numeroJ].getFicha() == ficha2) {
 			do {
 				numeroI--;
 				numeroJ++;
-				if (numeroI >= 0 && numeroJ < tamaño) {
-					if (tablero[numeroI][numeroJ].getFicha() == ficha) {
-						salida = true;
-						win = true;
-					} else if (!tablero[numeroI][numeroJ].isLlena()) {
-						salida = true;
-						win = false;
-					}
-				} else {
+				if (numeroI < 0 || numeroJ >= tamaño) {
 					salida = true;
-					if (comprobacion == Comprobacion.FIN) {
-						win = true;
-					} else {
-						win = false;
-					}
-
+				} else if (tablero[numeroI][numeroJ].getFicha() == ficha) {
+					salida = true;
+					win = true;
+				} else if (!tablero[numeroI][numeroJ].isLlena()) {
+					salida = true;
 				}
-
 			} while (!salida);
 		}
 		return win;
 	}
 
-	public boolean movimientoInclinadoArribaIzquierda(Ficha ficha, Ficha ficha2, Casilla casilla,
-			Comprobacion comprobar) {
+	public boolean movimientoInclinadoArribaIzquierda(Ficha ficha, Ficha ficha2, Casilla casilla) {
 		int numeroI = casilla.getCoordenada().getPosicion1() - 1;
 		int numeroJ = casilla.getCoordenada().getPosicion2() - 1;
 		boolean win = false;
 		boolean salida = false;
-		if ((numeroJ >= 0 && numeroI >= 0) && tablero[numeroI][numeroJ].getFicha() == ficha2) {
+		if(numeroJ < 0 || numeroI < 0) {
+			return false;
+		}else if ( tablero[numeroI][numeroJ].getFicha() == ficha2) {
 			do {
-
-				if (numeroI >= 0 && numeroJ >= 0) {
-					if (tablero[numeroI][numeroJ].getFicha() == ficha) {
-						salida = true;
-						win = true;
-					} else if (!tablero[numeroI][numeroJ].isLlena()) {
-						salida = true;
-						win = false;
-					}
-				} else {
-					salida = true;
-					if (comprobar == Comprobacion.FIN) {
-						win = true;
-					} else {
-						win = false;
-					}
-
-				}
 				numeroI--;
 				numeroJ--;
+				if (numeroJ < 0 || numeroI < 0) {
+					salida = true;
+				}else if (tablero[numeroI][numeroJ].getFicha() == ficha) {
+					salida = true;
+					win = true;
+				} else if (!tablero[numeroI][numeroJ].isLlena()) {
+					salida = true;
+				}
+
 			} while (!salida);
 		}
 		return win;
 	}
 
-	public boolean movimientoInclinadoAbajoDerecha(Ficha ficha, Ficha ficha2, Casilla casilla,
-			Comprobacion comprobacion) {
+	public boolean movimientoInclinadoAbajoDerecha(Ficha ficha, Ficha ficha2, Casilla casilla) {
 		int tamaño = tablero.length;
 		int numeroI = casilla.getCoordenada().getPosicion1() + 1;
 		int numeroJ = casilla.getCoordenada().getPosicion2() + 1;
 		boolean win = false;
 		boolean salida = false;
-		if ((numeroI < tamaño && numeroJ < tamaño) && tablero[numeroI][numeroJ].getFicha() == ficha2) {
+		if (numeroI >= tamaño || numeroJ >= tamaño) {
+			return false;
+		} else if (tablero[numeroI][numeroJ].getFicha() == ficha2) {
 			do {
 				numeroI++;
 				numeroJ++;
-				if (numeroI < tamaño && numeroJ < tamaño) {
-					if (tablero[numeroI][numeroJ].getFicha() == ficha) {
-						salida = true;
-						win = true;
-					} else if (!tablero[numeroI][numeroJ].isLlena()) {
-						salida = true;
-						win = false;
-					}
-				} else {
+				if (numeroI >= tamaño || numeroJ >= tamaño) {
 					salida = true;
-					if (comprobacion == Comprobacion.FIN) {
-						win = true;
-					} else {
-						win = false;
-					}
-
+				} else if (tablero[numeroI][numeroJ].getFicha() == ficha) {
+					salida = true;
+					win = true;
+				} else if (!tablero[numeroI][numeroJ].isLlena()) {
+					salida = true;
 				}
 			} while (!salida);
 		}
 		return win;
 	}
 
-	public boolean movimientoVerticalArriba(Ficha ficha, Ficha ficha2, Casilla casilla, Comprobacion comprobacion) {
+	public boolean movimientoVerticalArriba(Ficha ficha, Ficha ficha2, Casilla casilla) {
 		int numero = casilla.getCoordenada().getPosicion1() - 1;
 		int numero2 = casilla.getCoordenada().getPosicion2();
 		boolean win = false;
 		boolean salida = false;
-		if (numero >= 0 && tablero[numero][numero2].getFicha() == ficha2) {
+		if(numero < 0) {
+			return false;
+		}else if (tablero[numero][numero2].getFicha() == ficha2) {
 			do {
-
-				if (numero >= 0) {
-					if (tablero[numero][numero2].getFicha() == ficha) {
-						salida = true;
-						win = true;
-					} else if (!tablero[numero][numero2].isLlena()) {
-						salida = true;
-						win = false;
-					}
-					numero = numero - 1;
-				} else {
+				numero--;
+				if (numero< 0) {
 					salida = true;
-					if (comprobacion == Comprobacion.FIN) {
-						win = true;
-					} else {
-						win = false;
-					}
+				}else if (tablero[numero][numero2].getFicha() == ficha) {
+					salida = true;
+					win = true;
+				} else if (!tablero[numero][numero2].isLlena()) {
+					salida = true;
 				}
 
 			} while (!salida);
@@ -548,63 +507,48 @@ public class Tablero {
 		return win;
 	}
 
-	public boolean movimientoVerticalAbajo(Ficha ficha, Ficha ficha2, Casilla casilla, Comprobacion comprobacion) {
+	public boolean movimientoVerticalAbajo(Ficha ficha, Ficha ficha2, Casilla casilla) {
 		int tamaño = tablero.length;
 		int numero = casilla.getCoordenada().getPosicion1() + 1;
 		int numero2 = casilla.getCoordenada().getPosicion2();
 		boolean win = false;
 		boolean salida = false;
-		if (numero < tamaño && tablero[numero][numero2].getFicha() == ficha2) {
+		if (numero >= tamaño) {
+			return false;
+		} else if (tablero[numero][numero2].getFicha() == ficha2) {
 			do {
-
-				if (numero < 8) {
-					if (tablero[numero][numero2].getFicha() == ficha) {
-						salida = true;
-						win = true;
-					} else if (!tablero[numero][numero2].isLlena()) {
-						salida = true;
-						win = false;
-					}
-
-				} else {
-					salida = true;
-					if (comprobacion == Comprobacion.FIN) {
-						win = true;
-					} else {
-						win = false;
-					}
-
-				}
 				numero++;
+				if (numero >= tamaño) {
+					salida = true;
+				} else if (tablero[numero][numero2].getFicha() == ficha) {
+					salida = true;
+					win = true;
+				} else if (!tablero[numero][numero2].isLlena()) {
+					salida = true;
+				}
+
 			} while (!salida);
 		}
 		return win;
 	}
 
-	public boolean movimientoHorizontalIzquierda(Ficha ficha, Ficha ficha2, Casilla casilla, Comprobacion comprobar) {
+	public boolean movimientoHorizontalIzquierda(Ficha ficha, Ficha ficha2, Casilla casilla) {
 		int numero = casilla.getCoordenada().getPosicion1();
 		int numero2 = casilla.getCoordenada().getPosicion2() - 1;
 		boolean win = false;
 		boolean salida = false;
-		if (numero2 >= 0 && tablero[numero][numero2].getFicha() == ficha2) {
+		if (numero2 < 0) {
+			return false;
+		} else if (tablero[numero][numero2].getFicha() == ficha2) {
 			do {
 				numero2--;
-				if (numero2 >= 0) {
-					if (tablero[numero][numero2].getFicha() == ficha) {
-						salida = true;
-						win = true;
-					} else if (!tablero[numero][numero2].isLlena()) {
-						salida = true;
-						win = false;
-					}
-				} else {
+				if (numero2 < 0) {
 					salida = true;
-					if (comprobar == Comprobacion.FIN) {
-						win = true;
-					} else {
-						win = false;
-					}
-
+				} else if (tablero[numero][numero2].getFicha() == ficha) {
+					salida = true;
+					win = true;
+				} else if (!tablero[numero][numero2].isLlena()) {
+					salida = true;
 				}
 
 			} while (!salida);
@@ -612,31 +556,25 @@ public class Tablero {
 		return win;
 	}
 
-	public boolean movimientoHorizontalDerecha(Ficha ficha, Ficha ficha2, Casilla casilla, Comprobacion comprobar) {
+	public boolean movimientoHorizontalDerecha(Ficha ficha, Ficha ficha2, Casilla casilla) {
 		int tamaño = tablero.length;
 		int numero1 = casilla.getCoordenada().getPosicion1();
 		int numero2 = casilla.getCoordenada().getPosicion2() + 1;
 		boolean resultado = false;
 		boolean salida = false;
-		if (numero2 < tamaño && tablero[numero1][numero2].getFicha() == ficha2) {
+
+		if (numero2 >= tamaño) {
+			return false;
+		} else if (tablero[numero1][numero2].getFicha() == ficha2) {
 			do {
 				numero2++;
-				if (numero2 < tamaño) {
-					if (tablero[numero1][numero2].getFicha() == ficha) {
-						salida = true;
-						resultado = true;
-					} else if (!tablero[numero1][numero2].isLlena()) {
-						salida = true;
-						resultado = false;
-					}
-				} else {
+				if (numero2 >= tamaño) {
 					salida = true;
-					if (comprobar == Comprobacion.FIN) {
-						resultado = true;
-					} else {
-						resultado = false;
-					}
-
+				} else if (tablero[numero1][numero2].getFicha() == ficha) {
+					salida = true;
+					resultado = true;
+				} else if (!tablero[numero1][numero2].isLlena()) {
+					salida = true;
 				}
 
 			} while (!salida);
@@ -648,152 +586,12 @@ public class Tablero {
 	// ------------------------------------------------------------------------------------------
 	// ------------------------------------------------------------------------------------------
 
-	private boolean comprobarFinPartidaInclinadoArribaIzquierda(Ficha ficha, Ficha ficha2) {
-		int tamaño = tablero.length;
-		boolean win = true;
-		boolean corto = false;
-		for (int i = 0; i < tamaño && !corto; i++) {
-			for (int j = 0; j < tamaño && !corto; j++) {
-				if (tablero[i][j].getFicha() == ficha) {
-					if (!movimientoInclinadoArribaIzquierda(ficha, ficha2, tablero[i][j], Comprobacion.FIN)) {
-						win = false;
-						corto = true;
-					}
-				}
-			}
-		}
-		return win;
-	}
-
-	private boolean comprobarFinPartidaInclinadoAbajoDerecha(Ficha ficha, Ficha ficha2) {
-		int tamaño = tablero.length;
-		boolean win = true;
-		boolean corto = false;
-		for (int i = 0; i < tamaño && !corto; i++) {
-			for (int j = 0; j < tamaño && !corto; j++) {
-				if (tablero[i][j].getFicha() == ficha) {
-					if (!movimientoInclinadoAbajoDerecha(ficha, ficha2, tablero[i][j], Comprobacion.FIN)) {
-						win = false;
-						corto = true;
-					}
-				}
-			}
-		}
-		return win;
-	}
-
-	private boolean comprobarFinPartidaInclinadoAbajoIzquierda(Ficha ficha, Ficha ficha2) {
-		int tamaño = tablero.length;
-		boolean win = true;
-		boolean corto = false;
-		for (int i = 0; i < tamaño && !corto; i++) {
-			for (int j = 0; j < tamaño && !corto; j++) {
-				if (tablero[i][j].getFicha() == ficha) {
-					if (!movimientoInclinadoAbajoIzquierda(ficha, ficha2, tablero[i][j], Comprobacion.FIN)) {
-						win = false;
-						corto = true;
-					}
-				}
-			}
-		}
-		return win;
-	}
-
-	private boolean comprobarFinPartidaInclinadoArribaDerecha(Ficha ficha, Ficha ficha2) {
-		int tamaño = tablero.length;
-		boolean win = true;
-		boolean corto = false;
-		for (int i = 0; i < tamaño && !corto; i++) {
-			for (int j = 0; j < tamaño && !corto; j++) {
-				if (tablero[i][j].getFicha() == ficha) {
-					if (!movimientoInclinadoArribaDerecha(ficha, ficha2, tablero[i][j], Comprobacion.FIN)) {
-						win = false;
-						corto = true;
-					}
-				}
-			}
-		}
-		return win;
-	}
-
-	private boolean comprobarFinPartidaVerticalArriba(Ficha ficha, Ficha ficha2) {
-		int tamaño = tablero.length;
-		boolean win = true;
-		boolean corto = false;
-		for (int i = 0; i < tamaño && !corto; i++) {
-			for (int j = 0; j < tamaño && !corto; j++) {
-				if (tablero[i][j].getFicha() == ficha) {
-					if (!movimientoVerticalArriba(ficha, ficha2, tablero[i][j], Comprobacion.FIN)) {
-						win = false;
-						corto = true;
-					}
-				}
-			}
-		}
-		return win;
-	}
-
-	private boolean comprobarFinPartidaVerticalAbajo(Ficha ficha, Ficha ficha2) {
-		int tamaño = tablero.length;
-		boolean win = true;
-		boolean corto = false;
-		for (int i = 0; i < tamaño && !corto; i++) {
-			for (int j = 0; j < tamaño && !corto; j++) {
-				if (tablero[i][j].getFicha() == ficha) {
-					if (!movimientoVerticalAbajo(ficha, ficha2, tablero[i][j], Comprobacion.FIN)) {
-						win = false;
-						corto = true;
-					}
-				}
-			}
-		}
-		return win;
-	}
-
-	private boolean comprobarFinPartidaHorizontalIzquierda(Ficha ficha, Ficha ficha2) {
-		int tamaño = tablero.length;
-		boolean win = true;
-		boolean corto = false;
-		for (int i = 0; i < tamaño && !corto; i++) {
-			for (int j = 0; j < tamaño && !corto; j++) {
-				if (tablero[i][j].getFicha() == ficha) {
-					if (!movimientoHorizontalIzquierda(ficha, ficha2, tablero[i][j], Comprobacion.FIN)) {
-						win = false;
-						corto = true;
-					}
-				}
-			}
-		}
-		return win;
-	}
-
-	private boolean comprobarFinPartidaHorizontalDerecha(Ficha ficha, Ficha ficha2) {
-		int tamaño = tablero.length;
-		boolean win = true;
-		boolean corto = false;
-		for (int i = 0; i < tamaño && !corto; i++) {
-			for (int j = 0; j < tamaño && !corto; j++) {
-				if (tablero[i][j].getFicha() == ficha) {
-					if (!movimientoHorizontalDerecha(ficha, ficha2, tablero[i][j], Comprobacion.FIN)) {
-						win = false;
-						corto = true;
-					}
-				}
-			}
-		}
-		return win;
-	}
-
-	// ------------------------------------------------------------------------------------------
-	// ------------------------------------------------------------------------------------------
-	// ------------------------------------------------------------------------------------------
-
 	private boolean finalPartidaLLeno() {
 		boolean win = true;
 		int tamaño = tablero.length;
 
-		for (int i = 1; i < tamaño; i++) {
-			for (int j = 1; j < tamaño; j++) {
+		for (int i = 0; i < tamaño; i++) {
+			for (int j = 0; j < tamaño; j++) {
 				if (!tablero[i][j].isLlena()) {
 					return false;
 				}
@@ -802,29 +600,16 @@ public class Tablero {
 
 		return win;
 	}
-
-	public boolean finalPartida(Ficha ficha) {
-
-		boolean win = true;
-		Ficha fichaContraria = fichaContraria(ficha);
-
-		if (finalPartidaLLeno()) {
+	public boolean fin(Ficha ficha) {
+		
+		if(finalPartidaLLeno()) {
 			return true;
 		}
-
-		if (comprobarFinPartidaInclinadoArribaIzquierda(ficha, fichaContraria)
-				&& comprobarFinPartidaInclinadoAbajoDerecha(ficha, fichaContraria)
-				&& comprobarFinPartidaInclinadoAbajoIzquierda(ficha, fichaContraria)
-				&& comprobarFinPartidaInclinadoArribaDerecha(ficha, fichaContraria)
-				&& comprobarFinPartidaVerticalArriba(ficha, fichaContraria)
-				&& comprobarFinPartidaHorizontalIzquierda(ficha, fichaContraria)
-				&& comprobarFinPartidaHorizontalDerecha(ficha, fichaContraria)
-				&& comprobarFinPartidaVerticalAbajo(ficha, fichaContraria)) {
-			win = true;
-		} else {
-			win = false;
+		if(ficha==Ficha.NEGRO) {
+			return finNegro;
+		}else {
+			return finBlanco;
 		}
-		return win;
 	}
 	// True termino la partida, false aun sigue
 

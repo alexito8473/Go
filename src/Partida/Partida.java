@@ -63,16 +63,17 @@ public class Partida {
 		int numero = 1;
 		mostrarJugadores(jugadores);
 		do {
+			turno++;
 			numero = Math.abs(numero - 1);
-			if (!tablero.finalPartida(jugadores[numero].getFicha())) {
+			if (!tablero.fin(jugadores[numero].getFicha())) {
 				jugadores[numero].jugada(tablero, turno);
 			} else {
 				con.frasesLentas("El jugador", 15);
 				System.out.println(Colors.YELLOW + jugadores[numero].getNombre() + Colors.RESET);
 				con.frasesLentas("No tiene más jugada", 15);
 			}
-			turno++;
-		} while (!(tablero.finalPartida(jugadores[0].getFicha()) && tablero.finalPartida(jugadores[1].getFicha())));
+	
+		} while (!tablero.fin(jugadores[0].getFicha()) && !tablero.fin(jugadores[1].getFicha()));
 		enseñarFinal(jugadores, turno);
 		con.frasesLentas("¿Quieres jugar otra partida?(Si,No)", 20);
 		con.frasesLentas(" -> ", 15);
@@ -147,10 +148,7 @@ public class Partida {
 			switch (new Random().nextInt(2)) {
 			case 0:
 				jugador1 = new JugadorIa(Ficha.NEGRO);
-				do {
-					jugador2 = new JugadorIa(Ficha.BLANCO);
-				} while (!(jugador2.getNombre() == jugador1.getNombre()));
-
+				jugador2 = new JugadorIa(Ficha.BLANCO);
 				con.frasesLentasSinSalto("Escribe el nombre del jugador1\n  -> ", 15);
 				con.stop(500);
 				con.frasesLentas(jugador1.getNombre(), 40);

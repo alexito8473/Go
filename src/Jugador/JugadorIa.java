@@ -5,7 +5,6 @@ import java.util.Scanner;
 import Ficha.Ficha;
 import Partida.ConsoleImput;
 import Tablero.Casilla;
-import Tablero.Comprobacion;
 import Tablero.Coordenada;
 import Tablero.Tablero;
 
@@ -111,8 +110,7 @@ public class JugadorIa extends Jugador {
 		int numeroJ = casilla.getCoordenada().getPosicion2() + 1;
 
 		boolean salida = false;
-		if (tablero.movimientoInclinadoArribaDerecha(ficha, tablero.fichaContraria(ficha), casilla,
-				Comprobacion.VALIDAR)) {
+		if (tablero.movimientoInclinadoArribaDerecha(ficha, tablero.fichaContraria(ficha), casilla)) {
 			do {
 				if (tablero.getTablero()[numeroI][numeroJ].getFicha() == ficha) {
 					salida = true;
@@ -133,8 +131,7 @@ public class JugadorIa extends Jugador {
 		int numeroJ = casilla.getCoordenada().getPosicion2() - 1;
 
 		boolean salida = false;
-		if (tablero.movimientoInclinadoArribaIzquierda(ficha, tablero.fichaContraria(ficha), casilla,
-				Comprobacion.VALIDAR)) {
+		if (tablero.movimientoInclinadoArribaIzquierda(ficha, tablero.fichaContraria(ficha), casilla)) {
 			do {
 				if (tablero.getTablero()[numeroI][numeroJ].getFicha() == ficha) {
 					salida = true;
@@ -153,8 +150,7 @@ public class JugadorIa extends Jugador {
 		int numeroI = casilla.getCoordenada().getPosicion1() + 1;
 		int numeroJ = casilla.getCoordenada().getPosicion2() - 1;
 		boolean salida = false;
-		if (tablero.movimientoInclinadoAbajoIzquierda(ficha, tablero.fichaContraria(ficha), casilla,
-				Comprobacion.VALIDAR)) {
+		if (tablero.movimientoInclinadoAbajoIzquierda(ficha, tablero.fichaContraria(ficha), casilla)) {
 			do {
 				if (tablero.getTablero()[numeroI][numeroJ].getFicha() == ficha) {
 					salida = true;
@@ -173,8 +169,7 @@ public class JugadorIa extends Jugador {
 		int numeroI = casilla.getCoordenada().getPosicion1() + 1;
 		int numeroJ = casilla.getCoordenada().getPosicion2() + 1;
 		boolean salida = false;
-		if (tablero.movimientoInclinadoAbajoDerecha(ficha, tablero.fichaContraria(ficha), casilla,
-				Comprobacion.VALIDAR)) {
+		if (tablero.movimientoInclinadoAbajoDerecha(ficha, tablero.fichaContraria(ficha), casilla)) {
 			do {
 				if (tablero.getTablero()[numeroI][numeroJ].getFicha() == ficha) {
 					salida = true;
@@ -193,7 +188,7 @@ public class JugadorIa extends Jugador {
 		boolean escape = false;
 		int numero = casilla.getCoordenada().getPosicion1() - 1;
 		int numero2 = casilla.getCoordenada().getPosicion2();
-		if (tablero.movimientoVerticalArriba(ficha, tablero.fichaContraria(ficha), casilla, Comprobacion.VALIDAR)) {
+		if (tablero.movimientoVerticalArriba(ficha, tablero.fichaContraria(ficha), casilla)) {
 			do {
 				if (tablero.getTablero()[numero][numero2].getFicha() == ficha) {
 					escape = true;
@@ -212,7 +207,7 @@ public class JugadorIa extends Jugador {
 		boolean escape = false;
 		int numero = casilla.getCoordenada().getPosicion1() + 1;
 		int numero2 = casilla.getCoordenada().getPosicion2();
-		if (tablero.movimientoVerticalAbajo(ficha, tablero.fichaContraria(ficha), casilla, Comprobacion.VALIDAR)) {
+		if (tablero.movimientoVerticalAbajo(ficha, tablero.fichaContraria(ficha), casilla)) {
 			do {
 				if (tablero.getTablero()[numero][numero2].getFicha() == ficha) {
 					escape = true;
@@ -230,8 +225,7 @@ public class JugadorIa extends Jugador {
 		int numero = casilla.getCoordenada().getPosicion1();
 		int numero2 = casilla.getCoordenada().getPosicion2() - 1;
 		boolean salida = false;
-		if (tablero.movimientoHorizontalIzquierda(ficha, tablero.fichaContraria(ficha), casilla,
-				Comprobacion.VALIDAR)) {
+		if (tablero.movimientoHorizontalIzquierda(ficha, tablero.fichaContraria(ficha), casilla)) {
 			do {
 				if (tablero.getTablero()[numero][numero2].getFicha() == ficha) {
 					salida = true;
@@ -249,7 +243,7 @@ public class JugadorIa extends Jugador {
 		boolean escape = false;
 		int numero = casilla.getCoordenada().getPosicion1();
 		int numero2 = casilla.getCoordenada().getPosicion2() + 1;
-		if (tablero.movimientoHorizontalDerecha(ficha, tablero.fichaContraria(ficha), casilla, Comprobacion.VALIDAR)) {
+		if (tablero.movimientoHorizontalDerecha(ficha, tablero.fichaContraria(ficha), casilla)) {
 			do {
 				if (tablero.getTablero()[numero][numero2].getFicha() == ficha) {
 					escape = true;
