@@ -77,16 +77,16 @@ public class JugadorIa extends Jugador {
 
 		tablero.mostrarTablero(ficha);
 		tablero.contandoFichasMostrando(this, turno);
-		con.frasesLentas("Posicion vertical (1,2,3,4,5,6,7,8)", 30);
-		System.out.print("  -> ");
-		con.stop(500);
-		con.frasesLentas(String.valueOf(coordenadaJugada.getPosicion1() + 1), 15);
-		con.frasesLentas("Posicion horizontal (A,B,C,D,E,F,G,H)", 30);
-		System.out.print("  -> ");
-		con.stop(500);
-		con.frasesLentas(String.valueOf((char) (coordenadaJugada.getPosicion2() + 65)), 15);
-		tablero.mostrarTablero(coordenadaJugada);
-		con.stop(1100);
+//		con.frasesLentas("Posicion vertical (1,2,3,4,5,6,7,8)", 30);
+//		System.out.print("  -> ");
+//		con.stop(500);
+//		con.frasesLentas(String.valueOf(coordenadaJugada.getPosicion1() + 1), 15);
+//		con.frasesLentas("Posicion horizontal (A,B,C,D,E,F,G,H)", 30);
+//		System.out.print("  -> ");
+//		con.stop(500);
+//		con.frasesLentas(String.valueOf((char) (coordenadaJugada.getPosicion2() + 65)), 15);
+//		tablero.mostrarTablero(coordenadaJugada);
+//		con.stop(1100);
 		tablero.añadirFichaTablero(ficha, coordenadaJugada);
 		System.out.println();
 	}

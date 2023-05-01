@@ -1,5 +1,7 @@
 package Tablero;
 
+import java.util.Objects;
+
 import Ficha.Ficha;
 
 public class Casilla {
@@ -17,6 +19,19 @@ public class Casilla {
 		this.ficha = ficha;
 		llena = true;
 		coordenada = new Coordenada(posicion1, posicion2);
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Casilla other = (Casilla) obj;
+		return Objects.equals(coordenada, other.coordenada) && ficha == other.ficha && llena == other.llena;
 	}
 
 	public Coordenada getCoordenada() {

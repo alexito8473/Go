@@ -59,21 +59,25 @@ public class Partida {
 
 	private boolean partidaJugadorVSJugador(Jugador[] jugadores) {
 		boolean partida = false;
+		boolean salida=false;
 		int turno = 0;
 		int numero = 1;
 		mostrarJugadores(jugadores);
 		do {
 			turno++;
 			numero = Math.abs(numero - 1);
-			if (tablero.fin(jugadores[numero].getFicha())) {
+			if(!tablero.fin(jugadores[numero].getFicha())) {
+				jugadores[numero].jugada(tablero, turno);
+			}else {
 				con.frasesLentas("El jugador", 15);
 				System.out.println(Colors.YELLOW + jugadores[numero].getNombre() + Colors.RESET);
 				con.frasesLentas("No tiene más jugada", 15);
-			} else {
-				jugadores[numero].jugada(tablero, turno);
 			}
-
-		} while (!tablero.fin(jugadores[1].getFicha()) && !tablero.fin(jugadores[0].getFicha()));
+		
+			if(tablero.fin(jugadores[1].getFicha()) && tablero.fin(jugadores[0].getFicha())) {
+				salida=true;
+			}
+		} while (!salida);
 		enseñarFinal(jugadores, turno, numero);
 		con.frasesLentas("¿Quieres jugar otra partida?(Si,No)", 20);
 		con.frasesLentas(" -> ", 15);

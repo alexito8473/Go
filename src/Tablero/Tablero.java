@@ -16,7 +16,6 @@ public class Tablero {
 	public Tablero() {
 		inicarTablero();
 	}
-
 	private void inicarTablero() {
 		for (int i = 0; i < 8; i++) {
 			for (int j = 0; j < 8; j++) {
@@ -121,11 +120,11 @@ public class Tablero {
 					System.out.print(tablero[i][j].devolverCasilla());
 				}
 
-				try {
-					TimeUnit.MILLISECONDS.sleep(10);
-				} catch (InterruptedException e) {
-
-				}
+//				try {
+//					TimeUnit.MILLISECONDS.sleep(10);
+//				} catch (InterruptedException e) {
+//
+//				}
 			}
 			System.out.print(i + 1 + " |");
 			System.out.println();
@@ -575,6 +574,12 @@ public class Tablero {
 	}
 
 	public void comprobarFin(Ficha ficha) {
+		boolean tipo=ficha == Ficha.NEGRO;
+		if(tipo) {
+			finNegro = true;
+		}else {
+			finBlanco = true;
+		}
 		for (int i = 0; i < tamaño; i++) {
 			for (int j = 0; j < tablero[i].length; j++) {
 				if (!tablero[i][j].isLlena() && movimientoValido(ficha, tablero[i][j].getCoordenada())) {
