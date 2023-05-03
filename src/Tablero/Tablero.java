@@ -1,5 +1,6 @@
 package Tablero;
 
+import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
 import Ficha.Ficha;
@@ -16,6 +17,11 @@ public class Tablero {
 	public Tablero() {
 		inicarTablero();
 	}
+	
+	public Tablero(boolean prueba) {
+		inicarTableroVacio();
+	}
+	
 	private void inicarTablero() {
 		for (int i = 0; i < 8; i++) {
 			for (int j = 0; j < 8; j++) {
@@ -29,7 +35,13 @@ public class Tablero {
 			}
 		}
 	}
-
+	private void inicarTableroVacio() {
+		for (int i = 0; i < 8; i++) {
+			for (int j = 0; j < 8; j++) {			
+				tablero[i][j] = new Casilla(i, j);
+			}
+		}
+	}
 	public Ficha fichaContraria(Ficha ficha) {
 		if (ficha == Ficha.BLANCO) {
 			return Ficha.NEGRO;
@@ -47,6 +59,28 @@ public class Tablero {
 			}
 		}
 		return contador;
+	}
+
+	
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + Arrays.deepHashCode(tablero);
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Tablero other = (Tablero) obj;
+		return Arrays.deepEquals(tablero, other.tablero);
 	}
 
 	public void contandoFichasMostrando(Jugador jugador, int turno) {
@@ -91,12 +125,8 @@ public class Tablero {
 			espacioTablero(35);
 			System.out.print("|" + (i + 1));
 			for (int j = 0; j < tablero[i].length; j++) {
+				stop(6);
 				System.out.print(tablero[i][j].devolverCasilla());
-				try {
-					TimeUnit.MILLISECONDS.sleep(10);
-				} catch (InterruptedException e) {
-
-				}
 			}
 			System.out.print(i + 1 + " |");
 			System.out.println();
@@ -105,6 +135,13 @@ public class Tablero {
 		pintarRaya();
 	}
 
+	private void stop(int a) {
+		try {
+			TimeUnit.MILLISECONDS.sleep(a);
+		} catch (InterruptedException e) {
+
+		}
+	}
 	public void mostrarTablero(Ficha ficha) {
 		System.out.println("\n");
 		pintarRaya();
@@ -113,18 +150,14 @@ public class Tablero {
 			espacioTablero(35);
 			System.out.print("|" + (i + 1));
 			for (int j = 0; j < tamaño; j++) {
+				stop(6);
 				if (!tablero[i][j].isLlena() && movimientoValido(ficha, tablero[i][j].getCoordenada())) {
 					System.out.print(Colors.GREEN + " ☆ " + Colors.RESET);
-
 				} else {
 					System.out.print(tablero[i][j].devolverCasilla());
 				}
 
-//				try {
-//					TimeUnit.MILLISECONDS.sleep(10);
-//				} catch (InterruptedException e) {
-//
-//				}
+
 			}
 			System.out.print(i + 1 + " |");
 			System.out.println();
@@ -141,17 +174,13 @@ public class Tablero {
 			espacioTablero(35);
 			System.out.print("|" + (i + 1));
 			for (int j = 0; j < tamaño; j++) {
+				stop(6);
 				if (coordenada.getPosicion1() == i && coordenada.getPosicion2() == j) {
 					System.out.print(Colors.RED + " ☆ " + Colors.RESET);
 				} else {
 					System.out.print(tablero[i][j].devolverCasilla());
 				}
 
-				try {
-					TimeUnit.MILLISECONDS.sleep(10);
-				} catch (InterruptedException e) {
-
-				}
 			}
 			System.out.print(i + 1 + " |");
 			System.out.println();
@@ -265,8 +294,8 @@ public class Tablero {
 						tablero[i][j].setFicha(ficha);
 					}
 				}
-				numeroI = numeroI - 1;
-				numeroJ = numeroJ + 1;
+				numeroI --;
+				numeroJ ++;
 			} while (!salida);
 		}
 

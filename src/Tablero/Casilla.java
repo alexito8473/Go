@@ -23,6 +23,11 @@ public class Casilla {
 
 
 	@Override
+	public int hashCode() {
+		return Objects.hash(coordenada, ficha, llena);
+	}
+
+	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
