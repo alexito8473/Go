@@ -25,7 +25,9 @@ public class JugadorReal extends Jugador {
 			if (!tablero.comprobarSiHayFichaPuesta(coordenada)) {
 				if (tablero.movimientoValido(ficha, coordenada)) {
 					seleccionFicha = true;
+					tablero.mostrarTablero(coordenada);
 					tablero.añadirFichaTablero(ficha, coordenada.getPosicion1(), coordenada.getPosicion2());
+					con.stop(800);
 				} else {
 					con.frasesLentas("El movimiento es invalido", 15);
 					tablero.mostrarTablero(ficha);

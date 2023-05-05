@@ -91,7 +91,7 @@ public class JugadorIa extends Jugador {
 		System.out.println();
 	}
 
-	public int sumarJugada(Casilla casilla, Tablero tablero) {
+	private int sumarJugada(Casilla casilla, Tablero tablero) {
 		int resultado = 0;
 		resultado = resultado + conteoHorizontalIzquierda(casilla, tablero);
 		resultado = resultado + conteoHorizontalDerecha(casilla, tablero);
