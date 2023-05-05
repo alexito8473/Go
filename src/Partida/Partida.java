@@ -13,7 +13,7 @@ public class Partida {
 	private Jugador jugador1;
 	private Jugador jugador2;
 	private Tablero tablero;
-	private ConsoleImput con = new ConsoleImput(new Scanner(System.in));
+	private final ConsoleImput con = new ConsoleImput(new Scanner(System.in));
 
 	public void JugarPartida() {
 		mostraTitulo();
@@ -30,52 +30,25 @@ public class Partida {
 		return con.readIntInRange(1, 3);
 	}
 
-	private void mostrarJugadores(Jugador[] jugadores) {
-		for (int i = 0; i < jugadores.length; i++) {
-			con.frasesLentasSinSalto("El jugador ", 45);
-			System.out.print(Colors.YELLOW);
-			con.frasesLentasSinSalto(jugadores[i].getNombre(), 45);
-			System.out.print(Colors.RESET);
-			con.frasesLentasSinSalto(" tiene las ficha ", 45);
-			System.out.println(jugadores[i].getFicha().devolverFicha());
-		}
-		con.frasesLentasSinSalto("Empieza el jugador con la ficha ", 45);
-		System.out.println(jugadores[0].getFicha().devolverFicha());
-		con.stop(200);
-	}
-
-	private void enseñarFinal(Jugador[] jugadores, int turno, int numero) {
-		System.out.println("\n\n\n");
-		tablero.mostrarTablero();
-		con.frasesLentas("Se han jugado un total de turnos : " + String.valueOf(turno ), 40);
-		if (tablero.contador(Ficha.NEGRO) == tablero.contador(Ficha.BLANCO)) {
-			con.frasesLentas("Empate entre: " + jugadores[0].getNombre() + " y " + jugadores[1].getNombre(), 15);
-		} else {
-			con.frasesLentas("Ha ganado el jugador: " + jugadores[numero].getNombre(), 45);
-		}
-		con.stop(100);
-		pintarBandera();
-	}
-
 	private boolean partidaJugadorVSJugador(Jugador[] jugadores) {
 		boolean partida = false;
-		boolean salida=false;
+		boolean salida = false;
 		int turno = 0;
 		int numero = 1;
 		mostrarJugadores(jugadores);
 		do {
 			turno++;
 			numero = Math.abs(numero - 1);
-			if(!tablero.fin(jugadores[numero].getFicha())) {
+			if (!tablero.fin(jugadores[numero].getFicha())) {
 				jugadores[numero].jugada(tablero, turno);
-			}else {
+			} else {
 				con.frasesLentas("El jugador", 15);
 				System.out.println(Colors.YELLOW + jugadores[numero].getNombre() + Colors.RESET);
 				con.frasesLentas("No tiene más jugada", 15);
 			}
-		
-			if(tablero.fin(jugadores[1].getFicha()) && tablero.fin(jugadores[0].getFicha())) {
-				salida=true;
+
+			if (tablero.fin(jugadores[1].getFicha()) && tablero.fin(jugadores[0].getFicha())) {
+				salida = true;
 			}
 		} while (!salida);
 		enseñarFinal(jugadores, turno, numero);
@@ -83,12 +56,6 @@ public class Partida {
 		con.frasesLentas(" -> ", 15);
 		partida = con.readBooleanUsingString("Si", "no");
 		return partida;
-	}
-
-	private void espacio(int espacio) {
-		for (int i = 0; i < espacio; i++) {
-			System.out.print(" ");
-		}
 	}
 
 	private Jugador[] devolverJugadoresOrdenados() {
@@ -175,6 +142,39 @@ public class Partida {
 				tablero = new Tablero();
 				break;
 			}
+		}
+	}
+
+	private void mostrarJugadores(Jugador[] jugadores) {
+		for (int i = 0; i < jugadores.length; i++) {
+			con.frasesLentasSinSalto("El jugador ", 45);
+			System.out.print(Colors.YELLOW);
+			con.frasesLentasSinSalto(jugadores[i].getNombre(), 45);
+			System.out.print(Colors.RESET);
+			con.frasesLentasSinSalto(" tiene las ficha ", 45);
+			System.out.println(jugadores[i].getFicha().devolverFicha());
+		}
+		con.frasesLentasSinSalto("Empieza el jugador con la ficha ", 45);
+		System.out.println(jugadores[0].getFicha().devolverFicha());
+		con.stop(200);
+	}
+
+	private void enseñarFinal(Jugador[] jugadores, int turno, int numero) {
+		System.out.println("\n\n\n");
+		tablero.mostrarTablero();
+		con.frasesLentas("Se han jugado un total de turnos : " + String.valueOf(turno), 40);
+		if (tablero.contador(Ficha.NEGRO) == tablero.contador(Ficha.BLANCO)) {
+			con.frasesLentas("Empate entre: " + jugadores[0].getNombre() + " y " + jugadores[1].getNombre(), 15);
+		} else {
+			con.frasesLentas("Ha ganado el jugador: " + jugadores[numero].getNombre(), 45);
+		}
+		con.stop(100);
+		pintarBandera();
+	}
+
+	private void espacio(int espacio) {
+		for (int i = 0; i < espacio; i++) {
+			System.out.print(" ");
 		}
 	}
 

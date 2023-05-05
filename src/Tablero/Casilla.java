@@ -21,7 +21,6 @@ public class Casilla {
 		coordenada = new Coordenada(posicion1, posicion2);
 	}
 
-
 	@Override
 	public int hashCode() {
 		return Objects.hash(coordenada, ficha, llena);
