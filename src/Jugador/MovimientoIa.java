@@ -16,16 +16,15 @@ public class MovimientoIa {
 		return cantidadComida;
 	}
 
-	public void setCantidadComida(int cantidadComida) {
-		this.cantidadComida = cantidadComida;
-	}
-
 	public Coordenada getCoordenada() {
 		return coordenada;
 	}
 
-	public void setCoordenada(Coordenada coordenada) {
-		this.coordenada = coordenada;
+	@Override
+	public String toString() {
+		return "MovimientoIa [cantidadComida=" + cantidadComida + ", coordenada=" + coordenada + "]";
 	}
+
+
 
 }
