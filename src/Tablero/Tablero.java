@@ -202,11 +202,6 @@ public class Tablero {
 		return tablero[coordenada.getPosicion1()][coordenada.getPosicion2()].isLlena();
 	}
 
-	public void añadirFichaTablero(Ficha ficha, int posicion1, int posicion2) {
-		tablero[posicion1][posicion2].setFicha(ficha);
-		rotarFichas(ficha, tablero[posicion1][posicion2]);
-	}
-
 	public void añadirFichaTablero(Ficha ficha, Coordenada coordenada) {
 		tablero[coordenada.getPosicion1()][coordenada.getPosicion2()].setFicha(ficha);
 		rotarFichas(ficha, devolverCasilla(coordenada));
