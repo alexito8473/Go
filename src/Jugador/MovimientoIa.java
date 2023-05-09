@@ -20,11 +20,4 @@ public class MovimientoIa {
 		return coordenada;
 	}
 
-	@Override
-	public String toString() {
-		return "MovimientoIa [cantidadComida=" + cantidadComida + ", coordenada=" + coordenada + "]";
-	}
-
-
-
 }

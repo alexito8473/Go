@@ -56,9 +56,8 @@ public class JugadorIa extends Jugador {
 
 	public void jugada(Tablero tablero, int turno) {
 		int comer, cantidad;
-		List<MovimientoIa> listaJugada = new ArrayList<>();
-		List<MovimientoIa> listaImportante = new ArrayList<>();
-		List<MovimientoIa> listaMenosImportante= new ArrayList<>();
+		List<MovimientoIa> listaJugada = new ArrayList<>(), listaImportante = new ArrayList<>(),
+				listaEsquinas = new ArrayList<>(), listaMenosImportante = new ArrayList<>();
 		ConsoleImput con = new ConsoleImput(new Scanner(System.in));
 		Coordenada coordenadaJugada;
 		for (int i = 0; i < tablero.getTablero().length; i++) {
@@ -71,51 +70,69 @@ public class JugadorIa extends Jugador {
 			}
 		}
 
+		listaEsquinas.addAll(listaJugada.stream()
+				.filter(t -> (t.getCoordenada().getPosicion1() == 0
+						&& t.getCoordenada().getPosicion2() == tablero.getTablero().length - 1)
+						|| (t.getCoordenada().getPosicion1() == 0 && t.getCoordenada().getPosicion2() == 0)
+						|| (t.getCoordenada().getPosicion1() == tablero.getTablero().length - 1
+								&& t.getCoordenada().getPosicion2() == tablero.getTablero().length - 1)
+						|| (t.getCoordenada().getPosicion1() == tablero.getTablero().length - 1
+								&& t.getCoordenada().getPosicion2() == 0))
+				.sorted(Comparator.comparing(MovimientoIa::getCantidadComida).reversed()).toList());
+
+		listaJugada.removeAll(listaEsquinas);
+
 		listaImportante.addAll(listaJugada.stream()
 				.filter(t -> t.getCoordenada().getPosicion1() == 0
 						|| t.getCoordenada().getPosicion1() == tablero.getTablero().length - 1
 						|| t.getCoordenada().getPosicion2() == tablero.getTablero().length - 1
 						|| t.getCoordenada().getPosicion2() == 0)
 				.sorted(Comparator.comparing(MovimientoIa::getCantidadComida).reversed()).toList());
-		
+
 		listaJugada.removeAll(listaImportante);
-		
+
 		listaMenosImportante.addAll(listaJugada.stream()
 				.filter(t -> t.getCoordenada().getPosicion1() == 1
 						|| t.getCoordenada().getPosicion1() == tablero.getTablero().length - 2
 						|| t.getCoordenada().getPosicion2() == tablero.getTablero().length - 2
 						|| t.getCoordenada().getPosicion2() == 1)
 				.sorted(Comparator.comparing(MovimientoIa::getCantidadComida).reversed()).toList());
-	
+
 		listaJugada.removeAll(listaMenosImportante);
-		
-		
-		if (listaImportante.size() > 0) {
-			comer = listaImportante.get(0).getCantidadComida();
-			cantidad = (int) listaImportante.stream().filter(t -> t.getCantidadComida() == comer).count();
-			coordenadaJugada = listaImportante.stream().filter(t -> t.getCantidadComida() == comer).toList()
+
+		if (listaEsquinas.size() > 0) {
+			comer = listaEsquinas.get(0).getCantidadComida();
+			cantidad = (int) listaEsquinas.stream().filter(t -> t.getCantidadComida() == comer).count();
+			coordenadaJugada = listaEsquinas.stream().filter(t -> t.getCantidadComida() == comer).toList()
 					.get(new Random().nextInt(cantidad)).getCoordenada();
 		} else {
-			if( listaJugada.size() > 0){
-				listaJugada.sort(Comparator.comparing(MovimientoIa::getCantidadComida).reversed());
-				comer = listaJugada.get(0).getCantidadComida();
-				cantidad = (int) listaJugada.stream().filter(t -> t.getCantidadComida() == comer).count();
-				coordenadaJugada = listaJugada.stream().filter(t -> t.getCantidadComida() == comer).toList()
+			if (listaImportante.size() > 0) {
+				comer = listaImportante.get(0).getCantidadComida();
+				cantidad = (int) listaImportante.stream().filter(t -> t.getCantidadComida() == comer).count();
+				coordenadaJugada = listaImportante.stream().filter(t -> t.getCantidadComida() == comer).toList()
 						.get(new Random().nextInt(cantidad)).getCoordenada();
-			}else {
-				
-				if(turno>30) {
-					listaMenosImportante.sort(Comparator.comparing(MovimientoIa::getCantidadComida).reversed());
-				}else {
-					listaMenosImportante.sort(Comparator.comparing(MovimientoIa::getCantidadComida));
+			} else {
+				if (listaJugada.size() > 0) {
+					listaJugada.sort(Comparator.comparing(MovimientoIa::getCantidadComida).reversed());
+					comer = listaJugada.get(0).getCantidadComida();
+					cantidad = (int) listaJugada.stream().filter(t -> t.getCantidadComida() == comer).count();
+					coordenadaJugada = listaJugada.stream().filter(t -> t.getCantidadComida() == comer).toList()
+							.get(new Random().nextInt(cantidad)).getCoordenada();
+				} else {
+
+					if (turno > 30) {
+						listaMenosImportante.sort(Comparator.comparing(MovimientoIa::getCantidadComida).reversed());
+					} else {
+						listaMenosImportante.sort(Comparator.comparing(MovimientoIa::getCantidadComida));
+					}
+
+					comer = listaMenosImportante.get(0).getCantidadComida();
+					cantidad = (int) listaMenosImportante.stream().filter(t -> t.getCantidadComida() == comer).count();
+					coordenadaJugada = listaMenosImportante.stream().filter(t -> t.getCantidadComida() == comer)
+							.toList().get(new Random().nextInt(cantidad)).getCoordenada();
 				}
-				
-				comer = listaMenosImportante.get(0).getCantidadComida();
-				cantidad = (int) listaMenosImportante.stream().filter(t -> t.getCantidadComida() == comer).count();
-				coordenadaJugada = listaMenosImportante.stream().filter(t -> t.getCantidadComida() == comer).toList()
-						.get(new Random().nextInt(cantidad)).getCoordenada();
+
 			}
-			
 		}
 
 		tablero.mostrarTablero(ficha);

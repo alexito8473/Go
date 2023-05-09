@@ -145,7 +145,7 @@ public class Tablero {
 			for (int j = 0; j < tamaño; j++) {
 				stop(6);
 				if (!tablero[i][j].isLlena() && movimientoValido(ficha, tablero[i][j].getCoordenada())) {
-					System.out.print(Colors.GREEN + " ☆ " + Colors.RESET);
+					System.out.print(Colors.GREEN + " ✦ " + Colors.RESET);
 				} else {
 					System.out.print(tablero[i][j].devolverCasilla());
 				}
