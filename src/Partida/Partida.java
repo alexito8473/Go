@@ -15,13 +15,13 @@ public class Partida {
 	private Tablero tablero;
 	private final ConsoleImput con = new ConsoleImput(new Scanner(System.in));
 
-	public void JugarPartida() {
+	public void jugarPartida() {
 		do {
-			mostraTitulo();
 		} while (partidaJugadorVSJugador(seleccionJugadores(tipoDePartida())));
 	}
 
 	private int tipoDePartida() {
+		mostraTitulo();
 		con.frasesLentas("¿Qué tipo de juego quieres?", 15);
 		System.out.print(Colors.GREEN);
 		con.frasesLentas("1 - Jugador vs Jugador\n2 - Jugador vs Ia\n3 - Ia vs Ia", 20);
@@ -40,7 +40,8 @@ public class Partida {
 				jugadores[numero].jugada(tablero, turno);
 			} else {
 				tablero.contandoFichasMostrando(jugador1, turno);
-				con.frasesLentas("No tiene jugadas", 25);
+				System.out.print("\t");
+				con.frasesLentas("-----> Se quedo sin jugada <-----", 45);
 			}
 
 			if (tablero.fin(jugadores[1].getFicha()) && tablero.fin(jugadores[0].getFicha())) {
@@ -73,7 +74,6 @@ public class Partida {
 				jugador1 = new JugadorReal(con.escribirNombre(), Ficha.NEGRO);
 				con.frasesLentasSinSalto("Escribe el nombre del jugador2\n  -> ", 15);
 				jugador2 = new JugadorReal(con.escribirNombre(), Ficha.BLANCO);
-				tablero = new Tablero();
 				break;
 			case 1:
 				con.frasesLentas("Escribe el nombre del jugador1", 15);
@@ -82,7 +82,6 @@ public class Partida {
 				con.frasesLentas("Escribe el nombre del jugador2", 15);
 				System.out.print("  -> ");
 				jugador2 = new JugadorReal(con.escribirNombre(), Ficha.NEGRO);
-				tablero = new Tablero();
 				break;
 			}
 		} else if (numero == 2) {
@@ -95,19 +94,19 @@ public class Partida {
 				con.frasesLentas("Escribe el nombre del jugador2", 15);
 				System.out.print("  -> ");
 				con.stop(500);
-				con.frasesLentas(jugador2.getNombre(), 40);
-				tablero = new Tablero();
+				nombreAmarillo(jugador2, 40);
+				System.out.println();
 			}
 			case 1 -> {
 				jugador1 = new JugadorIa(Ficha.NEGRO);
 				con.frasesLentas("Escribe el nombre del jugador1", 15);
 				System.out.print("  -> ");
 				con.stop(500);
-				con.frasesLentas(jugador1.getNombre(), 40);
+				nombreAmarillo(jugador1, 40);
+				System.out.println();
 				con.frasesLentas("Escribe el nombre del jugador2", 15);
 				System.out.print("  -> ");
 				jugador1 = new JugadorReal(con.escribirNombre(), Ficha.BLANCO);
-				tablero = new Tablero();
 			}
 			}
 		} else {
@@ -117,11 +116,12 @@ public class Partida {
 				jugador2 = new JugadorIa(Ficha.BLANCO);
 				con.frasesLentasSinSalto("Escribe el nombre del jugador1\n  -> ", 15);
 				con.stop(500);
-				con.frasesLentas(jugador1.getNombre(), 40);
+				nombreAmarillo(jugador1, 40);
+				System.out.println();
 				con.frasesLentasSinSalto("Escribe el nombre del jugador2\n  -> ", 15);
 				con.stop(500);
-				con.frasesLentas(jugador2.getNombre(), 40);
-				tablero = new Tablero();
+				nombreAmarillo(jugador2, 40);
+				System.out.println();
 				break;
 			case 1:
 				jugador1 = new JugadorIa(Ficha.BLANCO);
@@ -129,63 +129,68 @@ public class Partida {
 				con.frasesLentas("Escribe el nombre del jugador1", 15);
 				System.out.print("  -> ");
 				con.stop(500);
-				con.frasesLentas(jugador1.getNombre(), 15);
+				nombreAmarillo(jugador1, 40);
+				System.out.println();
 				con.frasesLentas("Escribe el nombre del jugador2", 15);
 				System.out.print("  -> ");
 				con.stop(500);
-				con.frasesLentas(jugador2.getNombre(), 15);
-				tablero = new Tablero();
+				nombreAmarillo(jugador2, 40);
+				System.out.println();
+
 				break;
 			}
 		}
-
+		tablero = new Tablero();
 		return devolverJugadoresOrdenados();
 	}
 
 	private void mostrarJugadores(Jugador[] jugadores) {
+		int stop = 45;
 		for (int i = 0; i < jugadores.length; i++) {
-			con.frasesLentasSinSalto("El jugador ", 45);
-			System.out.print(Colors.YELLOW);
-			con.frasesLentasSinSalto(jugadores[i].getNombre(), 45);
-			System.out.print(Colors.RESET);
-			con.frasesLentasSinSalto(" tiene las ficha ", 45);
+			con.frasesLentasSinSalto("El jugador ", stop);
+			nombreAmarillo(jugadores[i], stop);
+			con.frasesLentasSinSalto(" tiene las ficha ", stop);
 			System.out.println(jugadores[i].getFicha().devolverFicha());
 		}
-		con.frasesLentasSinSalto("Empieza el jugador con la ficha ", 45);
+		con.frasesLentasSinSalto("Empieza el jugador con la ficha ", stop);
 		System.out.println(jugadores[0].getFicha().devolverFicha());
 		con.stop(200);
 	}
 
 	private void enseñarFinal(Jugador[] jugadores, int turno, int numero, Tablero tablero) {
+		int stop = 15;
 		System.out.println("\n\n\n");
 		tablero.mostrarTablero();
 		con.frasesLentas("Se han jugado un total de turnos : " + String.valueOf(turno), 40);
 		if (tablero.contador(Ficha.NEGRO) == tablero.contador(Ficha.BLANCO)) {
-			con.frasesLentasSinSalto("Empate entre: ", 15);
-			nombreAmarillo(jugadores[0]);
-			con.frasesLentasSinSalto(" y ", 15);
-			nombreAmarillo(jugadores[1]);
+			con.frasesLentasSinSalto("Empate entre: ", stop);
+			nombreAmarillo(jugadores[0], stop);
+			con.frasesLentasSinSalto(" y ", stop);
+			nombreAmarillo(jugadores[1], stop);
 			System.out.println();
-			con.frasesLentasSinSalto("El juagador ", 15);
-			nombreAmarillo(jugadores[0]);
-			con.frasesLentasSinSalto("tiene un total de ", 15);
+			con.frasesLentasSinSalto("El juagador ", stop);
+			nombreAmarillo(jugadores[0], stop);
+			con.frasesLentasSinSalto("tiene un total de ", stop);
 			System.out.print(tablero.contador(jugadores[0].getFicha()));
 			System.out.println();
-			con.frasesLentasSinSalto("El juagador ", 15);
-			nombreAmarillo(jugadores[0]);
-			con.frasesLentasSinSalto("tiene un total de ", 15);
+			con.frasesLentasSinSalto("El juagador ", stop);
+			nombreAmarillo(jugadores[0], stop);
+			con.frasesLentasSinSalto("tiene un total de ", stop);
 			System.out.print(tablero.contador(jugadores[0].getFicha()));
 		} else {
-			con.frasesLentasSinSalto("Ha ganado el jugador: ", 45);
-			nombreAmarillo(jugadores[numero]);
+			con.frasesLentasSinSalto("Ha ganado el jugador: ", stop);
+			nombreAmarillo(jugadores[numero], stop);
 		}
+		System.out.printf("\nFichas negras: %-3dFichas Blancas: %-3d\n",
+				tablero.contador(Ficha.NEGRO), tablero.contador(Ficha.BLANCO));
+
 		con.stop(100);
 		pintarBandera();
 	}
 
-	private void nombreAmarillo(Jugador jugador) {
+	private void nombreAmarillo(Jugador jugador, int numero) {
 		System.out.print(Colors.YELLOW);
-		con.frasesLentasSinSalto(jugador.getNombre(), 15);
+		con.frasesLentasSinSalto(jugador.getNombre(), numero);
 		System.out.print(Colors.RESET);
 	}
 
