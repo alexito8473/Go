@@ -48,6 +48,7 @@ public class Partida {
 				salida = true;
 			}
 		} while (!salida);
+		
 		enseñarFinal(jugadores, turno, numero, tablero);
 		con.frasesLentas("¿Quieres jugar otra partida?(Si,No)", 20);
 		con.frasesLentas(" -> ", 15);
@@ -94,7 +95,7 @@ public class Partida {
 				con.frasesLentas("Escribe el nombre del jugador2", 15);
 				System.out.print("  -> ");
 				con.stop(500);
-				nombreAmarillo(jugador2, 40);
+				nombreAmarillo(jugador2);
 				System.out.println();
 			}
 			case 1 -> {
@@ -102,11 +103,11 @@ public class Partida {
 				con.frasesLentas("Escribe el nombre del jugador1", 15);
 				System.out.print("  -> ");
 				con.stop(500);
-				nombreAmarillo(jugador1, 40);
+				nombreAmarillo(jugador1);
 				System.out.println();
 				con.frasesLentas("Escribe el nombre del jugador2", 15);
 				System.out.print("  -> ");
-				jugador1 = new JugadorReal(con.escribirNombre(), Ficha.BLANCO);
+				jugador2 = new JugadorReal(con.escribirNombre(), Ficha.BLANCO);
 			}
 			}
 		} else {
@@ -116,11 +117,11 @@ public class Partida {
 				jugador2 = new JugadorIa(Ficha.BLANCO);
 				con.frasesLentasSinSalto("Escribe el nombre del jugador1\n  -> ", 15);
 				con.stop(500);
-				nombreAmarillo(jugador1, 40);
+				nombreAmarillo(jugador1);
 				System.out.println();
 				con.frasesLentasSinSalto("Escribe el nombre del jugador2\n  -> ", 15);
 				con.stop(500);
-				nombreAmarillo(jugador2, 40);
+				nombreAmarillo(jugador2);
 				System.out.println();
 				break;
 			case 1:
@@ -129,12 +130,12 @@ public class Partida {
 				con.frasesLentas("Escribe el nombre del jugador1", 15);
 				System.out.print("  -> ");
 				con.stop(500);
-				nombreAmarillo(jugador1, 40);
+				nombreAmarillo(jugador1);
 				System.out.println();
 				con.frasesLentas("Escribe el nombre del jugador2", 15);
 				System.out.print("  -> ");
 				con.stop(500);
-				nombreAmarillo(jugador2, 40);
+				nombreAmarillo(jugador2);
 				System.out.println();
 
 				break;
@@ -148,7 +149,7 @@ public class Partida {
 		int stop = 45;
 		for (int i = 0; i < jugadores.length; i++) {
 			con.frasesLentasSinSalto("El jugador ", stop);
-			nombreAmarillo(jugadores[i], stop);
+			nombreAmarillo(jugadores[i]);
 			con.frasesLentasSinSalto(" tiene las ficha ", stop);
 			System.out.println(jugadores[i].getFicha().devolverFicha());
 		}
@@ -164,22 +165,22 @@ public class Partida {
 		con.frasesLentas("Se han jugado un total de turnos : " + String.valueOf(turno), 40);
 		if (tablero.contador(Ficha.NEGRO) == tablero.contador(Ficha.BLANCO)) {
 			con.frasesLentasSinSalto("Empate entre: ", stop);
-			nombreAmarillo(jugadores[0], stop);
+			nombreAmarillo(jugadores[0]);
 			con.frasesLentasSinSalto(" y ", stop);
-			nombreAmarillo(jugadores[1], stop);
+			nombreAmarillo(jugadores[1]);
 			System.out.println();
 			con.frasesLentasSinSalto("El juagador ", stop);
-			nombreAmarillo(jugadores[0], stop);
+			nombreAmarillo(jugadores[0]);
 			con.frasesLentasSinSalto("tiene un total de ", stop);
 			System.out.print(tablero.contador(jugadores[0].getFicha()));
 			System.out.println();
 			con.frasesLentasSinSalto("El juagador ", stop);
-			nombreAmarillo(jugadores[0], stop);
+			nombreAmarillo(jugadores[0]);
 			con.frasesLentasSinSalto("tiene un total de ", stop);
 			System.out.print(tablero.contador(jugadores[0].getFicha()));
 		} else {
 			con.frasesLentasSinSalto("Ha ganado el jugador: ", stop);
-			nombreAmarillo(jugadores[numero], stop);
+			nombreAmarillo(tablero.contador(jugadores[0].getFicha()) > tablero.contador(jugadores[1].getFicha())?jugadores[0]:jugadores[1]);
 		}
 		System.out.printf("\nFichas negras: %-3dFichas Blancas: %-3d\n",
 				tablero.contador(Ficha.NEGRO), tablero.contador(Ficha.BLANCO));
@@ -188,9 +189,9 @@ public class Partida {
 		pintarBandera();
 	}
 
-	private void nombreAmarillo(Jugador jugador, int numero) {
+	private void nombreAmarillo(Jugador jugador) {
 		System.out.print(Colors.YELLOW);
-		con.frasesLentasSinSalto(jugador.getNombre(), numero);
+		con.frasesLentasSinSalto(jugador.getNombre(), 15);
 		System.out.print(Colors.RESET);
 	}
 
