@@ -1,5 +1,6 @@
 package test;
 
+
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
@@ -7,6 +8,7 @@ import Ficha.Ficha;
 import Tablero.Casilla;
 import Tablero.Coordenada;
 import Tablero.Tablero;
+
 
 class HorizontalDerechaBlanca {
 

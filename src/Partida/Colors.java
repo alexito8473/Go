@@ -9,7 +9,6 @@ public final class Colors {
 	public static final String YELLOW = "\u001B[33m";
 	public static final String PURPLE = "\u001B[35m";
 	public static final String CYAN = "\u001B[36m";
-	public static final String WHITE = "\u001B[37m";
 
 	public static final String RED_BACKGROUND = "\u001B[41m";
 	public static final String GREEN_BACKGROUND = "\u001B[42m";

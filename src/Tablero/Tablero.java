@@ -19,7 +19,7 @@ public class Tablero {
 	}
 
 	public Tablero(boolean prueba) {
-		inicarTableroVacio();
+		iniciarTableroVacio();
 	}
 
 	private void inicarTablero() {
@@ -36,7 +36,7 @@ public class Tablero {
 		}
 	}
 
-	private void inicarTableroVacio() {
+	private void iniciarTableroVacio() {
 		for (int i = 0; i < 8; i++) {
 			for (int j = 0; j < 8; j++) {
 				tablero[i][j] = new Casilla(i, j);
@@ -45,9 +45,10 @@ public class Tablero {
 	}
 
 	public Ficha fichaContraria(Ficha ficha) {
-		if (ficha == Ficha.BLANCO) {
-			return Ficha.NEGRO;
+		if(ficha == Ficha.BLANCO ) {
+			return Ficha.NEGRO ;
 		}
+		
 		return Ficha.BLANCO;
 	}
 
@@ -564,7 +565,6 @@ public class Tablero {
 				}
 			}
 		}
-
 		return win;
 	}
 
@@ -602,5 +602,5 @@ public class Tablero {
 			}
 		}
 	}
-	// True termino la partida, false aun sigue
+	// True terminó la partida, false aun sigue
 }

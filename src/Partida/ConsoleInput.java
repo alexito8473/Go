@@ -3,11 +3,11 @@ package Partida;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
-public class ConsoleImput {
+public class ConsoleInput {
 
 	private final Scanner sc;
 
-	public ConsoleImput(Scanner sc) {
+	public ConsoleInput(Scanner sc) {
 		this.sc = sc;
 	}
 
@@ -29,7 +29,7 @@ public class ConsoleImput {
 	public void stop(int numero) {
 		try {
 			TimeUnit.MILLISECONDS.sleep(numero);
-		} catch (InterruptedException e) {
+		} catch (InterruptedException ignored) {
 
 		}
 	}
@@ -67,7 +67,7 @@ public class ConsoleImput {
 	}
 
 	public int readIntInRange(int a, int b) {
-		int c = 0;
+		int c ;
 		boolean salir = false;
 		do {
 			c = readInt();
@@ -87,7 +87,7 @@ public class ConsoleImput {
 	// --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 	public char readChar() {
-		boolean salir = false;
+		boolean salir;
 		String cadena;
 		char resultado = 0;
 		do {
@@ -95,7 +95,7 @@ public class ConsoleImput {
 				cadena = sc.nextLine();
 
 				if (cadena.length() > 1) {
-					System.out.println("Solo se puede introducir un caracter");
+					System.out.println("Solo se puede introducir un character");
 					salir = false;
 				} else {
 					resultado = cadena.charAt(0);
@@ -111,10 +111,10 @@ public class ConsoleImput {
 
 	public char readChar(String validCharacters) {
 		if (validCharacters.isEmpty()) {
-			throw new ArithmeticException("Cadena vacia");
+			throw new ArithmeticException("Cadena sin texto");
 		}
 		char resultado;
-		String frase = null, patter = String.format("[%s]", validCharacters);
+		String frase, patter = String.format("[%s]", validCharacters);
 		do {
 			resultado = readChar();
 			frase = String.valueOf(resultado);

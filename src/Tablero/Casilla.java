@@ -55,10 +55,6 @@ public class Casilla {
 		return ficha;
 	}
 
-	public void setLlena(boolean llena) {
-		this.llena = llena;
-	}
-
 	public String devolverCasilla() {
 		return llena ? ficha.devolverFicha() : " . ";
 	}

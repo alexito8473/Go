@@ -27,27 +27,27 @@ public class JugadorIa extends Jugador {
 		case 5 -> "Francia caca";
 		case 6 -> "Domino";
 		case 7 -> "Jugador real";
-		case 8 -> "No soy de aqui";
+		case 8 -> "No soy de aquí";
 		case 9 -> "¿Tu que miras?";
-		case 10 -> "Viva españa";
+		case 10 -> "Viva España";
 		case 11 -> "Estático";
 		case 12 -> "Dinámico";
 		case 13 -> "Ahora super estático";
 		case 14 -> "Ahora mega dinámico";
 		case 15 -> "Rosa melano";
-		case 16 -> "Es una simulacion";
+		case 16 -> "Es una simulación";
 		case 17 -> "Joe Luis";
-		case 18 -> "PPk cagon";
+		case 18 -> "PPk cagón";
 		case 19 -> "Praga";
 		case 20 -> "Mina Votieso";
 		case 21 -> "PussyBreaker";
 		case 22 -> "AzaelDobleA";
-		case 23 -> "ppk copion";
+		case 23 -> "ppk copión";
 		case 24 -> "Gafota promedio 🤓";
 		case 25 -> "Mamamamamamamagüevaso";
-		case 26 -> "Teoria de cuerdas";
+		case 26 -> "Teoría de cuerdas";
 		case 27 -> "SuperGamer";
-		case 28 -> "Estoy detras de ti";
+		case 28 -> "Estoy detrás de ti";
 		case 29 -> "Despierta!!!!!";
 		case 30 -> "Sé quien eres";
 		default -> "Error en el nombre";
@@ -56,11 +56,12 @@ public class JugadorIa extends Jugador {
 
 	public void jugada(Tablero tablero, int turno) {
 		int comer, cantidad;
+		ConsoleImput con = new ConsoleImput(new Scanner(System.in));
+		Coordenada coordenadaJugada;
 		List<MovimientoIa> listaJugada = new ArrayList<>(), listaImportante = new ArrayList<>(),
 				listaEsquinas = new ArrayList<>(), listaMenosImportante = new ArrayList<>(),
 				listaMenosMenosImportante = new ArrayList<>();
-		ConsoleImput con = new ConsoleImput(new Scanner(System.in));
-		Coordenada coordenadaJugada;
+
 		for (int i = 0; i < tablero.getTablero().length; i++) {
 			for (int j = 0; j < tablero.getTablero()[i].length; j++) {
 				if ((!tablero.getTablero()[i][j].isLlena())
@@ -103,7 +104,7 @@ public class JugadorIa extends Jugador {
 				.sorted(Comparator.comparing(MovimientoIa::getCantidadComida).reversed()).toList());
 
 		listaJugada.removeAll(listaMenosMenosImportante);
-		
+
 		listaMenosImportante.addAll(listaJugada.stream()
 				.filter(t -> t.getCoordenada().getPosicion1() == 1
 						|| t.getCoordenada().getPosicion1() == tablero.getTablero().length - 2
@@ -134,25 +135,28 @@ public class JugadorIa extends Jugador {
 				} else {
 
 					if (listaMenosImportante.size() > 0) {
-						
+
 						if (turno > 20) {
 							listaMenosImportante.sort(Comparator.comparing(MovimientoIa::getCantidadComida).reversed());
 						} else {
 							listaMenosImportante.sort(Comparator.comparing(MovimientoIa::getCantidadComida));
 						}
-						
+
 						comer = listaMenosImportante.get(0).getCantidadComida();
-						cantidad = (int) listaMenosImportante.stream().filter(t -> t.getCantidadComida() == comer).count();
+						cantidad = (int) listaMenosImportante.stream().filter(t -> t.getCantidadComida() == comer)
+								.count();
 						coordenadaJugada = listaMenosImportante.stream().filter(t -> t.getCantidadComida() == comer)
 								.toList().get(new Random().nextInt(cantidad)).getCoordenada();
-					}else {
-						
+					} else {
+
 						listaMenosMenosImportante.sort(Comparator.comparing(MovimientoIa::getCantidadComida));
 						comer = listaMenosMenosImportante.get(0).getCantidadComida();
-						cantidad = (int) listaMenosMenosImportante.stream().filter(t -> t.getCantidadComida() == comer).count();
-						coordenadaJugada = listaMenosMenosImportante.stream().filter(t -> t.getCantidadComida() == comer)
-								.toList().get(new Random().nextInt(cantidad)).getCoordenada();
-					
+						cantidad = (int) listaMenosMenosImportante.stream().filter(t -> t.getCantidadComida() == comer)
+								.count();
+						coordenadaJugada = listaMenosMenosImportante.stream()
+								.filter(t -> t.getCantidadComida() == comer).toList()
+								.get(new Random().nextInt(cantidad)).getCoordenada();
+
 					}
 
 				}
@@ -162,11 +166,11 @@ public class JugadorIa extends Jugador {
 
 		tablero.mostrarTablero(ficha);
 		tablero.contandoFichasMostrando(this, turno);
-		con.frasesLentas("Posicion vertical (1,2,3,4,5,6,7,8)", 30);
+		con.frasesLentas("Posición vertical (1,2,3,4,5,6,7,8)", 30);
 		System.out.print("  -> ");
 		con.stop(500);
 		con.frasesLentas(String.valueOf(coordenadaJugada.getPosicion1() + 1), 15);
-		con.frasesLentas("Posicion horizontal (A,B,C,D,E,F,G,H)", 30);
+		con.frasesLentas("Posición horizontal (A,B,C,D,E,F,G,H)", 30);
 		System.out.print("  -> ");
 		con.stop(500);
 		con.frasesLentas(String.valueOf((char) (coordenadaJugada.getPosicion2() + 65)), 15);
