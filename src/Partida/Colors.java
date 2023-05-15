@@ -1,18 +1,24 @@
 package Partida;
 
-public final class Colors {
+/**
+ * 
+ * @author aleja
+ *
+ */
+public enum Colors {
 
-	public static final String RESET = "\u001B[0m";
-	public static final String BLACK = "\u001B[30m";
-	public static final String RED = "\u001B[31m";
-	public static final String GREEN = "\u001B[32m";
-	public static final String YELLOW = "\u001B[33m";
-	public static final String PURPLE = "\u001B[35m";
-	public static final String CYAN = "\u001B[36m";
+	RESET("\u001B[0m"), BLACK("\u001B[30m"), RED("\u001B[31m"), GREEN("\u001B[32m"), YELLOW("\u001B[33m"),
+	PURPLE("\u001B[35m"), CYAN("\u001B[36m"), RED_BACKGROUND("\u001B[41m"), GREEN_BACKGROUND("\u001B[42m"),
+	YELLOW_BACKGROUND("\u001B[43m"), WHITE_BACKGROUND("\u001B[47m");
 
-	public static final String RED_BACKGROUND = "\u001B[41m";
-	public static final String GREEN_BACKGROUND = "\u001B[42m";
-	public static final String YELLOW_BACKGROUND = "\u001B[43m";
-	public static final String WHITE_BACKGROUND = "\u001B[47m";
+	private String valor;
+
+	private Colors(String valor) {
+		this.valor = valor;
+	}
+
+	public String getValor() {
+		return valor;
+	}
 
 }

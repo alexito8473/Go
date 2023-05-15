@@ -85,16 +85,16 @@ public class Tablero {
 	}
 
 	public void contandoFichasMostrando(Jugador jugador, int turno) {
-		System.out.printf("\n %s ---------------------------------------------%s\n", Colors.PURPLE, Colors.RESET);
-		System.out.printf(" %s|%s Le toca al jugador %s%-25s%s%s|%s\n", Colors.PURPLE, Colors.RESET, Colors.YELLOW,
-				jugador.getNombre(), Colors.RESET, Colors.PURPLE, Colors.RESET);
-		System.out.printf(" %s|%s Tiene la ficha%s, turno %-5d              %s|%s\n", Colors.PURPLE, Colors.RESET,
-				jugador.getFicha().devolverFicha(), turno, Colors.PURPLE, Colors.RESET);
-		System.out.printf(" %s ---------------------------------------------%s\n", Colors.PURPLE, Colors.RESET);
-		System.out.printf(" %s --------------------------------------%s\n", Colors.YELLOW, Colors.RESET);
-		System.out.printf(" %s|%s Fichas negras: %-3dFichas Blancas: %-3d%s|%s\n", Colors.YELLOW, Colors.RESET,
-				contador(Ficha.NEGRO), contador(Ficha.BLANCO), Colors.YELLOW, Colors.RESET);
-		System.out.printf(" %s --------------------------------------%s\n", Colors.YELLOW, Colors.RESET);
+		System.out.printf("\n %s ---------------------------------------------%s\n", Colors.PURPLE.getValor(), Colors.RESET.getValor());
+		System.out.printf(" %s|%s Le toca al jugador %s%-25s%s%s|%s\n", Colors.PURPLE.getValor(), Colors.RESET.getValor(), Colors.YELLOW.getValor(),
+				jugador.getNombre(), Colors.RESET.getValor(), Colors.PURPLE.getValor(), Colors.RESET.getValor());
+		System.out.printf(" %s|%s Tiene la ficha%s, turno %-5d              %s|%s\n", Colors.PURPLE.getValor(), Colors.RESET.getValor(),
+				jugador.getFicha().devolverFicha(), turno, Colors.PURPLE.getValor(), Colors.RESET.getValor());
+		System.out.printf(" %s ---------------------------------------------%s\n", Colors.PURPLE.getValor(), Colors.RESET.getValor());
+		System.out.printf(" %s --------------------------------------%s\n", Colors.YELLOW.getValor(), Colors.RESET.getValor());
+		System.out.printf(" %s|%s Fichas negras: %-3dFichas Blancas: %-3d%s|%s\n", Colors.YELLOW.getValor(), Colors.RESET.getValor(),
+				contador(Ficha.NEGRO), contador(Ficha.BLANCO), Colors.YELLOW.getValor(), Colors.RESET.getValor());
+		System.out.printf(" %s --------------------------------------%s\n", Colors.YELLOW.getValor(), Colors.RESET.getValor());
 	}
 
 	public Casilla[][] getTablero() {
@@ -146,7 +146,7 @@ public class Tablero {
 			for (int j = 0; j < tamaño; j++) {
 				stop(6);
 				if (!tablero[i][j].isLlena() && movimientoValido(ficha, tablero[i][j].getCoordenada())) {
-					System.out.print(Colors.GREEN + " ✦ " + Colors.RESET);
+					System.out.print(Colors.GREEN.getValor() + " ✦ " + Colors.RESET.getValor());
 				} else {
 					System.out.print(tablero[i][j].devolverCasilla());
 				}
@@ -169,7 +169,7 @@ public class Tablero {
 			for (int j = 0; j < tamaño; j++) {
 				stop(6);
 				if (coordenada.getPosicion1() == i && coordenada.getPosicion2() == j) {
-					System.out.print(Colors.RED + " ☆ " + Colors.RESET);
+					System.out.print(Colors.RED.getValor() + " ☆ " + Colors.RESET.getValor());
 				} else {
 					System.out.print(tablero[i][j].devolverCasilla());
 				}

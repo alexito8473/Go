@@ -23,9 +23,9 @@ public class Partida {
 	private int tipoDePartida() {
 		mostrarTitulo();
 		con.frasesLentas("¿Qué tipo de juego quieres?", 15);
-		System.out.print(Colors.GREEN);
+		System.out.print(Colors.GREEN.getValor());
 		con.frasesLentas("1 - Jugador vs Jugador\n2 - Jugador vs Ia\n3 - Ia vs Ia", 20);
-		System.out.print(Colors.RESET + " -> ");
+		System.out.print(Colors.RESET.getValor()+ " -> ");
 		return con.readIntInRange(1, 3);
 	}
 
@@ -39,7 +39,7 @@ public class Partida {
 			if (!tablero.fin(jugadores[numero].getFicha())) {
 				jugadores[numero].jugada(tablero, turno);
 			} else {
-				tablero.contandoFichasMostrando(jugador1, turno);
+				tablero.contandoFichasMostrando(jugadores[numero], turno);
 				System.out.print("\t");
 				con.frasesLentas("-----> Se quedo sin jugada <-----", 45);
 			}
@@ -192,9 +192,9 @@ public class Partida {
 	}
 
 	private void nombreAmarillo(Jugador jugador) {
-		System.out.print(Colors.YELLOW);
+		System.out.print(Colors.YELLOW.getValor());
 		con.frasesLentasSinSalto(jugador.getNombre(), 15);
-		System.out.print(Colors.RESET);
+		System.out.print(Colors.RESET.getValor());
 	}
 
 	private void espacio(int espacio) {
@@ -204,7 +204,7 @@ public class Partida {
 	}
 
 	private void mostrarTitulo() {
-		System.out.print(Colors.CYAN);
+		System.out.print(Colors.CYAN.getValor());
 		con.frasesLentas(
 				"  ____     ______      _____     ____    __        __    ____    _____       __________     _________\n"
 						+ " |  __|   |  __  |    |  _  \\   |   _|  \\  \\      /  /  |   _|  |  _   \\    /   ____   \\   |___   ___|\n"
@@ -213,35 +213,35 @@ public class Partida {
 						+ " | |_| |  | |__| |    | | \\ \\   |  |_      \\  \\/  /     |  |_   | | \\ \\  \\  \\_____/  /      ___| |___\n"
 						+ " |_____|  |______|    |_|  \\_\\  |____|      \\____/      |____|  |_|  \\_\\  \\_________/      |_________|\n",
 				1);
-		System.out.println(Colors.RESET);
+		System.out.println(Colors.RESET.getValor());
 	}
 
 	public void pintarBandera() {
 		int velocidad = 8, espacio = 35, numero = new Random().nextInt(2);
 		System.out.println();
 		espacio(espacio);
-		System.out.print((numero == 0 ? Colors.RED_BACKGROUND : Colors.GREEN_BACKGROUND) + Colors.BLACK);
+		System.out.print((numero == 0 ? Colors.RED_BACKGROUND .getValor(): Colors.GREEN_BACKGROUND.getValor()) + Colors.BLACK.getValor());
 		con.frasesLentas("  _____   _________   ___   __  ", velocidad);
-		System.out.print(Colors.RESET);
+		System.out.print(Colors.RESET.getValor());
 		espacio(espacio);
-		System.out.print((numero == 0 ? Colors.RED_BACKGROUND : Colors.GREEN_BACKGROUND) + Colors.BLACK);
+		System.out.print((numero == 0 ? Colors.RED_BACKGROUND.getValor() : Colors.GREEN_BACKGROUND.getValor()) + Colors.BLACK.getValor());
 		con.frasesLentas(" |   __| |___   ___| |   \\ |  | ", velocidad);
-		System.out.print(Colors.RESET);
+		System.out.print(Colors.RESET.getValor());
 		espacio(espacio);
-		System.out.print((numero == 0 ? Colors.YELLOW_BACKGROUND : Colors.WHITE_BACKGROUND) + Colors.BLACK);
+		System.out.print((numero == 0 ? Colors.YELLOW_BACKGROUND.getValor() : Colors.WHITE_BACKGROUND.getValor()) + Colors.BLACK.getValor());
 		con.frasesLentas(" |  |__      | |     |    \\|  | ", velocidad);
-		System.out.print(Colors.RESET);
+		System.out.print(Colors.RESET.getValor());
 		espacio(espacio);
-		System.out.print((numero == 0 ? Colors.YELLOW_BACKGROUND : Colors.WHITE_BACKGROUND) + Colors.BLACK);
+		System.out.print((numero == 0 ? Colors.YELLOW_BACKGROUND.getValor() : Colors.WHITE_BACKGROUND.getValor()) + Colors.BLACK.getValor());
 		con.frasesLentas(" |   __|  ___| |___  |  |\\    | ", velocidad);
-		System.out.print(Colors.RESET);
+		System.out.print(Colors.RESET.getValor());
 		espacio(espacio);
-		System.out.print((numero == 0 ? Colors.RED_BACKGROUND : Colors.GREEN_BACKGROUND) + Colors.BLACK);
+		System.out.print((numero == 0 ? Colors.RED_BACKGROUND.getValor() : Colors.GREEN_BACKGROUND.getValor()) + Colors.BLACK.getValor());
 		con.frasesLentas(" |__|    |_________| |__| \\___| ", velocidad);
-		System.out.print(Colors.RESET);
+		System.out.print(Colors.RESET.getValor());
 		espacio(espacio);
-		System.out.print((numero == 0 ? Colors.RED_BACKGROUND : Colors.GREEN_BACKGROUND) + Colors.BLACK);
+		System.out.print((numero == 0 ? Colors.RED_BACKGROUND.getValor() : Colors.GREEN_BACKGROUND.getValor()) + Colors.BLACK.getValor());
 		con.frasesLentas("                                ", velocidad);
-		System.out.println(Colors.RESET);
+		System.out.println(Colors.RESET.getValor());
 	}
 }

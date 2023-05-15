@@ -76,6 +76,11 @@ class HorizontalDerechaBlanca {
 		ponerFicha(tableroPrueba.getTablero()[6][1], Ficha.BLANCO);
 		ponerFicha(tableroPrueba.getTablero()[6][5], Ficha.BLANCO);
 		tableroPrueba.añadirFichaTablero(Ficha.BLANCO, new Coordenada(4, 3));
+		for(int i=0;i<tableroDevolver.length;i++) {
+			for(int j=0;i<tableroDevolver.length;j++) {
+				
+			}
+		}
 		Assert.assertArrayEquals(tableroDevolver, tableroPrueba.getTablero());
 	}
 
