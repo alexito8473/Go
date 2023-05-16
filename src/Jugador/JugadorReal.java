@@ -25,7 +25,7 @@ public class JugadorReal extends Jugador {
 		if (!tablero.comprobarSiHayFichaPuesta(coordenada)) {
 			if (tablero.movimientoValido(ficha, coordenada)) {
 				tablero.mostrarTablero(coordenada);
-				tablero.añadirFichaTablero(ficha, coordenada);
+				tablero.anadirFichaTablero(ficha, coordenada);
 				con.stop(800);
 				return true;
 			} else {

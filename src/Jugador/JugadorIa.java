@@ -176,7 +176,7 @@ public class JugadorIa extends Jugador {
 		con.frasesLentas(String.valueOf((char) (coordenadaJugada.getPosicion2() + 65)), 15);
 		tablero.mostrarTablero(coordenadaJugada);
 		con.stop(1100);
-		tablero.añadirFichaTablero(ficha, coordenadaJugada);
+		tablero.anadirFichaTablero(ficha, coordenadaJugada);
 		System.out.println();
 	}
 

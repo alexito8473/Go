@@ -1,6 +1,5 @@
 package test;
 
-
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
@@ -8,7 +7,6 @@ import Ficha.Ficha;
 import Tablero.Casilla;
 import Tablero.Coordenada;
 import Tablero.Tablero;
-
 
 class HorizontalDerechaBlanca {
 
@@ -75,10 +73,10 @@ class HorizontalDerechaBlanca {
 		ponerFicha(tableroPrueba.getTablero()[4][5], Ficha.BLANCO);
 		ponerFicha(tableroPrueba.getTablero()[6][1], Ficha.BLANCO);
 		ponerFicha(tableroPrueba.getTablero()[6][5], Ficha.BLANCO);
-		tableroPrueba.añadirFichaTablero(Ficha.BLANCO, new Coordenada(4, 3));
-		for(int i=0;i<tableroDevolver.length;i++) {
-			for(int j=0;i<tableroDevolver.length;j++) {
-				
+		tableroPrueba.anadirFichaTablero(Ficha.BLANCO, new Coordenada(4, 3));
+		for (int i = 0; i < tableroDevolver.length; i++) {
+			for (int j = 0; i < tableroDevolver.length; j++) {
+
 			}
 		}
 		Assert.assertArrayEquals(tableroDevolver, tableroPrueba.getTablero());
@@ -108,7 +106,7 @@ class HorizontalDerechaBlanca {
 		ponerFicha(tableroPrueba.getTablero()[7][0], Ficha.BLANCO);
 		ponerFicha(tableroPrueba.getTablero()[7][3], Ficha.BLANCO);
 		ponerFicha(tableroPrueba.getTablero()[7][6], Ficha.BLANCO);
-		tableroPrueba.añadirFichaTablero(Ficha.BLANCO, new Coordenada(4, 3));
+		tableroPrueba.anadirFichaTablero(Ficha.BLANCO, new Coordenada(4, 3));
 		Assert.assertArrayEquals(tableroDevolver, tableroPrueba.getTablero());
 	}
 
@@ -128,7 +126,7 @@ class HorizontalDerechaBlanca {
 		ponerFicha(tableroPrueba.getTablero()[2][1], Ficha.BLANCO);
 		ponerFicha(tableroPrueba.getTablero()[2][5], Ficha.BLANCO);
 		ponerFicha(tableroPrueba.getTablero()[6][5], Ficha.BLANCO);
-		tableroPrueba.añadirFichaTablero(Ficha.BLANCO, new Coordenada(6, 1));
+		tableroPrueba.anadirFichaTablero(Ficha.BLANCO, new Coordenada(6, 1));
 		Assert.assertArrayEquals(tableroDevolver, tableroPrueba.getTablero());
 	}
 
@@ -149,7 +147,7 @@ class HorizontalDerechaBlanca {
 		ponerFicha(tableroPrueba.getTablero()[2][2], Ficha.BLANCO);
 		ponerFicha(tableroPrueba.getTablero()[2][6], Ficha.BLANCO);
 
-		tableroPrueba.añadirFichaTablero(Ficha.BLANCO, new Coordenada(6, 6));
+		tableroPrueba.anadirFichaTablero(Ficha.BLANCO, new Coordenada(6, 6));
 		Assert.assertArrayEquals(tableroDevolver, tableroPrueba.getTablero());
 	}
 
@@ -170,7 +168,7 @@ class HorizontalDerechaBlanca {
 		ponerFicha(tableroPrueba.getTablero()[5][6], Ficha.BLANCO);
 		ponerFicha(tableroPrueba.getTablero()[5][2], Ficha.BLANCO);
 
-		tableroPrueba.añadirFichaTablero(Ficha.BLANCO, new Coordenada(1, 6));
+		tableroPrueba.anadirFichaTablero(Ficha.BLANCO, new Coordenada(1, 6));
 		Assert.assertArrayEquals(tableroDevolver, tableroPrueba.getTablero());
 	}
 
@@ -191,7 +189,7 @@ class HorizontalDerechaBlanca {
 		ponerFicha(tableroPrueba.getTablero()[5][1], Ficha.BLANCO);
 		ponerFicha(tableroPrueba.getTablero()[5][5], Ficha.BLANCO);
 
-		tableroPrueba.añadirFichaTablero(Ficha.BLANCO, new Coordenada(1, 1));
+		tableroPrueba.anadirFichaTablero(Ficha.BLANCO, new Coordenada(1, 1));
 		Assert.assertArrayEquals(tableroDevolver, tableroPrueba.getTablero());
 	}
 
@@ -212,7 +210,7 @@ class HorizontalDerechaBlanca {
 		ponerFicha(tableroPrueba.getTablero()[2][2], Ficha.BLANCO);
 		ponerFicha(tableroPrueba.getTablero()[2][0], Ficha.BLANCO);
 
-		tableroPrueba.añadirFichaTablero(Ficha.BLANCO, new Coordenada(0, 0));
+		tableroPrueba.anadirFichaTablero(Ficha.BLANCO, new Coordenada(0, 0));
 		Assert.assertArrayEquals(tableroDevolver, tableroPrueba.getTablero());
 	}
 
@@ -233,7 +231,7 @@ class HorizontalDerechaBlanca {
 		ponerFicha(tableroPrueba.getTablero()[4][4], Ficha.BLANCO);
 		ponerFicha(tableroPrueba.getTablero()[4][0], Ficha.BLANCO);
 
-		tableroPrueba.añadirFichaTablero(Ficha.BLANCO, new Coordenada(0, 0));
+		tableroPrueba.anadirFichaTablero(Ficha.BLANCO, new Coordenada(0, 0));
 
 		Assert.assertArrayEquals(tableroDevolver, tableroPrueba.getTablero());
 	}
@@ -254,7 +252,7 @@ class HorizontalDerechaBlanca {
 		ponerFicha(tableroPrueba.getTablero()[0][7], Ficha.BLANCO);
 		ponerFicha(tableroPrueba.getTablero()[7][7], Ficha.BLANCO);
 		ponerFicha(tableroPrueba.getTablero()[7][0], Ficha.BLANCO);
-		tableroPrueba.añadirFichaTablero(Ficha.BLANCO, new Coordenada(0, 0));
+		tableroPrueba.anadirFichaTablero(Ficha.BLANCO, new Coordenada(0, 0));
 		Assert.assertArrayEquals(tableroDevolver, tableroPrueba.getTablero());
 	}
 
@@ -275,7 +273,7 @@ class HorizontalDerechaBlanca {
 		ponerFicha(tableroPrueba.getTablero()[2][7], Ficha.BLANCO);
 		ponerFicha(tableroPrueba.getTablero()[2][5], Ficha.BLANCO);
 
-		tableroPrueba.añadirFichaTablero(Ficha.BLANCO, new Coordenada(0, 7));
+		tableroPrueba.anadirFichaTablero(Ficha.BLANCO, new Coordenada(0, 7));
 
 		Assert.assertArrayEquals(tableroDevolver, tableroPrueba.getTablero());
 	}
@@ -297,7 +295,7 @@ class HorizontalDerechaBlanca {
 		ponerFicha(tableroPrueba.getTablero()[4][7], Ficha.BLANCO);
 		ponerFicha(tableroPrueba.getTablero()[4][3], Ficha.BLANCO);
 
-		tableroPrueba.añadirFichaTablero(Ficha.BLANCO, new Coordenada(0, 7));
+		tableroPrueba.anadirFichaTablero(Ficha.BLANCO, new Coordenada(0, 7));
 		Assert.assertArrayEquals(tableroDevolver, tableroPrueba.getTablero());
 	}
 
@@ -318,7 +316,7 @@ class HorizontalDerechaBlanca {
 		ponerFicha(tableroPrueba.getTablero()[7][7], Ficha.BLANCO);
 		ponerFicha(tableroPrueba.getTablero()[7][0], Ficha.BLANCO);
 
-		tableroPrueba.añadirFichaTablero(Ficha.BLANCO, new Coordenada(0, 7));
+		tableroPrueba.anadirFichaTablero(Ficha.BLANCO, new Coordenada(0, 7));
 		Assert.assertArrayEquals(tableroDevolver, tableroPrueba.getTablero());
 	}
 
@@ -339,7 +337,7 @@ class HorizontalDerechaBlanca {
 		ponerFicha(tableroPrueba.getTablero()[5][5], Ficha.BLANCO);
 		ponerFicha(tableroPrueba.getTablero()[7][5], Ficha.BLANCO);
 
-		tableroPrueba.añadirFichaTablero(Ficha.BLANCO, new Coordenada(7, 7));
+		tableroPrueba.anadirFichaTablero(Ficha.BLANCO, new Coordenada(7, 7));
 		Assert.assertArrayEquals(tableroDevolver, tableroPrueba.getTablero());
 	}
 
@@ -360,7 +358,7 @@ class HorizontalDerechaBlanca {
 		ponerFicha(tableroPrueba.getTablero()[7][3], Ficha.BLANCO);
 		ponerFicha(tableroPrueba.getTablero()[3][3], Ficha.BLANCO);
 
-		tableroPrueba.añadirFichaTablero(Ficha.BLANCO, new Coordenada(7, 7));
+		tableroPrueba.anadirFichaTablero(Ficha.BLANCO, new Coordenada(7, 7));
 		Assert.assertArrayEquals(tableroDevolver, tableroPrueba.getTablero());
 	}
 
@@ -381,7 +379,7 @@ class HorizontalDerechaBlanca {
 		ponerFicha(tableroPrueba.getTablero()[7][0], Ficha.BLANCO);
 		ponerFicha(tableroPrueba.getTablero()[0][7], Ficha.BLANCO);
 
-		tableroPrueba.añadirFichaTablero(Ficha.BLANCO, new Coordenada(7, 7));
+		tableroPrueba.anadirFichaTablero(Ficha.BLANCO, new Coordenada(7, 7));
 		Assert.assertArrayEquals(tableroDevolver, tableroPrueba.getTablero());
 	}
 
@@ -402,7 +400,7 @@ class HorizontalDerechaBlanca {
 		ponerFicha(tableroPrueba.getTablero()[5][2], Ficha.BLANCO);
 		ponerFicha(tableroPrueba.getTablero()[7][2], Ficha.BLANCO);
 
-		tableroPrueba.añadirFichaTablero(Ficha.BLANCO, new Coordenada(7, 0));
+		tableroPrueba.anadirFichaTablero(Ficha.BLANCO, new Coordenada(7, 0));
 
 		Assert.assertArrayEquals(tableroDevolver, tableroPrueba.getTablero());
 	}
@@ -424,7 +422,7 @@ class HorizontalDerechaBlanca {
 		ponerFicha(tableroPrueba.getTablero()[3][4], Ficha.BLANCO);
 		ponerFicha(tableroPrueba.getTablero()[7][4], Ficha.BLANCO);
 
-		tableroPrueba.añadirFichaTablero(Ficha.BLANCO, new Coordenada(7, 0));
+		tableroPrueba.anadirFichaTablero(Ficha.BLANCO, new Coordenada(7, 0));
 		Assert.assertArrayEquals(tableroDevolver, tableroPrueba.getTablero());
 	}
 
@@ -445,7 +443,7 @@ class HorizontalDerechaBlanca {
 		ponerFicha(tableroPrueba.getTablero()[0][7], Ficha.BLANCO);
 		ponerFicha(tableroPrueba.getTablero()[0][0], Ficha.BLANCO);
 
-		tableroPrueba.añadirFichaTablero(Ficha.BLANCO, new Coordenada(7, 0));
+		tableroPrueba.anadirFichaTablero(Ficha.BLANCO, new Coordenada(7, 0));
 		Assert.assertArrayEquals(tableroDevolver, tableroPrueba.getTablero());
 	}
 
@@ -473,12 +471,12 @@ class HorizontalDerechaBlanca {
 		rellenarHorizontal(new Coordenada(6, 0), new Coordenada(6, 4), tableroPrueba.getTablero(), Ficha.NEGRO);
 		rellenarHorizontal(new Coordenada(7, 3), new Coordenada(7, 4), tableroPrueba.getTablero(), Ficha.NEGRO);
 
-		tableroPrueba.añadirFichaTablero(Ficha.BLANCO, new Coordenada(1, 1));
-		tableroPrueba.añadirFichaTablero(Ficha.BLANCO, new Coordenada(2, 1));
-		tableroPrueba.añadirFichaTablero(Ficha.BLANCO, new Coordenada(3, 1));
-		tableroPrueba.añadirFichaTablero(Ficha.BLANCO, new Coordenada(5, 5));
-		tableroPrueba.añadirFichaTablero(Ficha.BLANCO, new Coordenada(6, 6));
-		tableroPrueba.añadirFichaTablero(Ficha.BLANCO, new Coordenada(7, 6));
+		tableroPrueba.anadirFichaTablero(Ficha.BLANCO, new Coordenada(1, 1));
+		tableroPrueba.anadirFichaTablero(Ficha.BLANCO, new Coordenada(2, 1));
+		tableroPrueba.anadirFichaTablero(Ficha.BLANCO, new Coordenada(3, 1));
+		tableroPrueba.anadirFichaTablero(Ficha.BLANCO, new Coordenada(5, 5));
+		tableroPrueba.anadirFichaTablero(Ficha.BLANCO, new Coordenada(6, 6));
+		tableroPrueba.anadirFichaTablero(Ficha.BLANCO, new Coordenada(7, 6));
 
 		Assert.assertArrayEquals(tableroDevolver, tableroPrueba.getTablero());
 	}
@@ -507,12 +505,12 @@ class HorizontalDerechaBlanca {
 		rellenaVertical(new Coordenada(0, 6), new Coordenada(5, 6), tableroPrueba.getTablero(), Ficha.NEGRO);
 		rellenaVertical(new Coordenada(3, 7), new Coordenada(5, 7), tableroPrueba.getTablero(), Ficha.NEGRO);
 
-		tableroPrueba.añadirFichaTablero(Ficha.BLANCO, new Coordenada(1, 1));
-		tableroPrueba.añadirFichaTablero(Ficha.BLANCO, new Coordenada(1, 2));
-		tableroPrueba.añadirFichaTablero(Ficha.BLANCO, new Coordenada(1, 3));
-		tableroPrueba.añadirFichaTablero(Ficha.BLANCO, new Coordenada(6, 5));
-		tableroPrueba.añadirFichaTablero(Ficha.BLANCO, new Coordenada(6, 6));
-		tableroPrueba.añadirFichaTablero(Ficha.BLANCO, new Coordenada(6, 7));
+		tableroPrueba.anadirFichaTablero(Ficha.BLANCO, new Coordenada(1, 1));
+		tableroPrueba.anadirFichaTablero(Ficha.BLANCO, new Coordenada(1, 2));
+		tableroPrueba.anadirFichaTablero(Ficha.BLANCO, new Coordenada(1, 3));
+		tableroPrueba.anadirFichaTablero(Ficha.BLANCO, new Coordenada(6, 5));
+		tableroPrueba.anadirFichaTablero(Ficha.BLANCO, new Coordenada(6, 6));
+		tableroPrueba.anadirFichaTablero(Ficha.BLANCO, new Coordenada(6, 7));
 
 		Assert.assertArrayEquals(tableroDevolver, tableroPrueba.getTablero());
 	}
@@ -556,15 +554,15 @@ class HorizontalDerechaBlanca {
 		ponerFicha(tableroPrueba.getTablero()[7][4], Ficha.BLANCO);
 		ponerFicha(tableroPrueba.getTablero()[5][7], Ficha.BLANCO);
 
-		tableroPrueba.añadirFichaTablero(Ficha.BLANCO, new Coordenada(2, 7));
-		tableroPrueba.añadirFichaTablero(Ficha.BLANCO, new Coordenada(0, 4));
-		tableroPrueba.añadirFichaTablero(Ficha.BLANCO, new Coordenada(7, 2));
-		tableroPrueba.añadirFichaTablero(Ficha.BLANCO, new Coordenada(4, 0));
+		tableroPrueba.anadirFichaTablero(Ficha.BLANCO, new Coordenada(2, 7));
+		tableroPrueba.anadirFichaTablero(Ficha.BLANCO, new Coordenada(0, 4));
+		tableroPrueba.anadirFichaTablero(Ficha.BLANCO, new Coordenada(7, 2));
+		tableroPrueba.anadirFichaTablero(Ficha.BLANCO, new Coordenada(4, 0));
 
-		tableroPrueba.añadirFichaTablero(Ficha.BLANCO, new Coordenada(2, 0));
-		tableroPrueba.añadirFichaTablero(Ficha.BLANCO, new Coordenada(0, 3));
-		tableroPrueba.añadirFichaTablero(Ficha.BLANCO, new Coordenada(7, 5));
-		tableroPrueba.añadirFichaTablero(Ficha.BLANCO, new Coordenada(4, 7));
+		tableroPrueba.anadirFichaTablero(Ficha.BLANCO, new Coordenada(2, 0));
+		tableroPrueba.anadirFichaTablero(Ficha.BLANCO, new Coordenada(0, 3));
+		tableroPrueba.anadirFichaTablero(Ficha.BLANCO, new Coordenada(7, 5));
+		tableroPrueba.anadirFichaTablero(Ficha.BLANCO, new Coordenada(4, 7));
 		Assert.assertArrayEquals(tableroDevolver, tableroPrueba.getTablero());
 	}
 
@@ -596,12 +594,12 @@ class HorizontalDerechaBlanca {
 		rellenaInclinadaAbajo(new Coordenada(5, 2), new Coordenada(5, 2), tableroPrueba.getTablero(), Ficha.NEGRO);
 		rellenaInclinadaAbajo(new Coordenada(2, 0), new Coordenada(5, 3), tableroPrueba.getTablero(), Ficha.NEGRO);
 
-		tableroPrueba.añadirFichaTablero(Ficha.BLANCO, new Coordenada(1, 5));
-		tableroPrueba.añadirFichaTablero(Ficha.BLANCO, new Coordenada(1, 4));
-		tableroPrueba.añadirFichaTablero(Ficha.BLANCO, new Coordenada(1, 3));
-		tableroPrueba.añadirFichaTablero(Ficha.BLANCO, new Coordenada(6, 2));
-		tableroPrueba.añadirFichaTablero(Ficha.BLANCO, new Coordenada(6, 3));
-		tableroPrueba.añadirFichaTablero(Ficha.BLANCO, new Coordenada(6, 4));
+		tableroPrueba.anadirFichaTablero(Ficha.BLANCO, new Coordenada(1, 5));
+		tableroPrueba.anadirFichaTablero(Ficha.BLANCO, new Coordenada(1, 4));
+		tableroPrueba.anadirFichaTablero(Ficha.BLANCO, new Coordenada(1, 3));
+		tableroPrueba.anadirFichaTablero(Ficha.BLANCO, new Coordenada(6, 2));
+		tableroPrueba.anadirFichaTablero(Ficha.BLANCO, new Coordenada(6, 3));
+		tableroPrueba.anadirFichaTablero(Ficha.BLANCO, new Coordenada(6, 4));
 
 		Assert.assertArrayEquals(tableroDevolver, tableroPrueba.getTablero());
 	}
@@ -634,12 +632,14 @@ class HorizontalDerechaBlanca {
 		rellenaInclinadaArriba(new Coordenada(2, 2), new Coordenada(2, 2), tableroPrueba.getTablero(), Ficha.NEGRO);
 		rellenaInclinadaArriba(new Coordenada(5, 0), new Coordenada(2, 3), tableroPrueba.getTablero(), Ficha.NEGRO);
 
-		tableroPrueba.añadirFichaTablero(Ficha.BLANCO, new Coordenada(1, 2));
-		tableroPrueba.añadirFichaTablero(Ficha.BLANCO, new Coordenada(1, 3));
-		tableroPrueba.añadirFichaTablero(Ficha.BLANCO, new Coordenada(1, 4));
-		tableroPrueba.añadirFichaTablero(Ficha.BLANCO, new Coordenada(6, 3));
-		tableroPrueba.añadirFichaTablero(Ficha.BLANCO, new Coordenada(6, 4));
-		tableroPrueba.añadirFichaTablero(Ficha.BLANCO, new Coordenada(6, 5));
+		tableroPrueba.anadirFichaTablero(Ficha.BLANCO, new Coordenada(1, 2));
+		tableroPrueba.anadirFichaTablero(Ficha.BLANCO, new Coordenada(1, 3));
+		tableroPrueba.anadirFichaTablero(Ficha.BLANCO, new Coordenada(1, 4));
+		tableroPrueba.anadirFichaTablero(Ficha.BLANCO, new Coordenada(6, 3));
+		tableroPrueba.anadirFichaTablero(Ficha.BLANCO, new Coordenada(6, 4));
+		tableroPrueba.anadirFichaTablero(Ficha.BLANCO, new Coordenada(6, 5));
+		
+		tableroPrueba.mostrarTablero();
 		Assert.assertArrayEquals(tableroDevolver, tableroPrueba.getTablero());
 	}
 }

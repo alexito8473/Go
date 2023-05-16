@@ -7,28 +7,67 @@ import Jugador.Jugador;
 import Jugador.JugadorIa;
 import Jugador.JugadorReal;
 import Tablero.Tablero;
-
+	/**
+	 *	Clase donde se crea la partida y se desarrolla el juego.
+	 * 	@author Alejadnro Aguilar Alba
+	 * 	@since 1.0
+	 * 	@version 1.0
+	 *
+	 */
 public class Partida {
-
+	
+	/**
+	 * Atributo que almacena un jugador.
+	 */
 	private Jugador jugador1;
+	
+	/**
+	 * Atributo que almacena un jugador.
+	 */
 	private Jugador jugador2;
+	
+	/**
+	 * Atributo que almacena el tablero.
+	 */
 	private Tablero tablero;
+	
+	/**
+	 * Atributo que almacena la clase consoleImput.
+	 */
 	private final ConsoleImput con = new ConsoleImput(new Scanner(System.in));
 
+	/**
+	 * Metodo que empieza la partida.
+	 * @see #partidaJugadorVSJugador(Jugador[])
+	 * @see #seleccionJugadores(int)
+	 * @see #tipoDePartida()
+	 */
 	public void jugarPartida() {
 		do {
-		} while (partidaJugadorVSJugador(selecciónJugadores(tipoDePartida())));
+		} while (partidaJugadorVSJugador(seleccionJugadores(tipoDePartida())));
 	}
 
+	/**
+	 * Metodo que donde se elige tipo de partida.
+	 * @return Devuelve un numero que sera el tipo de la partida.
+	 * @see mostrarTitulo()
+	 */
 	private int tipoDePartida() {
 		mostrarTitulo();
 		con.frasesLentas("¿Qué tipo de juego quieres?", 15);
 		System.out.print(Colors.GREEN.getValor());
 		con.frasesLentas("1 - Jugador vs Jugador\n2 - Jugador vs Ia\n3 - Ia vs Ia", 20);
-		System.out.print(Colors.RESET.getValor()+ " -> ");
+		System.out.print(Colors.RESET.getValor() + " -> ");
 		return con.readIntInRange(1, 3);
 	}
-
+	
+	/**
+	 * 	Metodo donde se juega la partida entre dos jugadores.
+	 * @param jugadores Un array de jugadores, que seran los jugadores de la partida.
+	 * @return True: Se juega otra partida False: No se juega otra partida.
+	 * @see mostrarJugadores(Jugador[])
+	 * @see ensenarFinal(Jugador[],int,Tablero)
+	 */
 	private boolean partidaJugadorVSJugador(Jugador[] jugadores) {
 		boolean salida = false;
 		int turno = 0, numero = 1;
@@ -49,12 +88,16 @@ public class Partida {
 			}
 		} while (!salida);
 
-		enseñarFinal(jugadores, turno, tablero);
+		ensenarFinal(jugadores, turno, tablero);
 		con.frasesLentas("¿Quieres jugar otra partida?(Si,No)", 20);
 		con.frasesLentas(" -> ", 15);
 		return con.readBooleanUsingString("Si", "no");
 	}
 
+	/**
+	 * Metodo que te ordena los jugadores y los mete en un Array.
+	 * @return Devuelve un arrray de juadores donde esta ordenado en que el primero sera el negro y el segundo sera el blanco.
+	 */
 	private Jugador[] devolverJugadoresOrdenados() {
 		Jugador[] jugadores = new Jugador[2];
 		if (jugador1.getFicha() == Ficha.NEGRO) {
@@ -67,7 +110,7 @@ public class Partida {
 		return jugadores;
 	}
 
-	private Jugador[] selecciónJugadores(int numero) {
+	private Jugador[] seleccionJugadores(int numero) {
 		if (numero == 1) {
 			switch (new Random().nextInt(2)) {
 			case 0:
@@ -158,7 +201,7 @@ public class Partida {
 		con.stop(200);
 	}
 
-	private void enseñarFinal(Jugador[] jugadores, int turno, Tablero tablero) {
+	private void ensenarFinal(Jugador[] jugadores, int turno, Tablero tablero) {
 		int stop = 15;
 		System.out.println("\n\n\n");
 		tablero.mostrarTablero();
@@ -220,27 +263,33 @@ public class Partida {
 		int velocidad = 8, espacio = 35, numero = new Random().nextInt(2);
 		System.out.println();
 		espacio(espacio);
-		System.out.print((numero == 0 ? Colors.RED_BACKGROUND .getValor(): Colors.GREEN_BACKGROUND.getValor()) + Colors.BLACK.getValor());
+		System.out.print((numero == 0 ? Colors.RED_BACKGROUND.getValor() : Colors.GREEN_BACKGROUND.getValor())
+				+ Colors.BLACK.getValor());
 		con.frasesLentas("  _____   _________   ___   __  ", velocidad);
 		System.out.print(Colors.RESET.getValor());
 		espacio(espacio);
-		System.out.print((numero == 0 ? Colors.RED_BACKGROUND.getValor() : Colors.GREEN_BACKGROUND.getValor()) + Colors.BLACK.getValor());
+		System.out.print((numero == 0 ? Colors.RED_BACKGROUND.getValor() : Colors.GREEN_BACKGROUND.getValor())
+				+ Colors.BLACK.getValor());
 		con.frasesLentas(" |   __| |___   ___| |   \\ |  | ", velocidad);
 		System.out.print(Colors.RESET.getValor());
 		espacio(espacio);
-		System.out.print((numero == 0 ? Colors.YELLOW_BACKGROUND.getValor() : Colors.WHITE_BACKGROUND.getValor()) + Colors.BLACK.getValor());
+		System.out.print((numero == 0 ? Colors.YELLOW_BACKGROUND.getValor() : Colors.WHITE_BACKGROUND.getValor())
+				+ Colors.BLACK.getValor());
 		con.frasesLentas(" |  |__      | |     |    \\|  | ", velocidad);
 		System.out.print(Colors.RESET.getValor());
 		espacio(espacio);
-		System.out.print((numero == 0 ? Colors.YELLOW_BACKGROUND.getValor() : Colors.WHITE_BACKGROUND.getValor()) + Colors.BLACK.getValor());
+		System.out.print((numero == 0 ? Colors.YELLOW_BACKGROUND.getValor() : Colors.WHITE_BACKGROUND.getValor())
+				+ Colors.BLACK.getValor());
 		con.frasesLentas(" |   __|  ___| |___  |  |\\    | ", velocidad);
 		System.out.print(Colors.RESET.getValor());
 		espacio(espacio);
-		System.out.print((numero == 0 ? Colors.RED_BACKGROUND.getValor() : Colors.GREEN_BACKGROUND.getValor()) + Colors.BLACK.getValor());
+		System.out.print((numero == 0 ? Colors.RED_BACKGROUND.getValor() : Colors.GREEN_BACKGROUND.getValor())
+				+ Colors.BLACK.getValor());
 		con.frasesLentas(" |__|    |_________| |__| \\___| ", velocidad);
 		System.out.print(Colors.RESET.getValor());
 		espacio(espacio);
-		System.out.print((numero == 0 ? Colors.RED_BACKGROUND.getValor() : Colors.GREEN_BACKGROUND.getValor()) + Colors.BLACK.getValor());
+		System.out.print((numero == 0 ? Colors.RED_BACKGROUND.getValor() : Colors.GREEN_BACKGROUND.getValor())
+				+ Colors.BLACK.getValor());
 		con.frasesLentas("                                ", velocidad);
 		System.out.println(Colors.RESET.getValor());
 	}
