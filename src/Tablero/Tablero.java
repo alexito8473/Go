@@ -6,22 +6,48 @@ import java.util.concurrent.TimeUnit;
 import Ficha.Ficha;
 import Jugador.Jugador;
 import Partida.Colors;
-
+/**
+ * 	Clase donde se crea el tablero y se se realiza sus compraobaciones pertinentes. 
+ * 	@author Alejandro Aguilar Alba
+ *	@version 1.0
+ *	@since 1.0
+ */
 public class Tablero {
-
+	/**
+	 *	Atributo donde se instancia un array de casillas.
+	 */
 	private Casilla[][] tablero = new Casilla[8][8];
+	
+	/**
+	 *	Atributo donde se define el final de partida de las fichas negras.
+	 */
 	private boolean finBlanco = false;
+	
+	/**
+	 *	Atributo donde se define el final de partida de las fichas blanca.
+	 */
 	private boolean finNegro = false;
+	/**
+	 *	Atributo donde se define el tamño que tiene el array.
+	 */
 	private final int tamano = tablero.length;
 
+	/**
+	 * 	Constructor donde crea un tablero con piezas por el centro.
+	 */
 	public Tablero() {
 		inicarTablero();
 	}
-
+	
+	/**
+	 * 	Constructor donde crea un tablero vacio.
+	 */
 	public Tablero(boolean prueba) {
 		iniciarTableroVacio();
 	}
-
+	/**
+	 * 	Metodo que crea el tablero, creando instancias unicas de las casillas.
+	 */
 	private void inicarTablero() {
 		for (int i = 0; i < tamano; i++) {
 			for (int j = 0; j < tamano; j++) {
@@ -36,6 +62,9 @@ public class Tablero {
 		}
 	}
 
+	/**
+	 *	Crea un tablero vacio.
+	 */
 	private void iniciarTableroVacio() {
 		for (int i = 0; i < 8; i++) {
 			for (int j = 0; j < 8; j++) {
@@ -44,6 +73,11 @@ public class Tablero {
 		}
 	}
 
+	/**
+	 * 	Metodo que devolvera la ficha contraria a la ficha metida por parametro.
+	 * 	@param ficha Ficha por la que se va comparar.
+	 * 	@return Devuelve la ficha contraria a la ficha que se ha metido por parametro.
+	 */
 	public Ficha fichaContraria(Ficha ficha) {
 		if (ficha == Ficha.BLANCO) {
 			return Ficha.NEGRO;
@@ -52,6 +86,11 @@ public class Tablero {
 		return Ficha.BLANCO;
 	}
 
+	/**
+	 * 
+	 * @param ficha
+	 * @return
+	 */
 	public int contador(Ficha ficha) {
 		int contador = 0;
 		for (int i = 0; i < tamano; i++) {
@@ -470,7 +509,7 @@ public class Tablero {
 		}
 		return win;
 	}
-	
+
 	public boolean movimientoVerticalArriba(Ficha ficha, Ficha ficha2, Casilla casilla) {
 		int numero = casilla.getCoordenada().getPosicion1() - 1, numero2 = casilla.getCoordenada().getPosicion2();
 		boolean win = false, salida = false;

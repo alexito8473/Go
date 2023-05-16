@@ -7,30 +7,32 @@ import Jugador.Jugador;
 import Jugador.JugadorIa;
 import Jugador.JugadorReal;
 import Tablero.Tablero;
-	/**
-	 *	Clase donde se crea la partida y se desarrolla el juego.
-	 * 	@author Alejadnro Aguilar Alba
-	 * 	@since 1.0
-	 * 	@version 1.0
-	 *
-	 */
+
+/**
+ * Clase donde se crea la partida y se desarrolla el juego.
+ * 
+ * @author Alejadnro Aguilar Alba
+ * @since 1.0
+ * @version 1.0
+ *
+ */
 public class Partida {
-	
+
 	/**
 	 * Atributo que almacena un jugador.
 	 */
 	private Jugador jugador1;
-	
+
 	/**
 	 * Atributo que almacena un jugador.
 	 */
 	private Jugador jugador2;
-	
+
 	/**
 	 * Atributo que almacena el tablero.
 	 */
 	private Tablero tablero;
-	
+
 	/**
 	 * Atributo que almacena la clase consoleImput.
 	 */
@@ -38,6 +40,7 @@ public class Partida {
 
 	/**
 	 * Metodo que empieza la partida.
+	 * 
 	 * @see #partidaJugadorVSJugador(Jugador[])
 	 * @see #seleccionJugadores(int)
 	 * @see #tipoDePartida()
@@ -49,6 +52,7 @@ public class Partida {
 
 	/**
 	 * Metodo que donde se elige tipo de partida.
+	 * 
 	 * @return Devuelve un numero que sera el tipo de la partida.
 	 * @see mostrarTitulo()
 	 */
@@ -60,10 +64,12 @@ public class Partida {
 		System.out.print(Colors.RESET.getValor() + " -> ");
 		return con.readIntInRange(1, 3);
 	}
-	
+
 	/**
-	 * 	Metodo donde se juega la partida entre dos jugadores.
-	 * @param jugadores Un array de jugadores, que seran los jugadores de la partida.
+	 * Metodo donde se juega la partida entre dos jugadores.
+	 * 
+	 * @param jugadores Un array de jugadores, que seran los jugadores de la
+	 *                  partida.
 	 * @return True: Se juega otra partida False: No se juega otra partida.
 	 * @see mostrarJugadores(Jugador[])
 	 * @see ensenarFinal(Jugador[],int,Tablero)
@@ -95,8 +101,10 @@ public class Partida {
 	}
 
 	/**
-	 * Metodo que te ordena los jugadores y los mete en un Array.
-	 * @return Devuelve un arrray de juadores donde esta ordenado en que el primero sera el negro y el segundo sera el blanco.
+	 * Metodo que te ordena los jugadores y los mete en un array.
+	 * 
+	 * @return Devuelve un array de juadores donde esta ordenado en que el primero
+	 *         sera el negro y el segundo sera el blanco.
 	 */
 	private Jugador[] devolverJugadoresOrdenados() {
 		Jugador[] jugadores = new Jugador[2];
@@ -110,6 +118,14 @@ public class Partida {
 		return jugadores;
 	}
 
+	/**
+	 * Metodo que dependiendo del numero que parametro crea ciertos tipos de
+	 * jugadores.
+	 * 
+	 * @param numero Con el numero decidiremos que par de jugadores instanciamos.
+	 * @return Devolvemos un array de jugadores, estando ordenados por el primero
+	 *         sea un jugador con fichas negras y el segundo con ficha negra.
+	 */
 	private Jugador[] seleccionJugadores(int numero) {
 		if (numero == 1) {
 			switch (new Random().nextInt(2)) {
@@ -188,6 +204,11 @@ public class Partida {
 		return devolverJugadoresOrdenados();
 	}
 
+	/**
+	 * Metodo que muestra informacion del jugador.
+	 * 
+	 * @param jugadores Un array de jugadores
+	 */
 	private void mostrarJugadores(Jugador[] jugadores) {
 		int stop = 45;
 		for (int i = 0; i < jugadores.length; i++) {
@@ -201,6 +222,14 @@ public class Partida {
 		con.stop(200);
 	}
 
+	/**
+	 * Metodo que enseña una muestra final de informacion al termina la partida.
+	 * 
+	 * @param jugadores Array de los jugadores de la partida.
+	 * @param turno     Turno de la partida.
+	 * @param tablero   El tablero de la partida.
+	 * @see #pintarBandera()
+	 */
 	private void ensenarFinal(Jugador[] jugadores, int turno, Tablero tablero) {
 		int stop = 15;
 		System.out.println("\n\n\n");
@@ -234,18 +263,28 @@ public class Partida {
 		pintarBandera();
 	}
 
+	/**
+	 * Metodo que se extrae el nombre del jugador y saca a consola amarillo.
+	 * @param jugador El jugador donde se extrae su datos.
+	 */
 	private void nombreAmarillo(Jugador jugador) {
 		System.out.print(Colors.YELLOW.getValor());
 		con.frasesLentasSinSalto(jugador.getNombre(), 15);
 		System.out.print(Colors.RESET.getValor());
 	}
-
+	/**
+	 * 	Metodo para hacer espacio en consola.
+	 * 	@param espacio El numero de espacio que desea que haya.
+	 */
 	private void espacio(int espacio) {
 		for (int i = 0; i < espacio; i++) {
 			System.out.print(" ");
 		}
 	}
-
+	
+	/**
+	 * Metodo que muestra un titulo en consola.
+	 */
 	private void mostrarTitulo() {
 		System.out.print(Colors.CYAN.getValor());
 		con.frasesLentas(
@@ -258,7 +297,10 @@ public class Partida {
 				1);
 		System.out.println(Colors.RESET.getValor());
 	}
-
+	
+	/**
+	 * Metodon que pinta en consola una bandera que puedes ser de España o Andalucia.
+	 */
 	public void pintarBandera() {
 		int velocidad = 8, espacio = 35, numero = new Random().nextInt(2);
 		System.out.println();

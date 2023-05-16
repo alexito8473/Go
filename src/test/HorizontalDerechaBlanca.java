@@ -74,11 +74,7 @@ class HorizontalDerechaBlanca {
 		ponerFicha(tableroPrueba.getTablero()[6][1], Ficha.BLANCO);
 		ponerFicha(tableroPrueba.getTablero()[6][5], Ficha.BLANCO);
 		tableroPrueba.anadirFichaTablero(Ficha.BLANCO, new Coordenada(4, 3));
-		for (int i = 0; i < tableroDevolver.length; i++) {
-			for (int j = 0; i < tableroDevolver.length; j++) {
 
-			}
-		}
 		Assert.assertArrayEquals(tableroDevolver, tableroPrueba.getTablero());
 	}
 
@@ -443,7 +439,17 @@ class HorizontalDerechaBlanca {
 		ponerFicha(tableroPrueba.getTablero()[0][7], Ficha.BLANCO);
 		ponerFicha(tableroPrueba.getTablero()[0][0], Ficha.BLANCO);
 
+		for (int i = 0; i < tableroDevolver.length; i++) {
+			for (int j = 0; j < tableroDevolver.length; j++) {
+				System.out.print(tableroDevolver[i][j].devolverCasilla());
+			}
+			System.out.println();
+		}
+		
+		tableroPrueba.mostrarTablero();
 		tableroPrueba.anadirFichaTablero(Ficha.BLANCO, new Coordenada(7, 0));
+		
+
 		Assert.assertArrayEquals(tableroDevolver, tableroPrueba.getTablero());
 	}
 
@@ -638,8 +644,7 @@ class HorizontalDerechaBlanca {
 		tableroPrueba.anadirFichaTablero(Ficha.BLANCO, new Coordenada(6, 3));
 		tableroPrueba.anadirFichaTablero(Ficha.BLANCO, new Coordenada(6, 4));
 		tableroPrueba.anadirFichaTablero(Ficha.BLANCO, new Coordenada(6, 5));
-		
-		tableroPrueba.mostrarTablero();
+
 		Assert.assertArrayEquals(tableroDevolver, tableroPrueba.getTablero());
 	}
 }

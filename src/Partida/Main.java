@@ -6,7 +6,6 @@ package Partida;
  * @author Alejandro Aguilar Alba
  * @since 1.0
  * @version 1.0
- *
  */
 
 public class Main {
@@ -22,6 +21,7 @@ public class Main {
 
 	/**
 	 * Metodo que inicia que inicia todo el proceso.
+	 * 
 	 * @param args Args
 	 * @see empezarPartida()
 	 */

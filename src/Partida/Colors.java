@@ -9,42 +9,42 @@ package Partida;
  *
  */
 public enum Colors {
-	
+
 	/**
 	 * Reseteo de los colores.
 	 */
 	RESET("\u001B[0m"),
-	
+
 	/**
 	 * Pinta las letras a negro.
 	 */
 	BLACK("\u001B[30m"),
-	
+
 	/**
 	 * Pinta las letras a rojo.
 	 */
 	RED("\u001B[31m"),
-	
+
 	/**
 	 * Pinta las letras a verde.
 	 */
 	GREEN("\u001B[32m"),
-	
+
 	/**
 	 * Pinta las letras a amarillo.
 	 */
 	YELLOW("\u001B[33m"),
-	
+
 	/**
 	 * Pinta las letras a morado.
 	 */
 	PURPLE("\u001B[35m"),
-	
+
 	/**
 	 * Pinta las letras a cian.
 	 */
 	CYAN("\u001B[36m"),
-	
+
 	/**
 	 * Pinta el fondo de rojo.
 	 */
@@ -59,7 +59,7 @@ public enum Colors {
 	 * Pinta el fondo de amarillo.
 	 */
 	YELLOW_BACKGROUND("\u001B[43m"),
-	
+
 	/**
 	 * Pinta el fondo de blanco.
 	 */
@@ -72,6 +72,7 @@ public enum Colors {
 
 	/**
 	 * Constructor de la clase Colors.
+	 * 
 	 * @param valor El color que sera definido.
 	 */
 	private Colors(String valor) {
@@ -80,6 +81,7 @@ public enum Colors {
 
 	/**
 	 * Metodo que devuelve el color.
+	 * 
 	 * @return Devuelve un String.
 	 */
 	public String getValor() {
