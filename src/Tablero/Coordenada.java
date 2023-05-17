@@ -47,7 +47,7 @@ public class Coordenada {
 	}
 
 	/**
-	 * Metodo que sobre escribe el metodo de Object, crea un hashCode unico.
+	 * Metodo que sobrescribe el metodo haschCode() de Object, crea un hashCode unico.
 	 */
 	@Override
 	public int hashCode() {

@@ -10,15 +10,30 @@ import Partida.ConsoleImput;
 import Tablero.Casilla;
 import Tablero.Coordenada;
 import Tablero.Tablero;
-
+/**
+ * 	Clase hija de jugador, donde se enfoca en una inteligencia
+ * 	artificial apta para poder jugar contra otros jugadores 
+ * 	o o sobre otra ia(mejor que la de Angel y PPk).
+ * 	@see Jugador
+ * 	@author Alejandro Aguilar Alba
+ *	@since 1.0 
+ *	@version 1.0 
+ */
 public class JugadorIa extends Jugador {
-
+	/**
+	 *	Constructor de la clase JugadorIa.
+	 * 	@param ficha La ficha del jugador.
+	 */
 	public JugadorIa(Ficha ficha) {
 		super(ponerNombre(), ficha);
 	}
 
+	/**
+	 *	Metodo que genera un nombre random para el JugadorIa.
+	 * 	@return Devuelve un nombre.
+	 */
 	private static String ponerNombre() {
-		return switch (new Random().nextInt(31)) {
+		return switch (new Random().nextInt(32)) {
 		case 0 -> "Dominio";
 		case 1 -> "Jueputa";
 		case 2 -> "España";
@@ -50,10 +65,15 @@ public class JugadorIa extends Jugador {
 		case 28 -> "Estoy detrás de ti";
 		case 29 -> "Despierta!!!!!";
 		case 30 -> "Sé quien eres";
+		case 31 -> "Angel cagon 💩";
 		default -> "Error en el nombre";
 		};
 	}
 
+	/**
+	 *	Metodo heredado del padre,
+	 *	donde la ia decide las jugada mas optimzas y decide el juego.
+	 */
 	public void jugada(Tablero tablero, int turno) {
 		int comer, cantidad;
 		ConsoleImput con = new ConsoleImput(new Scanner(System.in));
@@ -180,24 +200,34 @@ public class JugadorIa extends Jugador {
 		System.out.println();
 	}
 
+	/**
+	 * Metodo que suma la cantidad total de fichas que se come la jugada.
+	 * @param casilla La casilla de la posicion de la jugada.
+	 * @param tablero El tablero de juego.
+	 * @return Retorna la cantidad total de fichas que se puede comer, el minimo siempre sera 0.
+	 */
 	private int sumarJugada(Casilla casilla, Tablero tablero) {
-		int resultado = 0;
-		resultado = resultado + conteoHorizontalIzquierda(casilla, tablero);
-		resultado = resultado + conteoHorizontalDerecha(casilla, tablero);
-		resultado = resultado + conteoVerticalAbajo(casilla, tablero);
-		resultado = resultado + conteoVerticalArriba(casilla, tablero);
-		resultado = resultado + conteoInclinadoAbajoDerecha(casilla, tablero);
-		resultado = resultado + conteoInclinadoAbajoIzquierda(casilla, tablero);
-		resultado = resultado + conteoInclinadoArribaIzquierda(casilla, tablero);
-		resultado = resultado + conteoInclinadoArribaDerecha(casilla, tablero);
-		return resultado;
+		return conteoHorizontalIzquierda(casilla, tablero)+
+				conteoHorizontalDerecha(casilla, tablero)+
+				conteoVerticalAbajo(casilla, tablero)+
+				conteoVerticalArriba(casilla, tablero)+
+				conteoInclinadoAbajoDerecha(casilla, tablero)+
+				conteoInclinadoAbajoIzquierda(casilla, tablero)+
+				conteoInclinadoArribaIzquierda(casilla, tablero)+
+				conteoInclinadoArribaDerecha(casilla, tablero);
 	}
 
+	/**
+	 * Metodo que cuenta las fichas totales que
+	 * @param casilla
+	 * @param tablero
+	 * @return
+	 */
 	private int conteoInclinadoArribaDerecha(Casilla casilla, Tablero tablero) {
 		int devolver = 0, numeroI = casilla.getCoordenada().getPosicion1() - 1,
 				numeroJ = casilla.getCoordenada().getPosicion2() + 1;
 		boolean salida = false;
-		if (tablero.movimientoInclinadoArribaDerecha(ficha, tablero.fichaContraria(ficha), casilla)) {
+		if (tablero.movimientoInclinadoArribaDerecha(ficha, tablero.fichaContraria(ficha), casilla.getCoordenada())) {
 			do {
 				if (tablero.getTablero()[numeroI][numeroJ].getFicha() == ficha) {
 					salida = true;
@@ -217,7 +247,7 @@ public class JugadorIa extends Jugador {
 				numeroJ = casilla.getCoordenada().getPosicion2() - 1;
 
 		boolean salida = false;
-		if (tablero.movimientoInclinadoArribaIzquierda(ficha, tablero.fichaContraria(ficha), casilla)) {
+		if (tablero.movimientoInclinadoArribaIzquierda(ficha, tablero.fichaContraria(ficha), casilla.getCoordenada())) {
 			do {
 				if (tablero.getTablero()[numeroI][numeroJ].getFicha() == ficha) {
 					salida = true;
@@ -235,7 +265,7 @@ public class JugadorIa extends Jugador {
 		int devolver = 0, numeroI = casilla.getCoordenada().getPosicion1() + 1,
 				numeroJ = casilla.getCoordenada().getPosicion2() - 1;
 		boolean salida = false;
-		if (tablero.movimientoInclinadoAbajoIzquierda(ficha, tablero.fichaContraria(ficha), casilla)) {
+		if (tablero.movimientoInclinadoAbajoIzquierda(ficha, tablero.fichaContraria(ficha), casilla.getCoordenada())) {
 			do {
 				if (tablero.getTablero()[numeroI][numeroJ].getFicha() == ficha) {
 					salida = true;
@@ -253,7 +283,7 @@ public class JugadorIa extends Jugador {
 		int devolver = 0, numeroI = casilla.getCoordenada().getPosicion1() + 1,
 				numeroJ = casilla.getCoordenada().getPosicion2() + 1;
 		boolean salida = false;
-		if (tablero.movimientoInclinadoAbajoDerecha(ficha, tablero.fichaContraria(ficha), casilla)) {
+		if (tablero.movimientoInclinadoAbajoDerecha(ficha, tablero.fichaContraria(ficha), casilla.getCoordenada())) {
 			do {
 				if (tablero.getTablero()[numeroI][numeroJ].getFicha() == ficha) {
 					salida = true;
@@ -271,7 +301,7 @@ public class JugadorIa extends Jugador {
 		int devolver = 0, numero = casilla.getCoordenada().getPosicion1() - 1,
 				numero2 = casilla.getCoordenada().getPosicion2();
 		boolean escape = false;
-		if (tablero.movimientoVerticalArriba(ficha, tablero.fichaContraria(ficha), casilla)) {
+		if (tablero.movimientoVerticalArriba(ficha, tablero.fichaContraria(ficha), casilla.getCoordenada())) {
 			do {
 				if (tablero.getTablero()[numero][numero2].getFicha() == ficha) {
 					escape = true;
@@ -289,7 +319,7 @@ public class JugadorIa extends Jugador {
 		int devolver = 0, numero = casilla.getCoordenada().getPosicion1() + 1,
 				numero2 = casilla.getCoordenada().getPosicion2();
 		boolean escape = false;
-		if (tablero.movimientoVerticalAbajo(ficha, tablero.fichaContraria(ficha), casilla)) {
+		if (tablero.movimientoVerticalAbajo(ficha, tablero.fichaContraria(ficha), casilla.getCoordenada())) {
 			do {
 				if (tablero.getTablero()[numero][numero2].getFicha() == ficha) {
 					escape = true;
@@ -306,7 +336,7 @@ public class JugadorIa extends Jugador {
 		int devolver = 0, numero = casilla.getCoordenada().getPosicion1(),
 				numero2 = casilla.getCoordenada().getPosicion2() - 1;
 		boolean salida = false;
-		if (tablero.movimientoHorizontalIzquierda(ficha, tablero.fichaContraria(ficha), casilla)) {
+		if (tablero.movimientoHorizontalIzquierda(ficha, tablero.fichaContraria(ficha), casilla.getCoordenada())) {
 			do {
 				if (tablero.getTablero()[numero][numero2].getFicha() == ficha) {
 					salida = true;
@@ -323,7 +353,7 @@ public class JugadorIa extends Jugador {
 		int devolver = 0, numero = casilla.getCoordenada().getPosicion1(),
 				numero2 = casilla.getCoordenada().getPosicion2() + 1;
 		boolean escape = false;
-		if (tablero.movimientoHorizontalDerecha(ficha, tablero.fichaContraria(ficha), casilla)) {
+		if (tablero.movimientoHorizontalDerecha(ficha, tablero.fichaContraria(ficha), casilla.getCoordenada())) {
 			do {
 				if (tablero.getTablero()[numero][numero2].getFicha() == ficha) {
 					escape = true;

@@ -49,7 +49,7 @@ public class Casilla {
 	}
 	
 	/**
-	 * Metodo que sobre escribe un metodo de Object, que se encarga crea un hascode unico para la casilla.
+	 * Metodo que sobrescribe el metodo hascCode() de Object, que se encarga crea un hascode unico para la casilla.
 	 */
 	@Override
 	public int hashCode() {

@@ -96,7 +96,7 @@ public class Partida {
 
 		ensenarFinal(jugadores, turno, tablero);
 		con.frasesLentas("¿Quieres jugar otra partida?(Si,No)", 20);
-		con.frasesLentas(" -> ", 15);
+		con.frasesLentasSinSalto(" -> ", 15);
 		return con.readBooleanUsingString("Si", "no");
 	}
 

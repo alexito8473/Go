@@ -13,7 +13,6 @@ public class Main {
 	/**
 	 * Metodo donde se inicia la partida.
 	 */
-
 	private void empezarPartida() {
 		Partida partida = new Partida();
 		partida.jugarPartida();
