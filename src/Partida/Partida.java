@@ -249,7 +249,7 @@ public class Partida {
 			con.frasesLentasSinSalto("El jugador ", stop);
 			nombreAmarillo(jugadores[0]);
 			con.frasesLentasSinSalto("tiene un total de ", stop);
-			System.out.print(tablero.contador(jugadores[0].getFicha()));
+			System.out.print(tablero.contador(jugadores[1].getFicha()));
 		} else {
 			con.frasesLentasSinSalto("Ha ganado el jugador: ", stop);
 			nombreAmarillo(
