@@ -7,7 +7,6 @@ import java.util.Random;
 import java.util.Scanner;
 import Ficha.Ficha;
 import Partida.ConsoleImput;
-import Tablero.Casilla;
 import Tablero.Coordenada;
 import Tablero.Tablero;
 /**
@@ -87,7 +86,7 @@ public class JugadorIa extends Jugador {
 				if ((!tablero.getTablero()[i][j].isLlena())
 						&& tablero.movimientoValido(ficha, tablero.getTablero()[i][j].getCoordenada())) {
 					listaJugada.add(new MovimientoIa(tablero.getTablero()[i][j].getCoordenada(),
-							sumarJugada(tablero.getTablero()[i][j], tablero)));
+							sumarJugada(tablero.getTablero()[i][j].getCoordenada(), tablero)));
 				}
 			}
 		}
@@ -202,32 +201,33 @@ public class JugadorIa extends Jugador {
 
 	/**
 	 * Metodo que suma la cantidad total de fichas que se come la jugada.
-	 * @param casilla La casilla de la posicion de la jugada.
+	 * @param coordenada Las coordenda de comparacion.
 	 * @param tablero El tablero de juego.
 	 * @return Retorna la cantidad total de fichas que se puede comer, el minimo siempre sera 0.
 	 */
-	private int sumarJugada(Casilla casilla, Tablero tablero) {
-		return conteoHorizontalIzquierda(casilla, tablero)+
-				conteoHorizontalDerecha(casilla, tablero)+
-				conteoVerticalAbajo(casilla, tablero)+
-				conteoVerticalArriba(casilla, tablero)+
-				conteoInclinadoAbajoDerecha(casilla, tablero)+
-				conteoInclinadoAbajoIzquierda(casilla, tablero)+
-				conteoInclinadoArribaIzquierda(casilla, tablero)+
-				conteoInclinadoArribaDerecha(casilla, tablero);
+	private int sumarJugada(Coordenada coordenada, Tablero tablero) {
+		return conteoHorizontalIzquierda(coordenada, tablero)+
+				conteoHorizontalDerecha(coordenada, tablero)+
+				conteoVerticalAbajo(coordenada, tablero)+
+				conteoVerticalArriba(coordenada, tablero)+
+				conteoInclinadoAbajoDerecha(coordenada, tablero)+
+				conteoInclinadoAbajoIzquierda(coordenada, tablero)+
+				conteoInclinadoArribaIzquierda(coordenada, tablero)+
+				conteoInclinadoArribaDerecha(coordenada, tablero);
 	}
 
 	/**
-	 * Metodo que cuenta las fichas totales que
-	 * @param casilla
-	 * @param tablero
-	 * @return
+	 *	Metodo que cuenta las fichas totales que donde 
+	 *	la direccion es la diagonal_arriba_derecha.
+	 *	@param coordenada Las coordenda de comparacion.
+	 * 	@param tablero El tablero donde se juega
+	 * 	@return Devuelve la cantidad total de fichas que puede girar.
 	 */
-	private int conteoInclinadoArribaDerecha(Casilla casilla, Tablero tablero) {
-		int devolver = 0, numeroI = casilla.getCoordenada().getPosicion1() - 1,
-				numeroJ = casilla.getCoordenada().getPosicion2() + 1;
+	private int conteoInclinadoArribaDerecha(Coordenada coordenada, Tablero tablero) {
+		int devolver = 0, numeroI = coordenada.getPosicion1() - 1,
+				numeroJ = coordenada.getPosicion2() + 1;
 		boolean salida = false;
-		if (tablero.movimientoInclinadoArribaDerecha(ficha, tablero.fichaContraria(ficha), casilla.getCoordenada())) {
+		if (tablero.movimientoInclinadoArribaDerecha(ficha, tablero.fichaContraria(ficha),coordenada)) {
 			do {
 				if (tablero.getTablero()[numeroI][numeroJ].getFicha() == ficha) {
 					salida = true;
@@ -241,13 +241,20 @@ public class JugadorIa extends Jugador {
 		return devolver;
 
 	}
-
-	private int conteoInclinadoArribaIzquierda(Casilla casilla, Tablero tablero) {
-		int devolver = 0, numeroI = casilla.getCoordenada().getPosicion1() - 1,
-				numeroJ = casilla.getCoordenada().getPosicion2() - 1;
+	
+	/**
+	 *	Metodo que cuenta las fichas totales que donde 
+	 *	la direccion es la diagonal_arriba_izquierda.
+	 *	@param coordenada Las coordenda de comparacion.
+	 * 	@param tablero El tablero donde se juega
+	 * 	@return Devuelve la cantidad total de fichas que puede girar.
+	 */
+	private int conteoInclinadoArribaIzquierda(Coordenada coordenada, Tablero tablero) {
+		int devolver = 0, numeroI = coordenada.getPosicion1() - 1,
+				numeroJ = coordenada.getPosicion2() - 1;
 
 		boolean salida = false;
-		if (tablero.movimientoInclinadoArribaIzquierda(ficha, tablero.fichaContraria(ficha), casilla.getCoordenada())) {
+		if (tablero.movimientoInclinadoArribaIzquierda(ficha, tablero.fichaContraria(ficha), coordenada)) {
 			do {
 				if (tablero.getTablero()[numeroI][numeroJ].getFicha() == ficha) {
 					salida = true;
@@ -260,12 +267,18 @@ public class JugadorIa extends Jugador {
 		}
 		return devolver;
 	}
-
-	private int conteoInclinadoAbajoIzquierda(Casilla casilla, Tablero tablero) {
-		int devolver = 0, numeroI = casilla.getCoordenada().getPosicion1() + 1,
-				numeroJ = casilla.getCoordenada().getPosicion2() - 1;
+	/**
+	 *	Metodo que cuenta las fichas totales que donde 
+	 *	la direccion es la diagonal_abajo_izquierda.
+	 *	@param coordenada Las coordenda de comparacion.
+	 * 	@param tablero El tablero donde se juega
+	 * 	@return Devuelve la cantidad total de fichas que puede girar.
+	 */
+	private int conteoInclinadoAbajoIzquierda(Coordenada coordenada, Tablero tablero) {
+		int devolver = 0, numeroI = coordenada.getPosicion1() + 1,
+				numeroJ = coordenada.getPosicion2() - 1;
 		boolean salida = false;
-		if (tablero.movimientoInclinadoAbajoIzquierda(ficha, tablero.fichaContraria(ficha), casilla.getCoordenada())) {
+		if (tablero.movimientoInclinadoAbajoIzquierda(ficha, tablero.fichaContraria(ficha), coordenada)) {
 			do {
 				if (tablero.getTablero()[numeroI][numeroJ].getFicha() == ficha) {
 					salida = true;
@@ -278,12 +291,18 @@ public class JugadorIa extends Jugador {
 		}
 		return devolver;
 	}
-
-	private int conteoInclinadoAbajoDerecha(Casilla casilla, Tablero tablero) {
-		int devolver = 0, numeroI = casilla.getCoordenada().getPosicion1() + 1,
-				numeroJ = casilla.getCoordenada().getPosicion2() + 1;
+	/**
+	 *	Metodo que cuenta las fichas totales que donde 
+	 *	la direccion es la diagonal_abajo_derecha.
+	 *	@param coordenada Las coordenda de comparacion.
+	 * 	@param tablero El tablero donde se juega
+	 * 	@return Devuelve la cantidad total de fichas que puede girar.
+	 */
+	private int conteoInclinadoAbajoDerecha(Coordenada coordenada, Tablero tablero) {
+		int devolver = 0, numeroI = coordenada.getPosicion1() + 1,
+				numeroJ =coordenada.getPosicion2() + 1;
 		boolean salida = false;
-		if (tablero.movimientoInclinadoAbajoDerecha(ficha, tablero.fichaContraria(ficha), casilla.getCoordenada())) {
+		if (tablero.movimientoInclinadoAbajoDerecha(ficha, tablero.fichaContraria(ficha), coordenada)) {
 			do {
 				if (tablero.getTablero()[numeroI][numeroJ].getFicha() == ficha) {
 					salida = true;
@@ -296,12 +315,19 @@ public class JugadorIa extends Jugador {
 		}
 		return devolver;
 	}
-
-	private int conteoVerticalArriba(Casilla casilla, Tablero tablero) {
-		int devolver = 0, numero = casilla.getCoordenada().getPosicion1() - 1,
-				numero2 = casilla.getCoordenada().getPosicion2();
+	
+	/**
+	 *	Metodo que cuenta las fichas totales que donde 
+	 *	la direccion es la vertical_arriba.
+	 *	@param coordenada Las coordenda de comparacion.
+	 * 	@param tablero El tablero donde se juega
+	 * 	@return Devuelve la cantidad total de fichas que puede girar.
+	 */
+	private int conteoVerticalArriba(Coordenada coordenada, Tablero tablero) {
+		int devolver = 0, numero = coordenada.getPosicion1() - 1,
+				numero2 = coordenada.getPosicion2();
 		boolean escape = false;
-		if (tablero.movimientoVerticalArriba(ficha, tablero.fichaContraria(ficha), casilla.getCoordenada())) {
+		if (tablero.movimientoVerticalArriba(ficha, tablero.fichaContraria(ficha), coordenada)) {
 			do {
 				if (tablero.getTablero()[numero][numero2].getFicha() == ficha) {
 					escape = true;
@@ -315,11 +341,18 @@ public class JugadorIa extends Jugador {
 		return devolver;
 	}
 
-	private int conteoVerticalAbajo(Casilla casilla, Tablero tablero) {
-		int devolver = 0, numero = casilla.getCoordenada().getPosicion1() + 1,
-				numero2 = casilla.getCoordenada().getPosicion2();
+	/**
+	 *	Metodo que cuenta las fichas totales que donde 
+	 *	la direccion es la vertical_abajo.
+	 *	@param coordenada Las coordenda de comparacion.
+	 * 	@param tablero El tablero donde se juega
+	 * 	@return Devuelve la cantidad total de fichas que puede girar.
+	 */
+	private int conteoVerticalAbajo(Coordenada coordenada, Tablero tablero) {
+		int devolver = 0, numero = coordenada.getPosicion1() + 1,
+				numero2 = coordenada.getPosicion2();
 		boolean escape = false;
-		if (tablero.movimientoVerticalAbajo(ficha, tablero.fichaContraria(ficha), casilla.getCoordenada())) {
+		if (tablero.movimientoVerticalAbajo(ficha, tablero.fichaContraria(ficha), coordenada)) {
 			do {
 				if (tablero.getTablero()[numero][numero2].getFicha() == ficha) {
 					escape = true;
@@ -331,12 +364,19 @@ public class JugadorIa extends Jugador {
 		}
 		return devolver;
 	}
-
-	private int conteoHorizontalIzquierda(Casilla casilla, Tablero tablero) {
-		int devolver = 0, numero = casilla.getCoordenada().getPosicion1(),
-				numero2 = casilla.getCoordenada().getPosicion2() - 1;
+	
+	/**
+	 *	Metodo que cuenta las fichas totales que donde 
+	 *	la direccion es la horizontal_izquierda.
+	 *	@param coordenada Las coordenda de comparacion.
+	 * 	@param tablero El tablero donde se juega
+	 * 	@return Devuelve la cantidad total de fichas que puede girar.
+	 */
+	private int conteoHorizontalIzquierda(Coordenada coordenada, Tablero tablero) {
+		int devolver = 0, numero = coordenada.getPosicion1(),
+				numero2 = coordenada.getPosicion2() - 1;
 		boolean salida = false;
-		if (tablero.movimientoHorizontalIzquierda(ficha, tablero.fichaContraria(ficha), casilla.getCoordenada())) {
+		if (tablero.movimientoHorizontalIzquierda(ficha, tablero.fichaContraria(ficha), coordenada)) {
 			do {
 				if (tablero.getTablero()[numero][numero2].getFicha() == ficha) {
 					salida = true;
@@ -348,12 +388,18 @@ public class JugadorIa extends Jugador {
 		}
 		return devolver;
 	}
-
-	private int conteoHorizontalDerecha(Casilla casilla, Tablero tablero) {
-		int devolver = 0, numero = casilla.getCoordenada().getPosicion1(),
-				numero2 = casilla.getCoordenada().getPosicion2() + 1;
+	/**
+	 *	Metodo que cuenta las fichas totales que donde 
+	 *	la direccion es la horizontal_derecha.
+	 *	@param coordenada Las coordenda de comparacion.
+	 * 	@param tablero El tablero donde se juega
+	 * 	@return Devuelve la cantidad total de fichas que puede girar.
+	 */
+	private int conteoHorizontalDerecha(Coordenada coordenada, Tablero tablero) {
+		int devolver = 0, numero = coordenada.getPosicion1(),
+				numero2 = coordenada.getPosicion2() + 1;
 		boolean escape = false;
-		if (tablero.movimientoHorizontalDerecha(ficha, tablero.fichaContraria(ficha), casilla.getCoordenada())) {
+		if (tablero.movimientoHorizontalDerecha(ficha, tablero.fichaContraria(ficha), coordenada)) {
 			do {
 				if (tablero.getTablero()[numero][numero2].getFicha() == ficha) {
 					escape = true;

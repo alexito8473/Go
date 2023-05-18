@@ -23,8 +23,8 @@ public abstract class Jugador {
 
 	/**
 	 * Constructor de la clase de Jugador.
-	 * @param nombre
-	 * @param ficha
+	 * @param nombre Nombre del jugador
+	 * @param ficha Ficha del jugador
 	 */
 	public Jugador(String nombre, Ficha ficha) {
 		this.nombre = nombre;
@@ -32,7 +32,7 @@ public abstract class Jugador {
 	}
 
 	/**
-	 * Metodo que indica la ficha qie tiene el jugador.
+	 * Metodo que indica la ficha que tiene el jugador.
 	 * @return La ficha del jugador.
 	 */
 	public Ficha getFicha() {

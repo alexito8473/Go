@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"Ficha"},{"l":"Jugador"},{"l":"Partida"},{"l":"Tablero"}];updateSearchResults();
