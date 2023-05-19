@@ -6,48 +6,53 @@ import java.util.concurrent.TimeUnit;
 import Ficha.Ficha;
 import Jugador.Jugador;
 import Partida.Colors;
+
 /**
- * 	Clase donde se crea el tablero y se se realiza sus compraobaciones pertinentes. 
- * 	@author Alejandro Aguilar Alba
- *	@version 1.0
- *	@since 1.0
+ * Clase donde se crea el tablero y se se realiza sus compraobaciones
+ * pertinentes.
+ * 
+ * @author Alejandro Aguilar Alba
+ * @version 1.0
+ * @since 1.0
  */
 public class Tablero {
 	/**
-	 *	Atributo donde se instancia un array de casillas.
+	 * Atributo donde se instancia un array de casillas.
 	 */
 	private Casilla[][] tablero = new Casilla[8][8];
-	
+
 	/**
-	 *	Atributo donde se define el final de partida de las fichas negras.
+	 * Atributo donde se define el final de partida de las fichas negras.
 	 */
 	private boolean finBlanco = false;
-	
+
 	/**
-	 *	Atributo donde se define el final de partida de las fichas blanca.
+	 * Atributo donde se define el final de partida de las fichas blanca.
 	 */
 	private boolean finNegro = false;
 	/**
-	 *	Atributo donde se define el tamño que tiene el array.
+	 * Atributo donde se define el tamño que tiene el array.
 	 */
 	private final int tamano = tablero.length;
 
 	/**
-	 * 	Constructor donde crea un tablero con piezas por el centro.
+	 * Constructor donde crea un tablero con piezas por el centro.
 	 */
 	public Tablero() {
 		inicarTablero();
 	}
-	
+
 	/**
-	 * 	Constructor donde crea un tablero vacio.
-	 * 	@param prueba Prueba
+	 * Constructor donde crea un tablero vacio.
+	 * 
+	 * @param prueba Prueba
 	 */
 	public Tablero(boolean prueba) {
 		iniciarTableroVacio();
 	}
+
 	/**
-	 * 	Metodo que crea el tablero, creando instancias unicas de las casillas.
+	 * Metodo que crea el tablero, creando instancias unicas de las casillas.
 	 */
 	private void inicarTablero() {
 		for (int i = 0; i < tamano; i++) {
@@ -64,7 +69,7 @@ public class Tablero {
 	}
 
 	/**
-	 *	Crea un tablero vacio.
+	 * Crea un tablero vacio.
 	 */
 	private void iniciarTableroVacio() {
 		for (int i = 0; i < 8; i++) {
@@ -75,22 +80,11 @@ public class Tablero {
 	}
 
 	/**
-	 * 	Metodo que devolvera la ficha contraria a la ficha metida por parametro.
-	 * 	@param ficha Ficha por la que se va comparar.
-	 * 	@return Devuelve la ficha contraria a la ficha que se ha metido por parametro.
-	 */
-	public Ficha fichaContraria(Ficha ficha) {
-		if (ficha == Ficha.BLANCO) {
-			return Ficha.NEGRO;
-		}
-
-		return Ficha.BLANCO;
-	}
-
-	/**
-	 *	Metodo para contar las fichas del tablero.
-	 * 	@param ficha La ficha que con la que contamos
-	 * 	@return Nos devolvera una numero que sera el numero de fichas que hay en el tablero como minimo sera de 0.
+	 * Metodo para contar las fichas del tablero.
+	 * 
+	 * @param ficha La ficha que con la que contamos
+	 * @return Nos devolvera una numero que sera el numero de fichas que hay en el
+	 *         tablero como minimo sera de 0.
 	 */
 	public int contador(Ficha ficha) {
 		int contador = 0;
@@ -105,7 +99,8 @@ public class Tablero {
 	}
 
 	/**
-	 * Metodo que esta sobrescrito de la clase Object, donde nos da un hash unico. 
+	 * Metodo que esta sobrescrito de la clase Object, donde nos da un hash unico.
+	 * 
 	 * @return Devuelve un numero unico.
 	 */
 	@Override
@@ -117,8 +112,10 @@ public class Tablero {
 	}
 
 	/**
-	 * Metodo que sobre escribe el metodo equals de Object, equipara dos objetos y informa si son iguales.
-	 * @return true: Son iguales false: No son iguales. 
+	 * Metodo que sobre escribe el metodo equals de Object, equipara dos objetos y
+	 * informa si son iguales.
+	 * 
+	 * @return true: Son iguales false: No son iguales.
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -133,9 +130,12 @@ public class Tablero {
 	}
 
 	/**
-	 * Metodo que da informacion sobre el jugador y las fichas que hay en la partida.
-	 * @param jugador El jugador que hay en ese turno, donde se estrae su nombre, ficha.
-	 * @param turno El turno de la partida.
+	 * Metodo que da informacion sobre el jugador y las fichas que hay en la
+	 * partida.
+	 * 
+	 * @param jugador El jugador que hay en ese turno, donde se estrae su nombre,
+	 *                ficha.
+	 * @param turno   El turno de la partida.
 	 */
 	public void contandoFichasMostrando(Jugador jugador, int turno) {
 		System.out.printf("\n %s ---------------------------------------------%s\n", Colors.PURPLE.getValor(),
@@ -156,18 +156,22 @@ public class Tablero {
 		System.out.printf(" %s --------------------------------------%s\n", Colors.YELLOW.getValor(),
 				Colors.RESET.getValor());
 	}
+
 	/**
 	 * Metodo que devuelve el tablero de la clase
-	 * @return	Devuelve el array de casillas de la clase.
+	 * 
+	 * @return Devuelve el array de casillas de la clase.
 	 */
 	public Casilla[][] getTablero() {
 		return tablero;
 	}
-	
+
 	/**
-	 *	Metodo que devuelve una casilla en concreto del array de casillas de la clase.
-	 * 	@param coordenada Las coordenadas para buscar la casilla.
-	 * 	@return Devuelve la casilla exacta del array de casillas.
+	 * Metodo que devuelve una casilla en concreto del array de casillas de la
+	 * clase.
+	 * 
+	 * @param coordenada Las coordenadas para buscar la casilla.
+	 * @return Devuelve la casilla exacta del array de casillas.
 	 */
 	public Casilla devolverCasilla(Coordenada coordenada) {
 		return tablero[coordenada.getPosicion1()][coordenada.getPosicion2()];
@@ -183,9 +187,9 @@ public class Tablero {
 		}
 		System.out.println();
 	}
-	
+
 	/**
-	 *	Metodo que pinta una succesion de letras mayusculas.
+	 * Metodo que pinta una succesion de letras mayusculas.
 	 */
 	private void pintarLetras() {
 		espacioTablero(32);
@@ -194,6 +198,7 @@ public class Tablero {
 
 	/**
 	 * Metodo que pinta el tablero , con efecto para que se vea bonito
+	 * 
 	 * @see #stop(int)
 	 * @see #pintarLetras()
 	 * @see #pintarRaya()
@@ -218,13 +223,15 @@ public class Tablero {
 	}
 
 	/**
-	 *	Metodo que pinta un tablero que marca las jugadas valida de una ficha en concreto, con efectos para que se vea bonito.
-	 * 	@param ficha La ficha para comparar.
-	 * 	@see #stop(int)
-	 * 	@see #pintarLetras()
-	 * 	@see #pintarRaya()
-	 * 	@see Casilla#devolverCasilla()
-	 * 	@see #movimientoValido(Ficha, Coordenada)
+	 * Metodo que pinta un tablero que marca las jugadas valida de una ficha en
+	 * concreto, con efectos para que se vea bonito.
+	 * 
+	 * @param ficha La ficha para comparar.
+	 * @see #stop(int)
+	 * @see #pintarLetras()
+	 * @see #pintarRaya()
+	 * @see Casilla#devolverCasilla()
+	 * @see #movimientoValido(Ficha, Coordenada)
 	 */
 	public void mostrarTablero(Ficha ficha) {
 		System.out.println("\n");
@@ -250,12 +257,14 @@ public class Tablero {
 	}
 
 	/**
-	 *	Metodo que pinta un tablero donde en una coordenada en especifico se pinta solo en rojo.
-	 * 	@param coordenada La coordenada en comparar.
-	 * 	@see #stop(int)
-	 * 	@see #pintarLetras()
-	 * 	@see #pintarRaya()
-	 * 	@see Casilla#devolverCasilla()
+	 * Metodo que pinta un tablero donde en una coordenada en especifico se pinta
+	 * solo en rojo.
+	 * 
+	 * @param coordenada La coordenada en comparar.
+	 * @see #stop(int)
+	 * @see #pintarLetras()
+	 * @see #pintarRaya()
+	 * @see Casilla#devolverCasilla()
 	 */
 	public void mostrarTablero(Coordenada coordenada) {
 		System.out.println("\n");
@@ -282,6 +291,7 @@ public class Tablero {
 
 	/**
 	 * Metodo que para la consola por un tiempo limitado.
+	 * 
 	 * @param parada El tiempo que se para.
 	 */
 	private void stop(int parada) {
@@ -291,9 +301,10 @@ public class Tablero {
 
 		}
 	}
-	
+
 	/**
 	 * Metodo que pone espacios.
+	 * 
 	 * @param espacio El numero de espacio.
 	 */
 	private void espacioTablero(int espacio) {
@@ -306,9 +317,11 @@ public class Tablero {
 	// ------------------------------------------------------------------------------------------
 
 	/**
-	 *	Metodo que comprueba si en una coordenada hay una ficha ya en esas coordenada o no.
-	 * 	@param coordenada Las coordenada donde se busca si hay una ficha ya.
-	 * 	@return true: Hay una ficha false: No hay ficha puesta.
+	 * Metodo que comprueba si en una coordenada hay una ficha ya en esas coordenada
+	 * o no.
+	 * 
+	 * @param coordenada Las coordenada donde se busca si hay una ficha ya.
+	 * @return true: Hay una ficha false: No hay ficha puesta.
 	 */
 	public boolean comprobarSiHayFichaPuesta(Coordenada coordenada) {
 		return tablero[coordenada.getPosicion1()][coordenada.getPosicion2()].isLlena();
@@ -316,7 +329,8 @@ public class Tablero {
 
 	/**
 	 * Metodo que añade una ficha en unas coordenada concretas.
-	 * @param ficha La ficha donde se introduce en el tablero.
+	 * 
+	 * @param ficha      La ficha donde se introduce en el tablero.
 	 * @param coordenada Las coordenadas del tablero.
 	 * @see #rotarFichas(Casilla)
 	 */
@@ -326,39 +340,40 @@ public class Tablero {
 	}
 
 	/**
-	 * 	Metodo donde comprueba si puede rotar en una coordenadas todas las fichas en las 8 direcciones.
-	 * 	@param casilla La casilla de comparacion.
-	 * 	@see #rotarFichasHorizontalDerecha(Ficha, Casilla)
-	 * 	@see #rotarFichasHorizontalIzquierda(Ficha, Casilla)
-	 *	@see #rotarFichasInclinadoAbajoDerecha(Ficha, Casilla)
-	 * 	@see #rotarFichasInclinadoAbajoIzquierda(Ficha, Casilla)
-	 * 	@see #rotarFichasInclinadoArribaIzquierda(Ficha, Casilla)
-	 * 	@see #rotarFichasInclinadoArribaDerecha(Ficha, Casilla)
-	 * 	@see #rotarFichasVerticalAbajo(Ficha, Casilla)
-	 * 	@see #rotarFichasVerticalArriba(Ficha, Casilla)
+	 * Metodo donde comprueba si puede rotar en una coordenadas todas las fichas en
+	 * las 8 direcciones.
+	 * 
+	 * @param casilla La casilla de comparacion.
+	 * @see #rotarFichasHorizontalDerecha(Casilla)
+	 * @see #rotarFichasHorizontalIzquierda(Casilla)
+	 * @see #rotarFichasInclinadoAbajoDerecha(Casilla)
+	 * @see #rotarFichasInclinadoAbajoIzquierda(Casilla)
+	 * @see #rotarFichasInclinadoArribaIzquierda(Casilla)
+	 * @see #rotarFichasInclinadoArribaDerecha(Casilla)
+	 * @see #rotarFichasVerticalAbajo(Casilla)
+	 * @see #rotarFichasVerticalArriba(Casilla)
 	 */
 	private void rotarFichas(Casilla casilla) {
-		Ficha fichaContraria = fichaContraria(casilla.getFicha());
-		rotarFichasVerticalAbajo(fichaContraria, casilla);
-		rotarFichasVerticalArriba(fichaContraria, casilla);
-		rotarFichasHorizontalDerecha(fichaContraria, casilla);
-		rotarFichasHorizontalIzquierda(fichaContraria, casilla);
-		rotarFichasInclinadoAbajoDerecha(fichaContraria, casilla);
-		rotarFichasInclinadoArribaDerecha(fichaContraria, casilla);
-		rotarFichasInclinadoAbajoIzquierda(fichaContraria, casilla);
-		rotarFichasInclinadoArribaIzquierda(fichaContraria, casilla);
+		rotarFichasVerticalAbajo(casilla);
+		rotarFichasVerticalArriba(casilla);
+		rotarFichasHorizontalDerecha(casilla);
+		rotarFichasHorizontalIzquierda(casilla);
+		rotarFichasInclinadoAbajoDerecha(casilla);
+		rotarFichasInclinadoArribaDerecha(casilla);
+		rotarFichasInclinadoAbajoIzquierda(casilla);
+		rotarFichasInclinadoArribaIzquierda(casilla);
 	}
 
 	/**
-	 *	Metodo que comprueba la dirrecion diagonal_abajo_izquierda si se puede rotar,
-	 *	en el caso que si se puede rota todas las fichas.
-	 * 	@param ficha2 La ficha opuesta
-	 * 	@param casilla La casilla de comparacion.
+	 * Metodo que comprueba la dirrecion diagonal_abajo_izquierda si se puede rotar,
+	 * en el caso que si se puede rota todas las fichas.
+	 * 
+	 * @param casilla La casilla de comparacion.
 	 */
-	private void rotarFichasInclinadoAbajoIzquierda(Ficha ficha2, Casilla casilla) {
+	private void rotarFichasInclinadoAbajoIzquierda(Casilla casilla) {
 		int numeroI = casilla.getCoordenada().getPosicion1() + 1, numeroJ = casilla.getCoordenada().getPosicion2() - 1;
 		boolean salida = false;
-		if (movimientoInclinadoAbajoIzquierda(casilla.getFicha(), ficha2, casilla.getCoordenada())) {
+		if (movimientoInclinadoAbajoIzquierda(casilla.getFicha(), casilla.getCoordenada())) {
 			do {
 				if (tablero[numeroI][numeroJ].getFicha() != casilla.getFicha()) {
 					tablero[numeroI][numeroJ].setFicha(casilla.getFicha());
@@ -370,16 +385,17 @@ public class Tablero {
 			} while (!salida);
 		}
 	}
+
 	/**
-	 *	Metodo que comprueba la dirrecion diagonal_abajo_derecha si se puede rotar,
-	 *	en el caso que si se puede rota todas las fichas.
-	 * 	@param ficha2 La ficha opuesta
-	 * 	@param casilla La casilla de comparacion.
+	 * Metodo que comprueba la dirrecion diagonal_abajo_derecha si se puede rotar,
+	 * en el caso que si se puede rota todas las fichas.
+	 * 
+	 * @param casilla La casilla de comparacion.
 	 */
-	private void rotarFichasInclinadoAbajoDerecha(Ficha ficha2, Casilla casilla) {
+	private void rotarFichasInclinadoAbajoDerecha(Casilla casilla) {
 		int numeroI = casilla.getCoordenada().getPosicion1() + 1, numeroJ = casilla.getCoordenada().getPosicion2() + 1;
 		boolean salida = false;
-		if (movimientoInclinadoAbajoDerecha(casilla.getFicha(), ficha2, casilla.getCoordenada())) {
+		if (movimientoInclinadoAbajoDerecha(casilla.getFicha(), casilla.getCoordenada())) {
 			do {
 				if (tablero[numeroI][numeroJ].getFicha() != casilla.getFicha()) {
 					tablero[numeroI][numeroJ].setFicha(casilla.getFicha());
@@ -391,16 +407,17 @@ public class Tablero {
 			} while (!salida);
 		}
 	}
+
 	/**
-	 *	Metodo que comprueba la dirrecion diagonal_arriba_izquierda si se puede rotar,
-	 *	en el caso que si se puede rota todas las fichas.
-	 * 	@param ficha2 La ficha opuesta
-	 * 	@param casilla La casilla de comparacion.
+	 * Metodo que comprueba la dirrecion diagonal_arriba_izquierda si se puede
+	 * rotar, en el caso que si se puede rota todas las fichas.
+	 * 
+	 * @param casilla La casilla de comparacion.
 	 */
-	private void rotarFichasInclinadoArribaIzquierda(Ficha ficha2, Casilla casilla) {
+	private void rotarFichasInclinadoArribaIzquierda(Casilla casilla) {
 		int numeroI = casilla.getCoordenada().getPosicion1() - 1, numeroJ = casilla.getCoordenada().getPosicion2() - 1;
 		boolean salida = false;
-		if (movimientoInclinadoArribaIzquierda(casilla.getFicha(), ficha2, casilla.getCoordenada())) {
+		if (movimientoInclinadoArribaIzquierda(casilla.getFicha(), casilla.getCoordenada())) {
 			do {
 
 				if (tablero[numeroI][numeroJ].getFicha() != casilla.getFicha()) {
@@ -414,16 +431,17 @@ public class Tablero {
 		}
 
 	}
+
 	/**
-	 *	Metodo que comprueba la dirrecion diagonal_arriba_derecha si se puede rotar,
-	 *	en el caso que si se puede rota todas las fichas.
-	 * 	@param ficha2 La ficha opuesta
-	 * 	@param casilla La casilla de comparacion.
+	 * Metodo que comprueba la dirrecion diagonal_arriba_derecha si se puede rotar,
+	 * en el caso que si se puede rota todas las fichas.
+	 * 
+	 * @param casilla La casilla de comparacion.
 	 */
-	private void rotarFichasInclinadoArribaDerecha(Ficha ficha2, Casilla casilla) {
+	private void rotarFichasInclinadoArribaDerecha(Casilla casilla) {
 		int numeroI = casilla.getCoordenada().getPosicion1() - 1, numeroJ = casilla.getCoordenada().getPosicion2() + 1;
 		boolean salida = false;
-		if (movimientoInclinadoArribaDerecha(casilla.getFicha(), ficha2, casilla.getCoordenada())) {
+		if (movimientoInclinadoArribaDerecha(casilla.getFicha(), casilla.getCoordenada())) {
 			do {
 
 				if (tablero[numeroI][numeroJ].getFicha() != casilla.getFicha()) {
@@ -437,16 +455,17 @@ public class Tablero {
 		}
 
 	}
+
 	/**
-	 *	Metodo que comprueba la dirrecion horizontal_derecha si se puede rotar,
-	 *	en el caso que si se puede rota todas las fichas.
-	 * 	@param ficha2 La ficha opuesta
-	 * 	@param casilla La casilla de comparacion.
+	 * Metodo que comprueba la dirrecion horizontal_derecha si se puede rotar, en el
+	 * caso que si se puede rota todas las fichas.
+	 * 
+	 * @param casilla La casilla de comparacion.
 	 */
-	private void rotarFichasHorizontalDerecha( Ficha ficha2, Casilla casilla) {
+	private void rotarFichasHorizontalDerecha(Casilla casilla) {
 		boolean escape = false;
 		int numeroI = casilla.getCoordenada().getPosicion1(), numeroJ = casilla.getCoordenada().getPosicion2() + 1;
-		if (movimientoHorizontalDerecha(casilla.getFicha(), ficha2, casilla.getCoordenada())) {
+		if (movimientoHorizontalDerecha(casilla.getFicha(), casilla.getCoordenada())) {
 			do {
 				if (tablero[numeroI][numeroJ].getFicha() != casilla.getFicha()) {
 					tablero[numeroI][numeroJ].setFicha(casilla.getFicha());
@@ -457,16 +476,17 @@ public class Tablero {
 			} while (!escape);
 		}
 	}
+
 	/**
-	 *	Metodo que comprueba la dirrecion horizontal_izquierda si se puede rotar,
-	 *	en el caso que si se puede rota todas las fichas.
-	 * 	@param ficha2 La ficha opuesta
-	 * 	@param casilla La casilla de comparacion.
+	 * Metodo que comprueba la dirrecion horizontal_izquierda si se puede rotar, en
+	 * el caso que si se puede rota todas las fichas.
+	 * 
+	 * @param casilla La casilla de comparacion.
 	 */
-	private void rotarFichasHorizontalIzquierda( Ficha ficha2, Casilla casilla) {
+	private void rotarFichasHorizontalIzquierda(Casilla casilla) {
 		boolean escape = false;
 		int numeroI = casilla.getCoordenada().getPosicion1(), numeroJ = casilla.getCoordenada().getPosicion2() - 1;
-		if (movimientoHorizontalIzquierda(casilla.getFicha(), ficha2, casilla.getCoordenada())) {
+		if (movimientoHorizontalIzquierda(casilla.getFicha(), casilla.getCoordenada())) {
 			do {
 				if (tablero[numeroI][numeroJ].getFicha() != casilla.getFicha()) {
 					tablero[numeroI][numeroJ].setFicha(casilla.getFicha());
@@ -478,17 +498,17 @@ public class Tablero {
 		}
 
 	}
-	
+
 	/**
-	 *	Metodo que comprueba la dirrecion vertical_abajo si se puede rotar,
-	 *	en el caso que si se puede rota todas las fichas.
-	 * 	@param ficha2 La ficha opuesta
-	 * 	@param casilla La casilla de comparacion.
+	 * Metodo que comprueba la dirrecion vertical_abajo si se puede rotar, en el
+	 * caso que si se puede rota todas las fichas.
+	 * 
+	 * @param casilla La casilla de comparacion.
 	 */
-	private void rotarFichasVerticalAbajo( Ficha ficha2, Casilla casilla) {
+	private void rotarFichasVerticalAbajo(Casilla casilla) {
 		boolean escape = false;
 		int numeroI = casilla.getCoordenada().getPosicion1() + 1, numeroJ = casilla.getCoordenada().getPosicion2();
-		if (movimientoVerticalAbajo(casilla.getFicha(), ficha2, casilla.getCoordenada())) {
+		if (movimientoVerticalAbajo(casilla.getFicha(), casilla.getCoordenada())) {
 			do {
 				if (tablero[numeroI][numeroJ].getFicha() != casilla.getFicha()) {
 					tablero[numeroI][numeroJ].setFicha(casilla.getFicha());
@@ -500,16 +520,17 @@ public class Tablero {
 		}
 
 	}
+
 	/**
-	 *	Metodo que comprueba la dirrecion vertical_arriba si se puede rotar,
-	 *	en el caso que si se puede rota todas las fichas.
-	 * 	@param ficha2 La ficha opuesta
-	 * 	@param casilla La casilla de comparacion.
+	 * Metodo que comprueba la dirrecion vertical_arriba si se puede rotar, en el
+	 * caso que si se puede rota todas las fichas.
+	 * 
+	 * @param casilla La casilla de comparacion.
 	 */
-	private void rotarFichasVerticalArriba(Ficha ficha2, Casilla casilla) {
+	private void rotarFichasVerticalArriba(Casilla casilla) {
 		boolean escape = false;
 		int numeroI = casilla.getCoordenada().getPosicion1() - 1, numeroJ = casilla.getCoordenada().getPosicion2();
-		if (movimientoVerticalArriba(casilla.getFicha(), ficha2, casilla.getCoordenada())) {
+		if (movimientoVerticalArriba(casilla.getFicha(), casilla.getCoordenada())) {
 			do {
 				if (tablero[numeroI][numeroJ].getFicha() != casilla.getFicha()) {
 					tablero[numeroI][numeroJ].setFicha(casilla.getFicha());
@@ -525,21 +546,20 @@ public class Tablero {
 	// ------------------------------------------------------------------------------------------
 	// ------------------------------------------------------------------------------------------
 	/**
-	 * Metodo que comprueba todas las direcciones y dice si hay movimiento o no en esa coordenada.
-	 * @param ficha ficha a comparar
+	 * Metodo que comprueba todas las direcciones y dice si hay movimiento o no en
+	 * esa coordenada.
+	 * 
+	 * @param ficha     Ficha a comparar
 	 * @param coordenda La coordenada del array.
 	 * @return true: Hay movimiento false: no hay movimiento.
 	 */
 	public boolean movimientoValido(Ficha ficha, Coordenada coordenda) {
-		Ficha fichaContrario = fichaContraria(ficha);
-		return movimientoHorizontalDerecha(ficha, fichaContrario, coordenda)
-				|| movimientoHorizontalIzquierda(ficha, fichaContrario, coordenda)
-				|| movimientoVerticalAbajo(ficha, fichaContrario, coordenda)
-				|| movimientoVerticalArriba(ficha, fichaContrario, coordenda)
-				|| movimientoInclinadoAbajoDerecha(ficha, fichaContrario, coordenda)
-				|| movimientoInclinadoAbajoIzquierda(ficha, fichaContrario, coordenda)
-				|| movimientoInclinadoArribaIzquierda(ficha, fichaContrario, coordenda)
-				|| movimientoInclinadoArribaDerecha(ficha, fichaContrario, coordenda);
+		return movimientoHorizontalDerecha(ficha, coordenda) || movimientoHorizontalIzquierda(ficha, coordenda)
+				|| movimientoVerticalAbajo(ficha, coordenda) || movimientoVerticalArriba(ficha, coordenda)
+				|| movimientoInclinadoAbajoDerecha(ficha, coordenda)
+				|| movimientoInclinadoAbajoIzquierda(ficha, coordenda)
+				|| movimientoInclinadoArribaIzquierda(ficha, coordenda)
+				|| movimientoInclinadoArribaDerecha(ficha, coordenda);
 
 	}
 
@@ -548,19 +568,19 @@ public class Tablero {
 	// ------------------------------------------------------------------------------------------
 
 	/**
-	 *	Metodo que con una dirrecion si es valido el movimiento en la 
-	 *	direccion inclianda_abajo_izquierda.
-	 * 	@param ficha La ficha de comparacion
-	 * 	@param ficha2 La ficha de contraria
-	 * 	@param coordenada Las coordenada de poscion inicial.
-	 * 	@return true: Hay movimiento false: No hay movimiento.
+	 * Metodo que con una dirrecion si es valido el movimiento en la direccion
+	 * inclianda_abajo_izquierda.
+	 * 
+	 * @param ficha      La ficha de comparacion
+	 * @param coordenada Las coordenada de poscion inicial.
+	 * @return true: Hay movimiento false: No hay movimiento.
 	 */
-	public boolean movimientoInclinadoAbajoIzquierda(Ficha ficha, Ficha ficha2, Coordenada coordenada) {
+	public boolean movimientoInclinadoAbajoIzquierda(Ficha ficha, Coordenada coordenada) {
 		int numeroI = coordenada.getPosicion1() + 1, numeroJ = coordenada.getPosicion2() - 1;
 		boolean win = false, salida = false;
 		if (numeroJ < 0 || numeroI >= tamano) {
 			return false;
-		} else if (tablero[numeroI][numeroJ].getFicha() == ficha2) {
+		} else if (tablero[numeroI][numeroJ].getFicha() == ficha.fichaContraria()) {
 			do {
 				numeroI++;
 				numeroJ--;
@@ -578,20 +598,21 @@ public class Tablero {
 		}
 		return win;
 	}
+
 	/**
-	 *	Metodo que con una dirrecion si es valido el movimiento en la 
-	 *	direccion inclianda_arriba_derecha.
-	 * 	@param ficha La ficha de comparacion
-	 * 	@param ficha2 La ficha de contraria
-	 * 	@param coordenada Las coordenada de poscion inicial.
-	 * 	@return true: Hay movimiento false: No hay movimiento.
+	 * Metodo que con una dirrecion si es valido el movimiento en la direccion
+	 * inclianda_arriba_derecha.
+	 * 
+	 * @param ficha      La ficha de comparacion
+	 * @param coordenada Las coordenada de poscion inicial.
+	 * @return true: Hay movimiento false: No hay movimiento.
 	 */
-	public boolean movimientoInclinadoArribaDerecha(Ficha ficha, Ficha ficha2,  Coordenada coordenada) {
+	public boolean movimientoInclinadoArribaDerecha(Ficha ficha, Coordenada coordenada) {
 		int numeroI = coordenada.getPosicion1() - 1, numeroJ = coordenada.getPosicion2() + 1;
 		boolean win = false, salida = false;
 		if (numeroI < 0 || numeroJ >= tamano) {
 			return false;
-		} else if (tablero[numeroI][numeroJ].getFicha() == ficha2) {
+		} else if (tablero[numeroI][numeroJ].getFicha() == ficha.fichaContraria()) {
 			do {
 				numeroI--;
 				numeroJ++;
@@ -607,20 +628,21 @@ public class Tablero {
 		}
 		return win;
 	}
+
 	/**
-	 *	Metodo que con una dirrecion si es valido el movimiento en la 
-	 *	direccion inclianda_arriba_izquierda.
-	 * 	@param ficha La ficha de comparacion
-	 * 	@param ficha2 La ficha de contraria
-	 * 	@param coordenada Las coordenada de poscion inicial.
-	 * 	@return true: Hay movimiento false: No hay movimiento.
+	 * Metodo que con una dirrecion si es valido el movimiento en la direccion
+	 * inclianda_arriba_izquierda.
+	 * 
+	 * @param ficha      La ficha de comparacion
+	 * @param coordenada Las coordenada de poscion inicial.
+	 * @return true: Hay movimiento false: No hay movimiento.
 	 */
-	public boolean movimientoInclinadoArribaIzquierda(Ficha ficha, Ficha ficha2, Coordenada coordenada) {
+	public boolean movimientoInclinadoArribaIzquierda(Ficha ficha, Coordenada coordenada) {
 		int numeroI = coordenada.getPosicion1() - 1, numeroJ = coordenada.getPosicion2() - 1;
 		boolean win = false, salida = false;
 		if (numeroJ < 0 || numeroI < 0) {
 			return false;
-		} else if (tablero[numeroI][numeroJ].getFicha() == ficha2) {
+		} else if (tablero[numeroI][numeroJ].getFicha() == ficha.fichaContraria()) {
 			do {
 				numeroI--;
 				numeroJ--;
@@ -637,20 +659,21 @@ public class Tablero {
 		}
 		return win;
 	}
+
 	/**
-	 *	Metodo que con una dirrecion si es valido el movimiento en la 
-	 *	direccion inclianda_abajo_derecha.
-	 * 	@param ficha La ficha de comparacion
-	 * 	@param ficha2 La ficha de contraria
-	 * 	@param coordenada Las coordenada de poscion inicial.
-	 * 	@return true: Hay movimiento false: No hay movimiento.
+	 * Metodo que con una dirrecion si es valido el movimiento en la direccion
+	 * inclianda_abajo_derecha.
+	 * 
+	 * @param ficha      La ficha de comparacion
+	 * @param coordenada Las coordenada de poscion inicial.
+	 * @return true: Hay movimiento false: No hay movimiento.
 	 */
-	public boolean movimientoInclinadoAbajoDerecha(Ficha ficha, Ficha ficha2,  Coordenada coordenada) {
+	public boolean movimientoInclinadoAbajoDerecha(Ficha ficha, Coordenada coordenada) {
 		int numeroI = coordenada.getPosicion1() + 1, numeroJ = coordenada.getPosicion2() + 1;
 		boolean win = false, salida = false;
 		if (numeroI >= tamano || numeroJ >= tamano) {
 			return false;
-		} else if (tablero[numeroI][numeroJ].getFicha() == ficha2) {
+		} else if (tablero[numeroI][numeroJ].getFicha() == ficha.fichaContraria()) {
 			do {
 				numeroI++;
 				numeroJ++;
@@ -666,20 +689,21 @@ public class Tablero {
 		}
 		return win;
 	}
+
 	/**
-	 *	Metodo que con una dirrecion si es valido el movimiento en la 
-	 *	direccion vertical_arriba.
-	 * 	@param ficha La ficha de comparacion
-	 * 	@param ficha2 La ficha de contraria
-	 * 	@param coordenada Las coordenada de poscion inicial.
-	 * 	@return true: Hay movimiento false: No hay movimiento.
+	 * Metodo que con una dirrecion si es valido el movimiento en la direccion
+	 * vertical_arriba.
+	 * 
+	 * @param ficha      La ficha de comparacion
+	 * @param coordenada Las coordenada de poscion inicial.
+	 * @return true: Hay movimiento false: No hay movimiento.
 	 */
-	public boolean movimientoVerticalArriba(Ficha ficha, Ficha ficha2, Coordenada coordenada) {
+	public boolean movimientoVerticalArriba(Ficha ficha, Coordenada coordenada) {
 		int numero = coordenada.getPosicion1() - 1, numero2 = coordenada.getPosicion2();
 		boolean win = false, salida = false;
 		if (numero < 0) {
 			return false;
-		} else if (tablero[numero][numero2].getFicha() == ficha2) {
+		} else if (tablero[numero][numero2].getFicha() == ficha.fichaContraria()) {
 			do {
 				numero--;
 				if (numero < 0) {
@@ -695,20 +719,21 @@ public class Tablero {
 		}
 		return win;
 	}
+
 	/**
-	 *	Metodo que con una dirrecion si es valido el movimiento en la 
-	 *	direccion vertical_abajo.
-	 * 	@param ficha La ficha de comparacion
-	 * 	@param ficha2 La ficha de contraria
-	 * 	@param coordenada Las coordenada de poscion inicial.
-	 * 	@return true: Hay movimiento false: No hay movimiento.
+	 * Metodo que con una dirrecion si es valido el movimiento en la direccion
+	 * vertical_abajo.
+	 * 
+	 * @param ficha      La ficha de comparacion
+	 * @param coordenada Las coordenada de poscion inicial.
+	 * @return true: Hay movimiento false: No hay movimiento.
 	 */
-	public boolean movimientoVerticalAbajo(Ficha ficha, Ficha ficha2, Coordenada coordenada) {
+	public boolean movimientoVerticalAbajo(Ficha ficha, Coordenada coordenada) {
 		int numero = coordenada.getPosicion1() + 1, numero2 = coordenada.getPosicion2();
 		boolean win = false, salida = false;
 		if (numero >= tamano) {
 			return false;
-		} else if (tablero[numero][numero2].getFicha() == ficha2) {
+		} else if (tablero[numero][numero2].getFicha() == ficha.fichaContraria()) {
 			do {
 				numero++;
 				if (numero >= tamano) {
@@ -724,20 +749,21 @@ public class Tablero {
 		}
 		return win;
 	}
+
 	/**
-	 *	Metodo que con una dirrecion si es valido el movimiento en la 
-	 *	direccion horzizontal_izquierda.
-	 * 	@param ficha La ficha de comparacion
-	 * 	@param ficha2 La ficha de contraria
-	 * 	@param coordenada Las coordenada de poscion inicial.
-	 * 	@return true: Hay movimiento false: No hay movimiento.
+	 * Metodo que con una dirrecion si es valido el movimiento en la direccion
+	 * horzizontal_izquierda.
+	 * 
+	 * @param ficha      La ficha de comparacion
+	 * @param coordenada Las coordenada de poscion inicial.
+	 * @return true: Hay movimiento false: No hay movimiento.
 	 */
-	public boolean movimientoHorizontalIzquierda(Ficha ficha, Ficha ficha2, Coordenada coordenada) {
+	public boolean movimientoHorizontalIzquierda(Ficha ficha, Coordenada coordenada) {
 		int numero = coordenada.getPosicion1(), numero2 = coordenada.getPosicion2() - 1;
 		boolean win = false, salida = false;
 		if (numero2 < 0) {
 			return false;
-		} else if (tablero[numero][numero2].getFicha() == ficha2) {
+		} else if (tablero[numero][numero2].getFicha() == ficha.fichaContraria()) {
 			do {
 				numero2--;
 				if (numero2 < 0) {
@@ -753,20 +779,21 @@ public class Tablero {
 		}
 		return win;
 	}
+
 	/**
-	 *	Metodo que con una dirrecion si es valido el movimiento en la 
-	 *	direccion horzizontal_derecha.
-	 * 	@param ficha La ficha de comparacion
-	 * 	@param ficha2 La ficha de contraria
-	 * 	@param coordenada Las coordenada de poscion inicial.
-	 * 	@return true: Hay movimiento false: No hay movimiento.
+	 * Metodo que con una dirrecion si es valido el movimiento en la direccion
+	 * horzizontal_derecha.
+	 * 
+	 * @param ficha      La ficha de comparacion
+	 * @param coordenada Las coordenada de poscion inicial.
+	 * @return true: Hay movimiento false: No hay movimiento.
 	 */
-	public boolean movimientoHorizontalDerecha(Ficha ficha, Ficha ficha2, Coordenada coordenada) {
+	public boolean movimientoHorizontalDerecha(Ficha ficha, Coordenada coordenada) {
 		int numero1 = coordenada.getPosicion1(), numero2 = coordenada.getPosicion2() + 1;
 		boolean resultado = false, salida = false;
 		if (numero2 >= tamano) {
 			return false;
-		} else if (tablero[numero1][numero2].getFicha() == ficha2) {
+		} else if (tablero[numero1][numero2].getFicha() == ficha.fichaContraria()) {
 			do {
 				numero2++;
 				if (numero2 >= tamano) {
@@ -786,10 +813,13 @@ public class Tablero {
 	// ------------------------------------------------------------------------------------------
 	// ------------------------------------------------------------------------------------------
 	// ------------------------------------------------------------------------------------------
-	
+
 	/**
-	 *	Metodo que consulta todo el tablero y comprueba si no hay mas posibles lugares donde colorcar una ficha.
-	 * 	@return true: No existe mas lugares para colocar ficha false: Existe un lugar para colocar una ficha.
+	 * Metodo que consulta todo el tablero y comprueba si no hay mas posibles
+	 * lugares donde colorcar una ficha.
+	 * 
+	 * @return true: No existe mas lugares para colocar ficha false: Existe un lugar
+	 *         para colocar una ficha.
 	 */
 	private boolean finalPartidaLLeno() {
 		boolean win = true;
@@ -802,11 +832,12 @@ public class Tablero {
 		}
 		return win;
 	}
-	
+
 	/**
-	 * 	Metodo que define cuando termina cuando termina una partida.
-	 * 	@param ficha La ficha de comparacion 
-	 * 	@return true: termino la partida false: aun sigue
+	 * Metodo que define cuando termina cuando termina una partida.
+	 * 
+	 * @param ficha La ficha de comparacion
+	 * @return true: termino la partida false: aun sigue
 	 */
 	public boolean fin(Ficha ficha) {
 
@@ -822,9 +853,10 @@ public class Tablero {
 			return finBlanco;
 		}
 	}
-	
+
 	/**
 	 * Comprueba que no haya más jugada para un tipo de ficha.
+	 * 
 	 * @param ficha La ficha de comparacion.
 	 */
 	private void comprobarFin(Ficha ficha) {

@@ -445,10 +445,9 @@ class HorizontalDerechaBlanca {
 			}
 			System.out.println();
 		}
-		
+
 		tableroPrueba.mostrarTablero();
 		tableroPrueba.anadirFichaTablero(Ficha.BLANCO, new Coordenada(7, 0));
-		
 
 		Assert.assertArrayEquals(tableroDevolver, tableroPrueba.getTablero());
 	}

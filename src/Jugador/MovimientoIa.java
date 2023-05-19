@@ -1,8 +1,11 @@
 package Jugador;
 
 import Tablero.Coordenada;
+
 /**
- * Clase donde contiene el movimiento de un jugada, se utiliza para la ia principalemte.
+ * Clase donde contiene el movimiento de un jugada, se utiliza para la ia
+ * principalemte.
+ * 
  * @author Alejandro Aguilar Alba
  * @since 1.0
  * @version 1.0
@@ -10,7 +13,7 @@ import Tablero.Coordenada;
  */
 public class MovimientoIa {
 	/**
-	 *	Atributo donde se almacena la cantidad total que gira.
+	 * Atributo donde se almacena la cantidad total que gira.
 	 */
 	private int cantidadComida;
 	/**
@@ -19,8 +22,9 @@ public class MovimientoIa {
 	private Coordenada coordenada;
 
 	/**
-	 * Contructor de la clase 
-	 * @param coordenada La coordenada de la jugada
+	 * Contructor de la clase
+	 * 
+	 * @param coordenada     La coordenada de la jugada
 	 * @param cantidadComida La cantidad de fichas que se come.
 	 */
 	MovimientoIa(Coordenada coordenada, int cantidadComida) {
@@ -29,7 +33,8 @@ public class MovimientoIa {
 	}
 
 	/**
-	 *	Metodo que devuelve la cantidad de fichas que puede comer en total.
+	 * Metodo que devuelve la cantidad de fichas que puede comer en total.
+	 * 
 	 * @return La cantidad.
 	 */
 	public int getCantidadComida() {
@@ -38,6 +43,7 @@ public class MovimientoIa {
 
 	/**
 	 * Metodo que devuelve la coordenada.
+	 * 
 	 * @return La cooordenada.
 	 */
 	public Coordenada getCoordenada() {

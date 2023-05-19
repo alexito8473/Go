@@ -265,6 +265,7 @@ public class Partida {
 
 	/**
 	 * Metodo que se extrae el nombre del jugador y saca a consola amarillo.
+	 * 
 	 * @param jugador El jugador donde se extrae su datos.
 	 */
 	private void nombreAmarillo(Jugador jugador) {
@@ -272,16 +273,18 @@ public class Partida {
 		con.frasesLentasSinSalto(jugador.getNombre(), 15);
 		System.out.print(Colors.RESET.getValor());
 	}
+
 	/**
-	 * 	Metodo para hacer espacio en consola.
-	 * 	@param espacio El numero de espacio que desea que haya.
+	 * Metodo para hacer espacio en consola.
+	 * 
+	 * @param espacio El numero de espacio que desea que haya.
 	 */
 	private void espacio(int espacio) {
 		for (int i = 0; i < espacio; i++) {
 			System.out.print(" ");
 		}
 	}
-	
+
 	/**
 	 * Metodo que muestra un titulo en consola.
 	 */
@@ -297,9 +300,10 @@ public class Partida {
 				1);
 		System.out.println(Colors.RESET.getValor());
 	}
-	
+
 	/**
-	 * Metodon que pinta en consola una bandera que puedes ser de España o Andalucia.
+	 * Metodon que pinta en consola una bandera que puedes ser de España o
+	 * Andalucia.
 	 */
 	public void pintarBandera() {
 		int velocidad = 8, espacio = 35, numero = new Random().nextInt(2);
